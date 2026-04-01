@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Hunter Vault</title>
+  <meta name="description" content="Privacy Policy for Hunter Vault, the gamified personal finance tracker. Learn how we protect your data — 100% offline, zero data collection.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://huntervault.app/privacy-policy.html">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #0f1428;
+      --bg-card: #111827;
+      --neon-blue: #00d4ff;
+      --neon-purple: #7b2fff;
+      --text-primary: #e8eaf6;
+      --text-secondary: #8892b0;
+      --text-muted: #4a5568;
+      --gradient-main: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      --font-display: 'Orbitron', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --border-radius: 12px;
+      --max-width: 800px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.8;
+    }
+
+    /* Navigation */
+    .nav {
+      background: rgba(10, 14, 26, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .nav-logo span {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .nav-back:hover {
+      color: var(--neon-blue);
+    }
+
+    /* Content */
+    .policy-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .policy-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .policy-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .policy-header .effective-date {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .policy-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .policy-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--neon-blue);
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .policy-section p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .policy-section ul {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .policy-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      color: var(--text-primary);
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-logo span {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo"><span>HUNTER</span> VAULT</a>
+      <a href="/" class="nav-back">&larr; Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="policy-container">
+    <header class="policy-header">
+      <h1>Privacy Policy</h1>
+      <p class="effective-date">Effective Date: March 26, 2026</p>
+    </header>
+
+    <section class="policy-section">
+      <h2>Overview</h2>
+      <p>Hunter Vault ("we", "our", or "the app") is a gamified personal finance tracker designed with your privacy as a top priority. This Privacy Policy explains how we handle your information when you use our mobile application.</p>
+      <div class="highlight-box">
+        <p><strong>The short version:</strong> Hunter Vault operates 100% offline. We do not collect, store, or transmit any of your personal or financial data to external servers. Your data stays on your device, under your control.</p>
+      </div>
+    </section>
+
+    <section class="policy-section">
+      <h2>Information We Do Not Collect</h2>
+      <p>Hunter Vault does not collect any of the following:</p>
+      <ul>
+        <li>Personal information (name, email, phone number, address)</li>
+        <li>Financial data (income, expenses, bank details, account numbers)</li>
+        <li>Location data</li>
+        <li>Device identifiers or advertising IDs</li>
+        <li>Usage analytics or behavioral tracking data</li>
+        <li>Cookies or similar tracking technologies</li>
+      </ul>
+    </section>
+
+    <section class="policy-section">
+      <h2>How Your Data Is Stored</h2>
+      <p>All data you enter into Hunter Vault — including transactions, budgets, savings goals, and your hunter profile — is stored locally on your device using encrypted IndexedDB storage. This means:</p>
+      <ul>
+        <li>Your data never leaves your device</li>
+        <li>No account or sign-up is required</li>
+        <li>No cloud syncing or external backups are performed</li>
+        <li>Uninstalling the app will permanently delete all your data</li>
+      </ul>
+    </section>
+
+    <section class="policy-section">
+      <h2>No Third-Party Services</h2>
+      <p>Hunter Vault does not integrate with any third-party analytics, advertising, or tracking services. We do not share your data with anyone because we simply do not have access to it.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>No Internet Required</h2>
+      <p>Hunter Vault is designed to function entirely offline. The app does not require an internet connection to operate, and no data is transmitted over the network at any time during normal use.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>App Permissions</h2>
+      <p>Hunter Vault requests only the minimum permissions necessary for core functionality. The app does not request access to your contacts, camera, microphone, location, or other sensitive device features.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Children's Privacy</h2>
+      <p>Hunter Vault does not knowingly collect any information from anyone, including children under the age of 13. Since the app collects no data whatsoever, it is inherently compliant with the Children's Online Privacy Protection Act (COPPA) and similar regulations.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Data Deletion</h2>
+      <p>Since all data is stored locally on your device, you have full control over it at all times. You can delete your data by:</p>
+      <ul>
+        <li>Clearing the app's data through your device settings</li>
+        <li>Uninstalling the app from your device</li>
+      </ul>
+      <p>No additional steps are needed since no data exists on any external server.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Changes to This Privacy Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date. We encourage you to review this page periodically.</p>
+    </section>
+
+    <section class="policy-section">
+      <h2>Contact Us</h2>
+      <p>If you have any questions or concerns about this Privacy Policy or the app, please reach out to us at:</p>
+      <p><strong>Email:</strong> support@huntervault.app</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-logo"><span>HUNTER</span> VAULT</div>
+    <p class="footer-copy">&copy; 2025 Hunter Vault. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
