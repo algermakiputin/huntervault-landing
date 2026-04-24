@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hunter Vault — Gamified Personal Finance Tracker | RPG Budgeting App</title>
+  <title>Hunter Vault: Gamified Personal Finance Tracker | RPG Budgeting App</title>
   <meta name="description" content="Transform your finances into an epic RPG adventure. Hunter Vault is a Solo Leveling-inspired personal finance tracker with XP, quests, and rank progression. Track expenses, crush debt, and level up your wealth — 100% offline and private.">
   <meta name="keywords" content="personal finance tracker, gamified budgeting app, RPG finance app, expense tracker, debt payoff app, savings goal tracker, Solo Leveling finance, budget game, money management app, financial RPG">
   <meta name="author" content="Hunter Vault">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://huntervault.app/">
+  
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -18,6 +19,7 @@
   <meta property="og:image" content="https://huntervault.app/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta name="p:domain_verify" content="1631fe700efd32b273fd384359025c2b"/>
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -1530,6 +1532,15 @@
     }
   </style>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZM2KDQ0G38"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZM2KDQ0G38');
+</script>
 <body>
   <!-- Particle Background -->
   <canvas id="particles-canvas" aria-hidden="true"></canvas>
@@ -2080,9 +2091,10 @@
     const videoIframe = document.getElementById('video-iframe');
     const trailerBtn = document.getElementById('trailer-btn');
     const videoClose = document.getElementById('video-close');
-    const youtubeUrl = 'https://www.youtube.com/embed/f9HavxR4U8c?autoplay=1&rel=0';
+    const youtubeUrl = 'https://www.youtube.com/embed/kyxljw2JOzM?autoplay=1&rel=0';
 
     function openVideo() {
+      gtag('event', 'watch_trailer');
       videoIframe.src = youtubeUrl;
       videoModal.classList.add('active');
       videoModal.setAttribute('aria-hidden', 'false');
@@ -2103,6 +2115,19 @@
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && videoModal.classList.contains('active')) closeVideo();
+    });
+
+    // ===== Conversion Event Tracking =====
+    document.querySelector('a[href*="play.google.com"]').addEventListener('click', () => {
+      gtag('event', 'download_click', { platform: 'google_play', location: 'cta_section' });
+    });
+
+    document.querySelector('a[href*="apps.apple.com"]').addEventListener('click', () => {
+      gtag('event', 'download_click', { platform: 'app_store', location: 'cta_section' });
+    });
+
+    document.querySelector('.hero-buttons .btn-primary').addEventListener('click', () => {
+      gtag('event', 'hero_cta_click');
     });
 
     // ===== Smooth scroll for Safari =====
