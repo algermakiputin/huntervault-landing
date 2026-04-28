@@ -1,0 +1,171 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Hunter Vault — Personal Finance for Gamers</title>
+  <meta name="description" content="Tips, guides, and strategies to level up your personal finance. Budgeting, saving, and money management made fun." />
+  <link rel="canonical" href="https://huntervault.app/blog/" />
+  <meta property="og:title" content="Hunter Vault Blog" />
+  <meta property="og:description" content="Personal finance tips and guides for Filipino gamers." />
+  <meta property="og:url" content="https://huntervault.app/blog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://huntervault.app/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hunter Vault Blog" />
+  <meta name="twitter:description" content="Tips, guides, and strategies to level up your personal finance. Budgeting, saving, and money management made fun." />
+  <meta name="twitter:image" content="https://huntervault.app/assets/og-image.jpg" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/blog.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/assets/hunter-vault-logo.webp" alt="Hunter Vault" width="32" height="32" />
+        HUNTER <span>VAULT</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#screenshots">Screenshots</a></li>
+        <li><a href="/blog/" class="active">Blog</a></li>
+        <li><a href="/#download" class="nav-cta">Download Free</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="blog-hero">
+    <span class="blog-hero-tag">// knowledge base</span>
+    <h1>Hunter Vault <span>Blog</span></h1>
+    <p>Tips, guides, and real-world strategies to level up your personal finance game.</p>
+  </section>
+
+  <div class="blog-controls">
+    <div class="blog-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="search-input" placeholder="Search articles…" autocomplete="off" />
+    </div>
+    <div class="blog-filters">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="Finance Tips">Finance Tips</button>
+      <button class="filter-btn" data-cat="Guide">Guide</button>
+      <button class="filter-btn" data-cat="Update">Update</button>
+      <button class="filter-btn" data-cat="Story">Story</button>
+    </div>
+  </div>
+
+  <div class="blog-count" id="blog-count"></div>
+
+  <div class="blog-grid" id="blog-grid">
+    {posts.map(post => (
+      <ArticleCard
+        title={post.data.title}
+        excerpt={post.data.description}
+        category={post.data.category}
+        date={post.data.pubDate}
+        readTime={post.data.readTime}
+        slug={post.slug}
+        image={post.data.image}
+        imageAlt={post.data.imageAlt}
+      />
+    ))}
+  </div>
+
+  <div class="blog-empty" id="blog-empty">
+    <p>// no articles found matching your search</p>
+  </div>
+
+  <div class="blog-load-more" id="load-more-wrap">
+    <button class="load-more-btn" id="load-more-btn">Load More Articles</button>
+  </div>
+
+  <footer class="blog-footer">
+    <div class="blog-footer-inner">
+      <p>© 2025 Hunter Vault. All rights reserved.</p>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#download">Download</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const BATCH = 12;
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.article-card'));
+    const countEl = document.getElementById('blog-count')!;
+    const emptyEl = document.getElementById('blog-empty')!;
+    const loadMoreBtn = document.getElementById('load-more-btn') as HTMLButtonElement;
+    const loadMoreWrap = document.getElementById('load-more-wrap')!;
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+
+    let activeCat = 'all';
+    let searchQuery = '';
+    let shown = BATCH;
+
+    function getVisible() {
+      return cards.filter(card => {
+        const title = card.querySelector('.article-title')?.textContent?.toLowerCase() ?? '';
+        const excerpt = card.querySelector('.article-excerpt')?.textContent?.toLowerCase() ?? '';
+        const cat = card.querySelector('.article-category')?.textContent?.trim() ?? '';
+        const matchCat = activeCat === 'all' || cat === activeCat;
+        const matchSearch = !searchQuery || title.includes(searchQuery) || excerpt.includes(searchQuery);
+        return matchCat && matchSearch;
+      });
+    }
+
+    function render() {
+      const visible = getVisible();
+      cards.forEach(c => c.classList.add('hidden'));
+      visible.slice(0, shown).forEach(c => c.classList.remove('hidden'));
+      countEl.textContent = `// ${visible.length} article${visible.length !== 1 ? 's' : ''} found`;
+      emptyEl.classList.toggle('visible', visible.length === 0);
+      const allShown = shown >= visible.length;
+      loadMoreWrap.style.display = visible.length === 0 || allShown ? 'none' : 'block';
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCat = btn.dataset.cat ?? 'all';
+        shown = BATCH;
+        render();
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value.toLowerCase().trim();
+      shown = BATCH;
+      render();
+    });
+
+    loadMoreBtn.addEventListener('click', () => {
+      shown += BATCH;
+      render();
+    });
+
+    render();
+  </script>
+
+</body>
+</html>

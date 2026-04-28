@@ -1,0 +1,295 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { entry, headings } = Astro.props;
+const { title, description, pubDate, category, readTime, image, imageAlt, faq } = entry.data;
+const slug = entry.slug;
+
+const catClass: Record<string, string> = {
+  'Finance Tips': 'cat-finance',
+  'Guide': 'cat-guide',
+  'Update': 'cat-update',
+  'Story': 'cat-story',
+};
+const cls = catClass[category] ?? 'cat-guide';
+
+const formattedDate = pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+const faqJsonLd = faq ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+}) : null;
+
+const articleJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "datePublished": pubDate.toISOString(),
+  "author": { "@type": "Organization", "name": "Hunter Vault" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hunter Vault",
+    "logo": { "@type": "ImageObject", "url": "https://huntervault.app/assets/hunter-vault-logo.webp" }
+  },
+  "image": image ? `https://huntervault.app${image}` : "https://huntervault.app/assets/og-image.jpg",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://huntervault.app/blog/${slug}/` }
+});
+
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== slug)
+  .sort((a, b) => {
+    const sameCategory = (a.data.category === category ? -1 : 0) - (b.data.category === category ? -1 : 0);
+    if (sameCategory !== 0) return sameCategory;
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+  })
+  .slice(0, 3);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | Hunter Vault Blog</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={`https://huntervault.app/blog/${slug}/`} />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={`https://huntervault.app/blog/${slug}/`} />
+  {image && <meta property="og:image" content={`https://huntervault.app${image}`} />}
+  <meta property="og:site_name" content="Hunter Vault" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/blog-post.css" />
+
+  <script type="application/ld+json" set:html={articleJsonLd} />
+  {faqJsonLd && <script type="application/ld+json" set:html={faqJsonLd} />}
+</head>
+<body>
+
+  <div id="read-progress"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/assets/hunter-vault-logo.webp" alt="Hunter Vault" width="32" height="32" />
+        HUNTER <span>VAULT</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#screenshots">Screenshots</a></li>
+        <li><a href="/blog/" class="active">Blog</a></li>
+        <li><a href="/#download" class="nav-cta">Download Free</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero: breadcrumb + title -->
+  <header class="article-hero">
+    <div class="article-hero-inner">
+      <nav class="article-breadcrumb">
+        <a href="/">Home</a>
+        <span>›</span>
+        <a href="/blog/">Blog</a>
+        <span>›</span>
+        <span>{title}</span>
+      </nav>
+
+      <div class="article-hero-meta">
+        <span class={`article-category ${cls}`}>{category}</span>
+        <span>{formattedDate}</span>
+        <span class="article-read-badge">{readTime}</span>
+      </div>
+
+      <h1>{title}</h1>
+      <p class="article-subtitle">{description}</p>
+    </div>
+  </header>
+
+  <!-- Featured Image -->
+  {image && (
+    <figure class="article-featured-img">
+      <div class="img-wrap">
+        <img src={image} alt={imageAlt ?? title} loading="eager" />
+      </div>
+    </figure>
+  )}
+
+  <!-- Article body + TOC sidebar -->
+  <div class="article-page-wrap">
+
+    <article class="article-prose" id="article-content">
+
+      <slot />
+
+      <!-- Share -->
+      <div class="article-share">
+        <span class="share-label">Share this article</span>
+        <button class="share-btn share-x" data-url={`https://huntervault.app/blog/${slug}/`} data-title={title}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.733-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Share on X
+        </button>
+        <button class="share-btn share-fb" data-url={`https://huntervault.app/blog/${slug}/`}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Share on Facebook
+        </button>
+        <button class="share-btn share-copy" data-url={`https://huntervault.app/blog/${slug}/`}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy Link
+        </button>
+      </div>
+
+      <!-- Author -->
+      <div class="article-author-bio">
+        <div class="author-avatar-lg">HV</div>
+        <div class="author-bio-content">
+          <div class="author-bio-name">Hunter Vault Team</div>
+          <div class="author-bio-text">We build tools to help people take control of their finances through the power of gamification. Every article is written from real experience managing money on a budget.</div>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- TOC Sidebar -->
+    {tocHeadings.length > 0 && (
+      <div class="article-toc" id="toc-box">
+        <span class="toc-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+          Contents
+        </span>
+        <ul class="toc-list">
+          {tocHeadings.map(h => (
+            <li class={h.depth === 3 ? 'toc-sub' : ''}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+  </div>
+
+  <!-- Related Posts -->
+  {relatedPosts.length > 0 && (
+    <section class="article-related">
+      <h2 class="related-heading">More Articles</h2>
+      <div class="related-grid">
+        {relatedPosts.map(post => {
+          const postDate = post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          const postCatClass = ({ 'Finance Tips': 'cat-finance', 'Guide': 'cat-guide', 'Update': 'cat-update', 'Story': 'cat-story' })[post.data.category] ?? 'cat-guide';
+          return (
+            <a href={`/blog/${post.slug}/`} class="related-card">
+              <div class="related-thumb">
+                {post.data.image
+                  ? <img src={post.data.image} alt={post.data.imageAlt ?? post.data.title} loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+                  : <span>📰</span>
+                }
+              </div>
+              <div class="related-body">
+                <div class="related-meta">
+                  <span class={`article-category ${postCatClass}`}>{post.data.category}</span>
+                  <span class="related-date">{postDate}</span>
+                </div>
+                <div class="related-title">{post.data.title}</div>
+                <span class="related-link">Read More →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <!-- Footer -->
+  <footer class="blog-footer">
+    <div class="blog-footer-inner">
+      <p>© 2025 Hunter Vault. All rights reserved.</p>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#download">Download</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reading progress bar
+    const bar = document.getElementById('read-progress') as HTMLElement;
+    const article = document.getElementById('article-content') as HTMLElement;
+    function updateProgress() {
+      if (!bar || !article) return;
+      const scrolled = window.scrollY;
+      const total = article.offsetHeight + article.offsetTop - window.innerHeight;
+      const pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
+      bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+
+    // TOC active highlight
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.toc-list a');
+    function updateToc() {
+      const headings = Array.from(document.querySelectorAll<HTMLElement>('.article-prose h2, .article-prose h3'));
+      let active = '';
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= 100) active = h.id;
+      }
+      tocLinks.forEach(a => {
+        const href = a.getAttribute('href')?.slice(1);
+        a.classList.toggle('toc-active', href === active);
+      });
+    }
+    window.addEventListener('scroll', updateToc, { passive: true });
+
+    // Share buttons
+    document.querySelectorAll<HTMLButtonElement>('.share-x').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = encodeURIComponent(btn.dataset.url ?? '');
+        const text = encodeURIComponent(btn.dataset.title ?? '');
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+      });
+    });
+    document.querySelectorAll<HTMLButtonElement>('.share-fb').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = encodeURIComponent(btn.dataset.url ?? '');
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+      });
+    });
+    document.querySelectorAll<HTMLButtonElement>('.share-copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const url = btn.dataset.url ?? '';
+        await navigator.clipboard.writeText(url);
+        const orig = btn.textContent ?? '';
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 2000);
+      });
+    });
+  </script>
+
+</body>
+</html>

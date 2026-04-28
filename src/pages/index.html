@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamified Budget App & Expense Tracker | Hunter Vault RPG Finance App</title>
+  <meta name="description" content="Transform your finances into an epic RPG adventure. Hunter Vault is a Solo Leveling-inspired personal finance tracker with XP, quests, and rank progression. Track expenses, manage your budget, and crush debt, and build wealth — 100% offline and private.">
+  <meta name="keywords" content="personal finance tracker, gamified budgeting app, RPG finance app, expense tracker, debt payoff app, savings goal tracker, Solo Leveling finance, budget game, money management app, financial RPG">
+  <meta name="author" content="Hunter Vault">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://huntervault.app/">
+  
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://huntervault.app/">
+  <meta property="og:title" content="Hunter Vault: Gamified Personal Finance Tracker">
+  <meta property="og:description" content="Transform boring budgeting into an immersive RPG experience. Track expenses, manage your budget, and crush debt, and build wealth while leveling up your Hunter Power.">
+  <meta property="og:image" content="https://huntervault.app/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="p:domain_verify" content="1631fe700efd32b273fd384359025c2b"/>
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://huntervault.app/">
+  <meta name="twitter:title" content="Hunter Vault: Gamified Personal Finance Tracker">
+  <meta name="twitter:description" content="Transform boring budgeting into an immersive RPG experience. Track expenses, manage your budget, and crush debt, and build wealth while leveling up your Hunter Power.">
+  <meta name="twitter:image" content="https://huntervault.app/og-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Preload above-fold assets -->
+  <link rel="preload" as="image" href="./assets/bg/hero.webp" type="image/webp">
+  <link rel="preload" as="image" href="./assets/screenshots/dashboard.webp" type="image/webp">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Hunter Vault",
+    "operatingSystem": "Android, iOS",
+    "applicationCategory": "FinanceApplication",
+    "description": "A Solo Leveling-inspired gamified personal finance tracker. Track expenses, manage your budget, and crush debt, and build wealth while leveling up your Hunter Power with XP, quests, and rank progression.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Hunter Power Level System with XP",
+      "Quest Log with Daily and Weekly Missions",
+      "Rank Progression from E to S+",
+      "Expense Tracking",
+      "Income Management",
+      "Debt Payoff Visualization",
+      "Budget Control",
+      "Savings Goal Tracker",
+      "100% Offline and Private",
+      "No Account Required"
+    ],
+    "screenshot": "https://huntervault.app/og-image.jpg"
+  }
+  </script>
+
+
+  <!-- FAQ Structured Data for Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Hunter Vault?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hunter Vault is a gamified personal finance tracker and budgeting app inspired by RPG games. It turns everyday financial habits into quests, rewards smart money decisions with XP and rank upgrades, and helps users track expenses, manage income, pay off debt, and reach savings goals — all offline with no account required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does a gamified budgeting app work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A gamified budgeting app like Hunter Vault turns financial actions into game mechanics. Every expense tracked earns XP. Every debt payment advances your rank. Savings goals become quests with progress bars. Instead of forcing willpower, gamification builds financial habits naturally by making progress visible and rewarding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Hunter Vault free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Hunter Vault is completely free to download on both Android (Google Play) and iOS (App Store). No subscription, no ads, and no account needed. All your data stays on your device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my financial data safe in Hunter Vault?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Hunter Vault is 100% offline — your financial data never leaves your device and is never sent to any server. There are no accounts to create, no data collected, and no cloud sync. Your privacy is protected by design."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Hunter Vault different from other budgeting apps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most budgeting apps feel like work — Hunter Vault feels like a game. Instead of spreadsheets and charts, you level up a Hunter character, complete quests, and rise through ranks from E to S+. It combines the structure of a serious finance tracker with the motivation of an RPG, making it easier to stay consistent with your money habits."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.min.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZM2KDQ0G38"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZM2KDQ0G38');
+</script>
+<body>
+  <!-- Particle Background -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Hunter Vault Home">
+        <img src="./assets/hunter-vault-logo.webp?v=2" alt="Hunter Vault" width="40" height="40" loading="eager" decoding="async" style="object-fit:contain;" />
+        <div class="nav-logo-text"><span>HUNTER</span> VAULT</div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#screenshots">Preview</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#ranks">Ranks</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="#download" class="nav-cta">Download</a></li>
+      </ul>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Command Panel Overlay (mobile / tablet) -->
+  <div class="nav-panel" id="nav-panel" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+    <div class="nav-panel-inner">
+      <span class="nav-panel-tag">// NAVIGATION</span>
+
+      <ul class="nav-panel-links">
+        <li>
+          <a href="#screenshots" class="nav-panel-item">
+            <span class="nav-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="nav-panel-label">Preview</span>
+            <span class="nav-panel-arrow">›</span>
+          </a>
+        </li>
+        <li>
+          <a href="#features" class="nav-panel-item">
+            <span class="nav-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
+            <span class="nav-panel-label">Features</span>
+            <span class="nav-panel-arrow">›</span>
+          </a>
+        </li>
+        <li>
+          <a href="#ranks" class="nav-panel-item">
+            <span class="nav-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span class="nav-panel-label">Ranks</span>
+            <span class="nav-panel-arrow">›</span>
+          </a>
+        </li>
+        <li>
+          <a href="#how-it-works" class="nav-panel-item">
+            <span class="nav-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            </span>
+            <span class="nav-panel-label">How It Works</span>
+            <span class="nav-panel-arrow">›</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-panel-divider"></div>
+
+      <a href="#download" class="nav-panel-cta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Free
+      </a>
+
+      <p class="nav-panel-tagline">Free &bull; No account &bull; Start in seconds</p>
+    </div>
+  </div>
+
+  <!-- Slide Navigation Dots -->
+  <nav class="slide-nav" id="slide-nav" aria-label="Section navigation">
+    <button class="slide-dot" data-target="hero"             data-label="Hero"         aria-label="Go to Hero"></button>
+    <button class="slide-dot" data-target="screenshots"      data-label="Screens"      aria-label="Go to Screenshots"></button>
+    <button class="slide-dot" data-target="stakes"           data-label="Stakes"       aria-label="Go to Stakes"></button>
+    <button class="slide-dot" data-target="perfect-for"      data-label="For Hunters"  aria-label="Go to For Hunters"></button>
+    <button class="slide-dot" data-target="guide"            data-label="The Guide"    aria-label="Go to Guide"></button>
+    <button class="slide-dot" data-target="features"         data-label="Features"     aria-label="Go to Features"></button>
+    <button class="slide-dot" data-target="ranks"            data-label="Ranks"        aria-label="Go to Ranks"></button>
+    <button class="slide-dot" data-target="how-it-works"     data-label="The Plan"     aria-label="Go to How It Works"></button>
+    <button class="slide-dot" data-target="crossroads"       data-label="Crossroads"   aria-label="Go to Crossroads"></button>
+    <button class="slide-dot" data-target="privacy"          data-label="Privacy"      aria-label="Go to Privacy"></button>
+    <button class="slide-dot" data-target="quest-log-signup" data-label="Quest Log"    aria-label="Go to Quest Log"></button>
+    <button class="slide-dot" data-target="download"         data-label="Download"     aria-label="Go to Download"></button>
+  </nav>
+
+  <!-- Fullpage Scroll Wrapper -->
+  <div id="fullpage" class="fullpage-wrapper">
+
+  <!-- Hero Section -->
+  <header class="hero slide" id="hero">
+    <div class="hero-bg-glow hero-bg-glow--blue"></div>
+    <div class="hero-bg-glow hero-bg-glow--purple"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <!-- <div class="hero-badge">Quest Log Activated</div> -->
+
+        
+        <h1>
+          The #1 <span class="highlight-red">Gamified</span><span class="hero-dot"></span><br class="hero-br">
+          <span class="highlight">Budget Tracker</span><span class="hero-dot">.</span>
+        </h1>
+        <h2 class="hero-eyebrow">Budget App &amp; Expense Tracker That Turns Your Finances Into a Game</h2>
+        <p class="hero-description hero-desc-long">
+          Your money vanishes fast. Bills stack up. Most budgeting apps feel like work. So you quit. Hunter Vault is a gamified budget app and expense tracker that makes managing money actually stick. Track expenses, control your budget, and level up your finances like a game.
+        </p>
+        <p class="hero-description hero-desc-short">
+          <span class="desc-cause">Money disappears. Bills pile up.<br>Most apps feel like work.</span>
+          <span class="desc-solution">Hunter Vault turns your finances<br>into a game you stick with.</span>
+        </p>
+        <div class="hero-buttons">
+          <a href="https://play.google.com/store/apps/details?id=com.hunter.vault" class="store-btn" aria-label="Download on Google Play" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.396 12l2.302-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+            <div class="store-btn-text">
+              <small>GET IT ON</small>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+          <a href="https://apps.apple.com/app/hunter-vault-finance-tracker/id6761086056" class="store-btn" aria-label="Download on App Store" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <div class="store-btn-text">
+              <small>DOWNLOAD ON THE</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+        </div>
+        <p class="hero-microcopy">Free &bull; No account &bull; Start in seconds</p>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup float-anim">
+          <div class="phone-screen">
+            <div class="phone-screen-content">
+              <img src="./assets/screenshots/dashboard.webp" alt="Hunter Vault gamified budget app dashboard showing Hunter Power level, treasury balance, and expense tracking" class="hero-screenshot" loading="eager" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-trust-strip">
+        <div class="hero-trust-item"><span class="trust-icon">🔒</span> 100% Offline</div>
+        <div class="hero-trust-item"><span class="trust-icon">👤</span> No Account Needed</div>
+        <div class="hero-trust-item"><span class="trust-icon">⚡</span> Zero Data Collected</div>
+        <div class="hero-trust-item"><span class="trust-icon">🚫</span> No Ads</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Screenshots Section -->
+  <section class="slide" id="screenshots">
+    <div class="section-container screenshots-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// Live Screens</span>
+        <h2 class="section-title">Everything You Need to <span class="highlight">Level Up Your Finances</span></h2>
+        <p class="section-subtitle">Swipe through the actual app.</p>
+      </div>
+
+      <div class="app-screens-strip reveal">
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios1.webp" alt="Hunter Vault gamified finance app home screen showing XP system, budget tracker, and savings vaults" loading="lazy" decoding="async" />
+        </div>
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios2.webp" alt="Budget app mana control screen showing spending categories and budget allocation bars" loading="lazy" decoding="async" />
+        </div>
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios3.webp" alt="Expense tracker app showing quick expense logging screen with category selection" loading="lazy" decoding="async" />
+        </div>
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios4.webp" alt="Debt payoff tracker showing dungeon raid system with boss health bar for credit card and loan progress" loading="lazy" decoding="async" />
+        </div>
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios5.webp" alt="RPG finance app quest board showing daily money habits and Hunter rank progression with XP rewards" loading="lazy" decoding="async" />
+        </div>
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios6.webp" alt="Gamified budget app achievements screen showing XP progress, daily quests, and financial goals" loading="lazy" decoding="async" />
+        </div>
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios7.webp" alt="Hunter Shop showing rewards and themes unlocked by completing financial goals and saving money" loading="lazy" decoding="async" />
+        </div>
+        <div class="app-screen-frame">
+          <img src="./assets/listing-ss/ios8.webp" alt="RPG money tracker full dashboard overview showing budget, debt, savings goals, quests, and achievements" loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <div class="swipe-hint">Swipe to explore ›</div>
+    </div>
+  </section>
+
+  <!-- Stakes Section -->
+  <section class="slide" id="stakes">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// The Threat</span>
+        <h2 class="section-title">The Dungeon You're <span class="highlight-red">Already In</span></h2>
+        <p class="section-subtitle">Ignoring it doesn't make it go away. It just levels it up.</p>
+      </div>
+      <div class="stakes-grid">
+        <article class="stakes-card reveal">
+          <div class="stakes-icon">🩸</div>
+          <h3>Your Mana is Draining</h3>
+          <p>Money comes in. Then it’s gone. Subscriptions. Fees. Small buys. They drain you slowly. Every month.</p>
+          <!-- <p>You earn enough — but the money is gone before you can track it. Hidden fees, impulse buys, and forgotten subscriptions bleed your vault dry every month.</p> -->
+        </article>
+        <article class="stakes-card reveal">
+          <div class="stakes-icon">⚠️</div>
+          <h3>You Feel Stuck at E-Rank</h3>
+          <p>You’re trying. But nothing changes. No system. No progress. No wins. Just the same cycle. Again and again.</p>
+        </article>
+        <article class="stakes-card reveal">
+          <div class="stakes-icon">⚔️</div>
+          <h3>You Shouldn't Fight Alone</h3>
+          <p>No one taught you this. And the system profits when you lose. So you keep paying. And falling behind.</p>
+        </article>
+      </div>
+      <div class="swipe-hint">Swipe to explore ›</div>
+      <p class="stakes-pivot">That's why <span>Hunter Vault</span> exists.</p>
+    </div>
+  </section>
+
+  <!-- Perfect For Section -->
+  <section class="slide" id="perfect-for">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// Choose Your Class</span>
+        <h2 class="section-title">Choose Your <span class="highlight">Starting Class</span></h2>
+        <p class="section-subtitle">No matter where you are, you start somewhere.</p>
+      </div>
+      <div class="personas-grid">
+
+        <div class="persona-card persona-card--featured reveal">
+          <span class="persona-badge persona-badge--purple">⚔ Most Common</span>
+          <div class="persona-icon">🎮</div>
+          <h3>Gamers &amp; Progress-Driven Thinkers</h3>
+          <p>You already love leveling up. You grind, optimize, and push for the next milestone. Your finances should work the same way — and now they do.</p>
+        </div>
+
+        <div class="persona-card reveal">
+          <span class="persona-badge persona-badge--blue">✦ Best for Beginners</span>
+          <div class="persona-icon">📖</div>
+          <h3>People Who’ve Tried Budgeting Before</h3>
+          <p>Spreadsheets didn’t stick. This will. Start in minutes, stay consistent for months.</p>
+        </div>
+
+        <div class="persona-card reveal">
+          <span class="persona-badge persona-badge--gold">⚡ Fastest Progress</span>
+          <div class="persona-icon">⚔️</div>
+          <h3>Focused on Paying Off Debt</h3>
+          <p>Turn every payment into visible progress. Track it, attack it, clear it — one raid at a time.</p>
+        </div>
+
+        <div class="persona-card reveal">
+          <span class="persona-badge persona-badge--green">🎯 Goal Builders</span>
+          <div class="persona-icon">🏹</div>
+          <h3>Trying to Build Savings</h3>
+          <p>Watch your vault grow instead of guessing. Every deposit moves the bar. Every milestone earns a reward.</p>
+        </div>
+
+      </div>
+      <div class="swipe-hint">Swipe to explore ›</div>
+      <div class="personas-cta reveal">
+        <a href="#download" class="btn btn-primary">Start Your Journey →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide Section -->
+  <section class="slide" id="guide">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// The Guide</span>
+        <h2 class="section-title">Now You Have a <span class="highlight">System That Works</span> on Your Side</h2>
+      </div>
+      <p class="guide-body reveal">
+        Most people don’t fail at money. They fail at sticking with it. This fixes that.
+      </p>
+
+      <!-- Testimonial — hero element -->
+      <div class="hunter-message reveal">
+        <div class="hunter-message-label">// System Message</div>
+        <div class="hunter-message-header">
+          <div class="hunter-avatar">H</div>
+          <div class="hunter-info">
+            <span class="hunter-name">Reddit Hunter</span>
+            <span class="hunter-rank-tag">E-Rank → Rising</span>
+          </div>
+          <span class="hunter-source-badge">via Reddit</span>
+        </div>
+        <div class="hunter-message-body">
+          "I finally stuck with budgeting. It actually feels like a game — and it works."
+        </div>
+        <div class="hunter-stars">★★★★★</div>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="guide-stats reveal">
+        <div class="trust-badge"><span class="trust-badge-icon">✓</span> 100+ people already using it daily</div>
+        <div class="trust-badge"><span class="trust-badge-icon">✓</span> Works on iOS &amp; Android</div>
+        <div class="trust-badge"><span class="trust-badge-icon">✓</span> Free forever. No subscriptions.</div>
+      </div>
+
+      <div class="inline-cta reveal">
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0.75rem;">Start small. See progress. Stick with it.</p>
+        <a href="#download" class="btn btn-primary btn-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Start Leveling Up — Free
+        </a>
+        <p style="margin-top:0.6rem; font-size:0.78rem; color:var(--text-muted);">No account &nbsp;·&nbsp; No ads &nbsp;·&nbsp; 100% private</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="slide" id="features">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// Questline</span>
+        <h2 class="section-title">Your <span class="highlight">Battle Plan</span> for Financial Victory</h2>
+        <p class="section-subtitle">A step-by-step questline to Track income and manage your budget, defeat debt, and earn legendary rank.</p>
+      </div>
+      <div class="features-grid">
+        <article class="feature-card reveal">
+          <div class="feature-step">Step 1</div>
+          <div class="feature-icon feature-icon--gold">&#127919;</div>
+          <h3>Train Income</h3>
+          <p>Build your base camp with income sources and recurring earnings. Every deposit earns XP and strengthens your Hunter Power.</p>
+          <span class="feature-tag">Income &bull; XP &bull; Growth</span>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-step">Step 2</div>
+          <div class="feature-icon feature-icon--cyan">&#9888;</div>
+          <h3>Conquer Debt</h3>
+          <p>Turn every payment into a raid against credit cards, loans, and overdue bills. Track progress as you clear each debt dungeon.</p>
+          <span class="feature-tag">Debt &bull; Raids &bull; Progress</span>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-step">Step 3</div>
+          <div class="feature-icon feature-icon--blue">&#128200;</div>
+          <h3>Master Budget</h3>
+          <p>Allocate your mana across categories, control spending, and keep resources in check. A disciplined hunter never runs out of stamina.</p>
+          <span class="feature-tag">Budget &bull; Control &bull; Clarity</span>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-step">Step 4</div>
+          <div class="feature-icon feature-icon--red">&#128221;</div>
+          <h3>Finish Daily Quests</h3>
+          <p>Complete daily directives and weekly missions for steady progress. Consistency rewards you with XP, streaks, and unlockable boosts.</p>
+          <span class="feature-tag">Daily &bull; Weekly &bull; Streaks</span>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-step">Step 5</div>
+          <div class="feature-icon feature-icon--purple">&#9881;</div>
+          <h3>Unlock Rank</h3>
+          <p>Advance through ranks as you hit milestones and level up. From E-Rank rookie to S+ Monarch, your progress becomes legendary.</p>
+          <span class="feature-tag">Rank &bull; Milestones &bull; Ascension</span>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-step">Step 6</div>
+          <div class="feature-icon feature-icon--green">&#127942;</div>
+          <h3>Claim Rewards</h3>
+          <p>Celebrate wins with achievements, vault upgrades, and visual progress. Every goal completed is another relic added to your vault.</p>
+          <span class="feature-tag">Goals &bull; Rewards &bull; Legendary</span>
+        </article>
+      </div>
+      <div class="swipe-hint">Swipe to explore ›</div>
+      <div class="inline-cta reveal">
+        <a href="#download" class="btn btn-primary btn-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Free — Start Your Quest
+        </a>
+        <p>Free forever. No subscriptions. No data collected.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots Section -->
+  <!-- Rank Progression Section -->
+  <section class="slide" id="ranks">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// Rank Progression</span>
+        <h2 class="section-title">Level Up Your <span class="highlight-gold">Financial Life</span></h2>
+        <p class="section-subtitle">From chaos to control — one rank at a time.</p>
+      </div>
+
+      <div class="ranks-track reveal">
+
+        <div class="rank-item">
+          <div class="rank-badge rank-e">E</div>
+          <span class="rank-label">Beginner</span>
+          <span class="rank-here">📍 Most start here</span>
+          <p class="rank-desc">No system, inconsistent tracking</p>
+        </div>
+
+        <div class="rank-item">
+          <div class="rank-badge rank-d">D</div>
+          <span class="rank-label">Novice</span>
+          <p class="rank-desc">Tracking income &amp; expenses</p>
+        </div>
+
+        <div class="rank-item">
+          <div class="rank-badge rank-c">C</div>
+          <span class="rank-label">Fighter</span>
+          <p class="rank-desc">Actively managing spending</p>
+        </div>
+
+        <div class="rank-item">
+          <div class="rank-badge rank-b">B</div>
+          <span class="rank-label">Warrior</span>
+          <p class="rank-desc">Paying down debt consistently</p>
+        </div>
+
+        <div class="rank-item">
+          <div class="rank-badge rank-a">A</div>
+          <span class="rank-label">Elite</span>
+          <p class="rank-desc">Building savings &amp; full control</p>
+        </div>
+
+        <div class="rank-item">
+          <div class="rank-badge rank-sp">S</div>
+          <span class="rank-label">Monarch</span>
+          <p class="rank-desc">Fully in control of your finances</p>
+        </div>
+
+      </div>
+      <div class="swipe-hint">Swipe to explore ›</div>
+
+      <div class="ranks-cta reveal">
+        <a href="#download" class="btn btn-primary">Start at E-Rank — It's Free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="slide" id="how-it-works">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// The Hunter's Path</span>
+        <h2 class="section-title">Three Steps to <span class="highlight-gold">S-Rank</span></h2>
+        <p class="section-subtitle">No spreadsheets. No finance degree. Just a clear path from E-Rank to Monarch.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number"><span>1</span></div>
+          <h3>Initialize Your Vault</h3>
+          <p>Add your income, expenses, and debts. Your financial dimension becomes visible for the first time — and your rank is assigned.</p>
+          <div class="step-subtext">&gt; initialize_vault()</div>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number"><span>2</span></div>
+          <h3>Clear Daily Quests</h3>
+          <p>Log expenses, earn XP for every smart choice, and complete daily directives. Consistency is how you build Hunter Power.</p>
+          <div class="step-subtext">&gt; quest.accept(daily)</div>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number"><span>3</span></div>
+          <h3>Rise to Monarch</h3>
+          <p>Watch your rank climb as debt dungeons fall and your vault grows. Every goal completed brings you one step closer to S-Rank freedom.</p>
+          <div class="step-subtext">&gt; hunter.rank_up()</div>
+        </div>
+      </div>
+      <div class="swipe-hint">Swipe to explore ›</div>
+    </div>
+  </section>
+
+  <!-- Success vs Failure Section -->
+  <section class="slide" id="crossroads">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// The Crossroads</span>
+        <h2 class="section-title">Two Paths. <span class="highlight">One Choice.</span></h2>
+        <p class="section-subtitle">The difference between E-Rank and S-Rank isn't luck. It's the system you use.</p>
+      </div>
+      <div class="crossroads-grid">
+        <div class="crossroads-vs">VS</div>
+
+        <div class="crossroads-card crossroads-card--failure reveal">
+          <div class="crossroads-label crossroads-label--failure">// Without Hunter Vault</div>
+          <h3>Always Behind on Your Money</h3>
+          <span class="crossroads-rank-sub">E-Rank Hunter</span>
+          <ul class="crossroads-list">
+            <li><i class="cross-icon">✗</i> Your money disappears and you don't know why</li>
+            <li><i class="cross-icon">✗</i> Debt keeps growing and you feel stuck</li>
+            <li><i class="cross-icon">✗</i> You're guessing instead of knowing</li>
+            <li><i class="cross-icon">✗</i> You try to budget… and give up again</li>
+            <li><i class="cross-icon">✗</i> Money stress is always in the back of your mind</li>
+          </ul>
+        </div>
+
+        <div class="crossroads-card crossroads-card--success reveal">
+          <div class="crossroads-badge">✦ Best Choice</div>
+          <div class="crossroads-label crossroads-label--success">// With Hunter Vault</div>
+          <h3>Finally In Control of Your Finances</h3>
+          <span class="crossroads-rank-sub">S-Rank Hunter</span>
+          <ul class="crossroads-list">
+            <li><i class="cross-icon">✓</i> You see exactly where your money goes</li>
+            <li><i class="cross-icon">✓</i> You make real progress on debt every week</li>
+            <li><i class="cross-icon">✓</i> You stay consistent without forcing it</li>
+            <li><i class="cross-icon">✓</i> Every good decision actually feels rewarding</li>
+            <li><i class="cross-icon">✓</i> You finally feel in control of your money</li>
+          </ul>
+          <div class="crossroads-cta">
+            <a href="#download" class="btn btn-primary" style="font-size:0.85rem; padding: 0.65rem 1.5rem;">Start Leveling Up — Free</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="swipe-hint">Swipe to compare ›</div>
+    </div>
+  </section>
+
+  <!-- Privacy Section -->
+  <section class="slide" id="privacy">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// Security Protocol</span>
+        <h2 class="section-title">Your Financial Data <span class="highlight">Never Leaves Your Device</span></h2>
+        <p class="section-subtitle">No servers. No accounts. No tracking. Your data stays on your device — always.</p>
+      </div>
+      <div class="privacy-grid reveal">
+
+        <div class="privacy-card privacy-card--dominant">
+          <div class="privacy-icon-wrap pi-purple">🔒</div>
+          <h3>100% Offline</h3>
+          <p>Your data stays on your device — not on our servers. We never see it, store it, or touch it.</p>
+        </div>
+
+        <div class="privacy-card">
+          <div class="privacy-icon-wrap pi-cyan">👤</div>
+          <h3>No Account Needed</h3>
+          <p>Open the app and start immediately. No sign-up, no email, no personal info.</p>
+        </div>
+
+        <div class="privacy-card">
+          <div class="privacy-icon-wrap pi-green">🚫</div>
+          <h3>No Ads. Ever.</h3>
+          <p>No ads. No distractions. No hidden monetization of your financial life.</p>
+        </div>
+
+        <div class="privacy-card">
+          <div class="privacy-icon-wrap pi-gold">⚡</div>
+          <h3>No Data Sold</h3>
+          <p>We don't track, store, or sell your data — ever. Not even anonymized.</p>
+        </div>
+
+        <div class="privacy-card privacy-card--dominant">
+          <div class="privacy-icon-wrap pi-purple">🛡️</div>
+          <h3>Encrypted Storage</h3>
+          <p>Everything is encrypted locally on your device. Hunter-grade protection, zero exposure.</p>
+        </div>
+
+      </div>
+      <p class="privacy-trust-line reveal">
+        Most finance apps track everything you do. <strong>This one doesn't.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Email Capture Section -->
+  <section class="slide" id="quest-log-signup">
+    <div class="section-container">
+      <div class="email-capture-card reveal">
+        <div class="email-capture-badge">📜 Free Resource</div>
+        <h2>Get the Free <span class="highlight-gold">7-Day Hunter's Quest Log</span></h2>
+        <p>A daily email challenge that walks you through tracking your finances like an S-Rank Hunter. One quest per day. No overwhelm. Just progress.</p>
+        <form class="email-form" id="kit-form" novalidate>
+          <input
+            type="email"
+            class="email-input"
+            id="kit-email"
+            placeholder="Enter your email, Hunter"
+            required
+            autocomplete="email"
+          />
+          <button type="submit" class="btn btn-primary btn-gold" id="kit-submit">
+            Claim Quest Log
+          </button>
+        </form>
+        <div class="email-form-message" id="kit-message"></div>
+        <p class="email-trust">No spam. Unsubscribe anytime. We're Hunters, not goblins.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO FAQ Section -->
+  <section class="slide" id="faq">
+    <div class="section-container faq-container">
+      <div class="section-header reveal">
+        <span class="section-tag">// Knowledge Base</span>
+        <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+      </div>
+
+      <div class="faq-grid reveal">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What is Hunter Vault?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Hunter Vault is a gamified personal finance tracker and budgeting app inspired by RPG games like Solo Leveling. It turns everyday financial habits into quests, rewards smart money decisions with XP and rank upgrades, and helps you track expenses, manage income, pay off debt, and reach savings goals — all 100% offline with no account required.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How does a gamified budgeting app work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Hunter Vault turns financial actions into game mechanics. Every expense you track earns XP. Every debt payment advances your Hunter Rank. Savings goals become quests with progress bars. Instead of relying on willpower, gamification builds financial habits naturally — by making progress visible and every good decision feel rewarding.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is Hunter Vault free?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes — completely free. No subscription, no ads, no hidden fees. Download on Android (Google Play) or iOS (App Store) at zero cost. No account needed either. Your data stays on your device.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is my financial data safe?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Hunter Vault is 100% offline — your financial data never leaves your device and is never sent to any server. No accounts to create, no data collected, no cloud sync. Your privacy is protected by design, not just by policy.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How is Hunter Vault different from other budgeting apps?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Most budgeting apps feel like work — Hunter Vault feels like a game. Instead of spreadsheets and bar charts, you level up a Hunter character, complete daily quests, and rise through ranks from E to S+. It combines the discipline of a serious finance tracker with the motivation loop of an RPG, making it far easier to stay consistent with your money habits long-term.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What can I track with Hunter Vault?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Hunter Vault covers the full personal finance stack: expense tracking, income management, budget control (Mana Pool), debt payoff visualization (Raid system), savings goal tracking (Power Vaults), and a daily quest log that turns financial habits into missions. All in one app, no internet required.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="slide cta-section" id="download">
+    <div class="cta-content reveal">
+      <h2>Ready to <span class="highlight">Level Up</span> Your Finances?</h2>
+      <p>Every budget is a quest. Every saving is a victory. Every debt paid is a dungeon conquered. Download Hunter Vault free and begin your ascension.</p>
+      <div class="cta-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.hunter.vault" class="store-btn" aria-label="Download on Google Play" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.396 12l2.302-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          <div class="store-btn-text">
+            <small>GET IT ON</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+        <a href="https://apps.apple.com/app/hunter-vault-finance-tracker/id6761086056" class="store-btn" aria-label="Download on Google Play" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-text">
+            <small>GET IT ON</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+    <footer class="footer slide-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="./assets/hunter-vault-logo.webp?v=2" alt="Hunter Vault" loading="lazy" decoding="async" />
+          <span>HUNTER</span> VAULT
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#features">Features</a>
+          <a href="#ranks">Ranks</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#privacy">Privacy</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+        </nav>
+        <p class="footer-copy">&copy; 2026 Hunter Vault. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <section class="seo-content">
+      <h2>Gamified Budget App for Tracking Expenses and Saving Money</h2>
+      <p>
+        Hunter Vault is a gamified budget app designed to help users track expenses, manage income, and stay consistent with their finances. Unlike traditional budgeting tools, it turns financial habits into a game with XP, levels, and rewards.
+      </p>
+      <h2>Best Expense Tracker App That Feels Like a Game</h2>
+      <p>
+        If you're looking for an expense tracker that is easy to use and fun, Hunter Vault combines budgeting tools with RPG mechanics to help you stay consistent and build better money habits.
+      </p>
+    </section>
+  </section>
+
+  </div><!-- end .fullpage-wrapper -->
+
+  <!-- Sticky Mobile CTA -->
+  <div class="sticky-mobile-cta" id="sticky-cta">
+    <a href="#download" class="btn btn-primary btn-gold">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Free
+    </a>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="video-modal-overlay" id="video-modal" aria-hidden="true" role="dialog" aria-label="Trailer video">
+    <div class="video-modal">
+      <button class="video-modal-close" id="video-close" aria-label="Close video">&times;</button>
+      <iframe id="video-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="Hunter Vault Trailer"></iframe>
+    </div>
+  </div>
+
+
+  <script src="script.min.js" defer></script>
+</body>
+</html>
