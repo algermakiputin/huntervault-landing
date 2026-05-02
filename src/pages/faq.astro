@@ -1,0 +1,207 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const faqs = [
+  {
+    category: "General",
+    tag: "// general",
+    items: [
+      {
+        q: "What is Hunter Vault?",
+        a: "Hunter Vault is a gamified personal finance tracker inspired by RPG games like Solo Leveling. It turns everyday financial habits into quests, rewards smart money decisions with XP and rank upgrades, and helps you track expenses, manage income, pay off debt, and reach savings goals — all 100% offline with no account required."
+      },
+      {
+        q: "How does a gamified budgeting app work?",
+        a: "HunterVault turns financial actions into game mechanics. Every expense you track earns XP. Every debt payment advances your rank. Savings goals become missions with progress bars. Instead of relying on willpower, gamification builds financial habits naturally by making progress visible and rewarding — the same psychology that makes games addictive, applied to your money."
+      },
+      {
+        q: "How is Hunter Vault different from other budgeting apps?",
+        a: "Most budgeting apps feel like homework. Hunter Vault feels like a game. Instead of spreadsheets and clinical dashboards, you level up a Hunter character, complete daily quests, and rise through ranks from E to S+. It combines the structure of a serious finance tracker with the motivation of an RPG — making it easier to stay consistent with your money habits long-term."
+      },
+      {
+        q: "Who is Hunter Vault for?",
+        a: "Hunter Vault is for anyone who wants to get better with money but struggles to stick with traditional budgeting apps. It's especially popular with gamers, young adults building their first financial habits, and people who find spreadsheets too boring to maintain. If you've tried and quit other finance apps, Hunter Vault was built for you."
+      },
+    ]
+  },
+  {
+    category: "Pricing & Features",
+    tag: "// pricing",
+    items: [
+      {
+        q: "Is Hunter Vault free?",
+        a: "Yes. The core app is completely free — expense tracking, income logging, budgeting, savings goals, daily quests, and rank progression (E → S) are all included at no cost. An optional Hunter Elite upgrade unlocks advanced features like the debt payoff system, Hunter Shop cosmetics, and advanced analytics. Nothing essential is paywalled."
+      },
+      {
+        q: "What's included in Hunter Elite (Premium)?",
+        a: "Hunter Elite unlocks: the full Debt Dungeon Raids system (strategic debt payoff tracking), the Hunter Shop (themes, badges, and visual upgrades), advanced analytics and in-depth financial reports, and enhanced financial tools. It's a one-time purchase — no recurring subscription."
+      },
+      {
+        q: "Is there a subscription or hidden fees?",
+        a: "No subscriptions. Hunter Elite is a one-time purchase. The free tier is not a trial — it's fully functional with no time limit or feature degradation. We will never introduce ads or sell your data."
+      },
+      {
+        q: "What features does the free version include?",
+        a: "The free version includes: Dashboard with Power Level and XP, Power Vaults (account management), Raid Spoils (income tracking), Mana Drain (expense tracking with categories), Mana Control (budget with 50/30/20 guidance), Achievement Vault (savings goals), Recurring Transactions, Hunter Path System, Daily and Weekly Quests, 28 Achievements, XP and Rank progression, Quick Log, System Debrief, Mascot System, and Personalized Onboarding."
+      },
+    ]
+  },
+  {
+    category: "Privacy & Data",
+    tag: "// privacy",
+    items: [
+      {
+        q: "Is my financial data safe?",
+        a: "Yes. Hunter Vault is 100% offline — your financial data never leaves your device and is never sent to any server. There are no accounts to create, no data collected, and no cloud sync. Your privacy is protected by design, not policy."
+      },
+      {
+        q: "Does Hunter Vault need an internet connection?",
+        a: "No. Hunter Vault works fully offline. You don't need Wi-Fi or mobile data to use any feature. The app only needs internet to initially download from the App Store or Google Play — after that, everything works without a connection."
+      },
+      {
+        q: "Do I need to create an account?",
+        a: "No account is ever required. You download the app and start immediately — no sign-up, no email, no password. Your data is yours from the first tap."
+      },
+      {
+        q: "Can Hunter Vault see my bank transactions?",
+        a: "No. Hunter Vault has no connection to your bank or any financial institution. All transactions are entered manually by you. This is intentional — it keeps your data completely private and forces mindful engagement with every expense."
+      },
+    ]
+  },
+  {
+    category: "Getting Started",
+    tag: "// getting started",
+    items: [
+      {
+        q: "How do I get started with Hunter Vault?",
+        a: "Download the app from Google Play or the App Store, then follow the personalized onboarding journey. It detects your currency automatically, asks about your financial goals, and sets up your Hunter Path in a few minutes. No configuration manual required."
+      },
+      {
+        q: "What is the Hunter Path System?",
+        a: "The Hunter Path System lets you choose a financial focus: Net Worth Tracker, Debt Slayer, Wealth Builder, or Budget Master. Each path gives you custom missions, tailored tips, and focused progress tracking aligned with your current goal. You can switch paths as your priorities change."
+      },
+      {
+        q: "How do I earn XP and level up?",
+        a: "You earn XP by logging expenses and income, completing daily and weekly quests, hitting savings milestones, and maintaining streaks. XP fills your Power Level bar — fill it enough and you rank up. Your rank (E through S) reflects real financial discipline, not just time spent in the app."
+      },
+      {
+        q: "How do ranks work?",
+        a: "Ranks go from E (beginner) through D, C, B, A, and S (master). Each rank requires consistent financial behavior to reach — logging regularly, completing quests, staying within budget, and hitting goals. Your rank is a badge of real-world financial discipline."
+      },
+    ]
+  },
+  {
+    category: "Technical",
+    tag: "// technical",
+    items: [
+      {
+        q: "Is Hunter Vault available on iOS and Android?",
+        a: "Yes. Hunter Vault is available on both Google Play (Android) and the Apple App Store (iOS). Search 'Hunter Vault' or use the download links on our homepage."
+      },
+      {
+        q: "Can I transfer my data to a new phone?",
+        a: "Yes. Hunter Vault includes a data export and import feature. Export a backup file from your old device and import it on your new one. Since the app is offline-first, you manage your own backups — no cloud account needed."
+      },
+      {
+        q: "I found a bug. How do I report it?",
+        a: "Email support@huntervault.app with your device model, operating system version, and a description of what happened. Screenshots or a screen recording help us fix it faster. We aim to acknowledge all bug reports within 24 hours."
+      },
+      {
+        q: "I have a feature idea. Where do I send it?",
+        a: "We'd love to hear it. Email support@huntervault.app with 'Feature Request' as the subject, or use the contact form on our Contact page. Several features in the current app came directly from user suggestions."
+      },
+    ]
+  },
+];
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.flatMap(section =>
+    section.items.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": { "@type": "Answer", "text": item.a }
+    }))
+  )
+});
+---
+
+<PageLayout
+  title="FAQ — Hunter Vault Gamified Finance App"
+  description="Answers to the most common questions about Hunter Vault — pricing, privacy, gamification, getting started, and technical support."
+  canonical="https://huntervault.app/faq/"
+  structuredData={structuredData}
+>
+
+  <section class="page-hero">
+    <span class="page-hero-tag">// knowledge base</span>
+    <h1>Frequently Asked <span class="hl">Questions</span></h1>
+    <p>Everything you need to know about Hunter Vault — pricing, privacy, features, and how to get started.</p>
+  </section>
+
+  <div class="page-wrap" style="padding-bottom: 5rem;">
+
+    {faqs.map(section => (
+      <div class="faq-section">
+        <div class="faq-section-header">
+          <span class="section-tag">{section.tag}</span>
+          <h2 class="section-title">{section.category}</h2>
+        </div>
+        <div class="faq-list">
+          {section.items.map(item => (
+            <div class="faq-item">
+              <button class="faq-q">
+                {item.q}
+                <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="faq-a">{item.a}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="faq-cta">
+      <p>Still have a question?</p>
+      <a href="/contact" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Us
+      </a>
+      <a href="/#download" class="btn-secondary">Download Free →</a>
+    </div>
+
+  </div>
+
+  <style>
+    .faq-section {
+      padding: 3rem 0 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .faq-section:first-of-type { border-top: none; padding-top: 3rem; }
+    .faq-section-header { margin-bottom: 1.5rem; }
+    .faq-cta {
+      text-align: center;
+      padding: 3.5rem 0 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 3rem;
+    }
+    .faq-cta p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+  </style>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item')!;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</PageLayout>

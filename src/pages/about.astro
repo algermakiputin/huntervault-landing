@@ -1,0 +1,170 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Hunter Vault",
+  "url": "https://huntervault.app/",
+  "logo": "https://huntervault.app/assets/hunter-vault-logo.webp",
+  "description": "Hunter Vault is a gamified personal finance app inspired by Solo Leveling. We help people build better money habits through RPG mechanics — XP, quests, and rank progression.",
+  "foundingDate": "2024",
+  "sameAs": [
+    "https://play.google.com/store/apps/details?id=com.hunter.vault",
+    "https://apps.apple.com/app/hunter-vault-finance-tracker/id6761086056"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "support@huntervault.app"
+  }
+});
+---
+
+<PageLayout
+  title="About Hunter Vault — We Turned Personal Finance Into an RPG"
+  description="Learn the story behind Hunter Vault — a gamified finance app built for people who hate budgeting. 100% offline, no account needed, built with privacy and fun as core values."
+  canonical="https://huntervault.app/about/"
+  activePage="about"
+  structuredData={structuredData}
+>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <span class="page-hero-tag">// our story</span>
+    <h1>We Turned Personal Finance<br /><span class="hl">Into an RPG</span></h1>
+    <p>Hunter Vault was born from a simple idea: what if managing money felt as rewarding as leveling up a character?</p>
+  </section>
+
+  <div class="page-wrap">
+
+    <!-- Mission -->
+    <div class="about-mission">
+      <div class="about-mission-text">
+        <span class="section-tag">// mission</span>
+        <h2 class="section-title">Making Financial Control Accessible to Everyone</h2>
+        <p>
+          Most people don't fail at budgeting because they're bad with money — they fail because traditional finance apps are boring, complicated, and feel like homework.
+        </p>
+        <p>
+          Hunter Vault turns the same habits that build great finances (tracking, consistency, goal-setting) into an RPG progression system. You earn XP for logging expenses. You complete quests to build better habits. You rank up as your financial discipline grows.
+        </p>
+        <p>
+          The result? People actually stick with it. And when you stick with tracking your money, your life genuinely changes.
+        </p>
+      </div>
+
+      <div class="about-values-panel">
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div>
+            <h4>Privacy First</h4>
+            <p>Your financial data never leaves your device. Zero cloud, zero collection, zero risk.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h4>No Barriers to Entry</h4>
+            <p>No account, no subscription, no paywall to the core features. Download and start immediately.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <h4>Engagement Over Obligation</h4>
+            <p>Gamification makes tracking feel like a reward, not a chore. You actually want to come back.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <h4>Simplicity Under the Hood</h4>
+            <p>Powerful features, zero learning curve. If you can play a mobile game, you can use Hunter Vault.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <div class="about-story">
+      <div class="about-story-inner">
+        <div>
+          <span class="section-tag">// backstory</span>
+          <h2 class="section-title" style="margin-bottom: 1rem;">Built by Someone Who Hated Budgeting</h2>
+          <p>
+            Hunter Vault started as a personal project. The founder had tried every popular budgeting app and kept quitting after a few weeks. Spreadsheets were too rigid. Bank apps were too clinical. Nothing made the habit stick.
+          </p>
+          <p>
+            The breakthrough came from gaming: Solo Leveling's progression system — where every action builds toward something bigger — mapped perfectly onto personal finance. Track an expense = gain XP. Complete a weekly saving target = level up. Pay off a debt = unlock a new rank.
+          </p>
+          <p>
+            The first version was built for personal use. Then friends asked to use it. Then strangers found it. Today Hunter Vault is used by thousands of people across 40+ countries, and growing — all without a single dollar of advertising spend.
+          </p>
+        </div>
+
+        <div class="story-stats">
+          <div class="story-stat">
+            <span class="story-stat-num">40+</span>
+            <span class="story-stat-label">Countries using the app</span>
+          </div>
+          <div class="story-stat">
+            <span class="story-stat-num">100%</span>
+            <span class="story-stat-label">Offline — zero servers involved</span>
+          </div>
+          <div class="story-stat">
+            <span class="story-stat-num">Free</span>
+            <span class="story-stat-label">Core features, always</span>
+          </div>
+          <div class="story-stat">
+            <span class="story-stat-num">E → S+</span>
+            <span class="story-stat-label">Ranks to climb, no shortcut</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="about-team">
+      <span class="section-tag">// the team</span>
+      <h2 class="section-title">A Small Team, a Big Mission</h2>
+      <p class="team-tagline">
+        Hunter Vault is built and maintained by a lean indie team who believe software should respect users — your data, your time, your privacy.
+      </p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">AM</div>
+          <h4>Alger Makiputin</h4>
+          <p>Founder &amp; Developer</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">HV</div>
+          <h4>Hunter Vault Team</h4>
+          <p>Design &amp; Content</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="about-cta">
+      <span class="section-tag">// start your quest</span>
+      <h2 class="section-title">Ready to Level Up Your Finances?</h2>
+      <p>Download Hunter Vault free. No account, no ads, no excuses.</p>
+      <a href="/#download" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Free
+      </a>
+      <a href="/features" class="btn-secondary">See All Features →</a>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+</PageLayout>

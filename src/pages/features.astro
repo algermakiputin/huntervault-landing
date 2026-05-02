@@ -1,0 +1,492 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Hunter Vault",
+  "operatingSystem": "Android, iOS",
+  "applicationCategory": "FinanceApplication",
+  "url": "https://huntervault.app/features/",
+  "description": "HunterVault transforms budgeting, saving, and debt tracking into an immersive RPG experience — XP, quests, ranks, and a Hunter Path system that turns discipline into a game.",
+  "featureList": [
+    "Dashboard Overview with Power Level and XP",
+    "Power Vaults — Account Management",
+    "Raid Spoils — Income Tracking",
+    "Mana Drain — Expense Tracking with Categories",
+    "Mana Control — Budget with 50/30/20 and Category Mastery Ranks",
+    "Dungeon Raids — Debt Payoff Tracker (Premium)",
+    "Achievement Vault — Savings Goals",
+    "Recurring Transactions",
+    "Hunter Path System — Net Worth, Debt Slayer, Wealth Builder, Budget Master",
+    "Quests & Missions — Daily, Weekly, Story",
+    "28 Unlockable Achievements",
+    "XP, Levels, Rank E to S+",
+    "Hunter Shop — Themes and Cosmetics (Premium)",
+    "Quick Log — Instant Transaction Entry",
+    "System Debrief — Weekly Insights",
+    "Dynamic Mascot System",
+    "Personalized Onboarding Journey",
+    "100% Offline — No Account Required",
+    "Fully Encrypted Local Storage"
+  ],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+});
+---
+
+<PageLayout
+  title="HunterVault Features — Gamified Personal Finance App"
+  description="Explore every feature of HunterVault: XP system, quest log, budget control, debt payoff, savings goals, Hunter Path system, and more — 100% offline and private."
+  canonical="https://huntervault.app/features/"
+  activePage="features"
+  structuredData={structuredData}
+>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <span class="page-hero-tag">// feature log</span>
+    <h1>Turn Your Financial Life Into<br /><span class="hl">a Game You Actually Want to Win</span></h1>
+    <p>HunterVault transforms budgeting, saving, and debt tracking into an immersive RPG experience — where every action earns rewards, every goal is a mission, and every step forward levels you up.</p>
+  </section>
+
+  <div class="page-wrap">
+
+    <!-- ─── Command Center ─── -->
+    <div class="feat-section" style="border-top: none; padding-top: 3rem;">
+      <div class="feat-section-header">
+        <span class="section-tag">// your status screen</span>
+        <h2 class="section-title">Your Financial Command Center</h2>
+        <p class="section-desc">Get a complete snapshot of your finances at a glance — income, expenses, net worth, and your RPG progression all in one place.</p>
+      </div>
+      <div class="feature-highlight">
+        <div class="feature-highlight-text">
+          <h3>Dashboard Overview</h3>
+          <p>This isn't just a dashboard — it's your status screen. See your Power Level, Rank, and XP progression alongside real financial data, all updated in real time.</p>
+          <ul class="feat-list" style="margin-top: 1rem;">
+            <li>Track income, expenses, and net worth in real time</li>
+            <li>Monitor your savings rate (Mana Efficiency)</li>
+            <li>View financial growth with trend charts</li>
+            <li>See your Power Level, Rank, and XP progression</li>
+          </ul>
+        </div>
+        <div class="feature-highlight-visual">
+          <div class="stat-pill"><span class="stat-pill-dot blue"></span> Real-time balance tracking</div>
+          <div class="stat-pill"><span class="stat-pill-dot purple"></span> XP + Rank progression</div>
+          <div class="stat-pill"><span class="stat-pill-dot green"></span> Savings rate (Mana Efficiency)</div>
+          <div class="stat-pill"><span class="stat-pill-dot gold"></span> Trend charts & insights</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Smart Money Tracking ─── -->
+    <div class="feat-section">
+      <div class="feat-section-header">
+        <span class="section-tag">// smart money tracking</span>
+        <h2 class="section-title">Made Effortless</h2>
+        <p class="section-desc">Every financial action — earning, spending, or managing accounts — is tracked automatically and feels like part of the game.</p>
+      </div>
+      <div class="features-grid" style="padding-top: 0;">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+            </svg>
+          </div>
+          <h2>Accounts — Power Vaults</h2>
+          <p>Manage all your financial accounts in one place with instant balance visibility.</p>
+          <ul class="feat-list">
+            <li>Manage checking, savings, investments, and credit accounts</li>
+            <li>View total balances instantly</li>
+            <li>Clean, color-coded system for clarity</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Power Vaults
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </div>
+          <h2>Income — Raid Spoils</h2>
+          <p>Log earnings from any source and watch your balance update automatically.</p>
+          <ul class="feat-list">
+            <li>Log earnings and automatically update balances</li>
+            <li>Track multiple income sources</li>
+            <li>Organized timeline view with editing support</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Raid Spoils
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V12m0 0l-3-3m3 3l3-3"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h2>Expenses — Mana Drain</h2>
+          <p>Track every purchase with categories, smart history, and habit streaks.</p>
+          <ul class="feat-list">
+            <li>Track spending with categories and accounts</li>
+            <li>Instant balance updates on every log</li>
+            <li>Smart grouping and history tracking</li>
+            <li>Built-in streaks and activity triggers</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Mana Drain
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Budget ─── -->
+    <div class="feat-section">
+      <div class="feat-section-header">
+        <span class="section-tag">// budget like a pro</span>
+        <h2 class="section-title">Mana Control — Budget Without Feeling Restricted</h2>
+        <p class="section-desc">Set limits, follow the 50/30/20 rule, get real-time alerts, and earn mastery ranks for your spending discipline.</p>
+      </div>
+      <div class="feature-highlight">
+        <div class="feature-highlight-text">
+          <h3>Smart Budget Dashboard</h3>
+          <p>Set monthly limits by category and get instant visual feedback — Optimal, Warning, or Critical — so you always know where you stand before it's too late.</p>
+          <ul class="feat-list" style="margin-top: 1rem;">
+            <li>Set monthly limits by category</li>
+            <li>Follow the 50/30/20 rule with visual guidance</li>
+            <li>Get real-time alerts: Optimal, Warning, Critical</li>
+            <li>Earn Category Mastery Ranks (E → S) based on spending discipline</li>
+          </ul>
+        </div>
+        <div class="feature-highlight-visual">
+          <div class="stat-pill"><span class="stat-pill-dot green"></span> Optimal — on track</div>
+          <div class="stat-pill"><span class="stat-pill-dot gold"></span> Warning — approaching limit</div>
+          <div class="stat-pill"><span class="stat-pill-dot" style="background:#f87171;"></span> Critical — over budget</div>
+          <div class="stat-pill"><span class="stat-pill-dot purple"></span> Category Mastery E → S</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Debt + Goals + Recurring ─── -->
+    <div class="feat-section">
+      <div class="feat-section-header">
+        <span class="section-tag">// financial missions</span>
+        <h2 class="section-title">Debt, Goals, and Automation</h2>
+        <p class="section-desc">Turn your biggest financial challenges into objectives — and automate the rest.</p>
+      </div>
+      <div class="features-grid" style="padding-top: 0;">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h2>Debts — Dungeon Raids</h2>
+          <p>Turn debts into enemies ranked by difficulty. Make real progress while feeling it.</p>
+          <ul class="feat-list">
+            <li>Debts visualized as enemies ranked by difficulty</li>
+            <li>Track payoff progress visually</li>
+            <li>Plan minimum or extra payments</li>
+            <li>Celebrate fully cleared debts as victories</li>
+          </ul>
+          <span class="premium-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Hunter Elite
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+            </svg>
+          </div>
+          <h2>Goals — Achievement Vault</h2>
+          <p>Set savings targets with deadlines and watch every contribution move the needle.</p>
+          <ul class="feat-list">
+            <li>Set savings targets with deadlines</li>
+            <li>Track progress with milestone markers</li>
+            <li>Estimate time to completion automatically</li>
+            <li>Contribute anytime with one tap</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Achievement Vault
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>
+            </svg>
+          </div>
+          <h2>Recurring Transactions</h2>
+          <p>Schedule income and expenses at any frequency. Set and forget — HunterVault handles the rest.</p>
+          <ul class="feat-list">
+            <li>Schedule income and expenses automatically</li>
+            <li>Choose flexible frequencies</li>
+            <li>Consistency without effort</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Auto-schedule
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Hunter Path ─── -->
+    <div class="feat-section">
+      <div class="feat-section-header">
+        <span class="section-tag">// personalized paths</span>
+        <h2 class="section-title">Hunter Path System — Choose Your Focus</h2>
+        <p class="section-desc">Pick the financial path that matches your current goal. Each path gives you custom missions, tailored tips, and focused progress tracking.</p>
+      </div>
+      <div class="paths-grid">
+        <div class="path-card">
+          <span class="path-emoji">💰</span>
+          <h4>Net Worth Tracker</h4>
+          <p>Grow your total financial value month over month with guided milestones.</p>
+        </div>
+        <div class="path-card">
+          <span class="path-emoji">⚔️</span>
+          <h4>Debt Slayer</h4>
+          <p>Eliminate debt strategically with missions designed around your payoff timeline.</p>
+        </div>
+        <div class="path-card">
+          <span class="path-emoji">🏗️</span>
+          <h4>Wealth Builder</h4>
+          <p>Build long-term financial habits with savings and investment-focused challenges.</p>
+        </div>
+        <div class="path-card">
+          <span class="path-emoji">📊</span>
+          <h4>Budget Master</h4>
+          <p>Tighten your spending, hit category limits, and earn mastery ranks every month.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Gamified ─── -->
+    <div class="feat-section">
+      <div class="feat-section-header">
+        <span class="section-tag">// gamified experience</span>
+        <h2 class="section-title">Progress in Real Life, Rewarded Like a Game</h2>
+        <p class="section-desc">Quests, achievements, XP, and ranks make financial discipline something you actually enjoy — and keep coming back to.</p>
+      </div>
+      <div class="gamified-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <h2>Quests & Missions</h2>
+          <p>Daily, weekly, and story-driven challenges with clear objectives and instant rewards. Every completed quest earns XP and moves your rank forward.</p>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Daily · Weekly · Story
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"/><path d="M9 12l2 2 4-4"/><path d="M9.09 19a2 2 0 01-1.09-1.73V16h8v1.27A2 2 0 0114.91 19"/>
+            </svg>
+          </div>
+          <h2>28 Unlockable Achievements</h2>
+          <p>Milestone badges unlock as you build consistent financial habits — first savings goal, debt-free month, budget streak, and more.</p>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            28 Milestones
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <h2>XP, Levels & Rank Progression</h2>
+          <p>Level up from E-Rank to S-Rank by consistently tracking, budgeting, and saving. Earn XP, Gold, and streak multipliers — your rank reflects real-world progress.</p>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            E → S Rank
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-violet)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h2>Hunter Shop</h2>
+          <p>Spend earned Gold on themes, badges, and visual upgrades. Customize your experience as you level up — cosmetics only, no pay-to-win.</p>
+          <span class="premium-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Hunter Elite
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Quick Log + System Debrief ─── -->
+    <div class="feat-section">
+      <div class="feat-section-header">
+        <span class="section-tag">// speed & insight</span>
+        <h2 class="section-title">No Friction. No Excuses.</h2>
+        <p class="section-desc">Log transactions in seconds from anywhere in the app, then review your week with actionable insights every Sunday.</p>
+      </div>
+      <div class="two-col-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h2>Quick Log — Lightning-Fast Actions</h2>
+          <p>Add income, expenses, or transfers instantly — accessible from anywhere in the app with smooth animations and one-tap actions.</p>
+          <ul class="feat-list">
+            <li>Add income, expenses, or transfers instantly</li>
+            <li>Accessible from anywhere in the app</li>
+            <li>Smooth animations and one-tap actions</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            One-tap log
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-purple)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+          </div>
+          <h2>System Debrief — Weekly Insights</h2>
+          <p>Review your weekly performance with personalized insights, actionable recommendations, and rewards for staying consistent. Turn data into decisions.</p>
+          <ul class="feat-list">
+            <li>Review your weekly financial performance</li>
+            <li>Get personalized insights and trends</li>
+            <li>Receive actionable recommendations</li>
+            <li>Earn rewards for staying consistent</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+            Weekly report
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Immersive Experience ─── -->
+    <div class="feat-section">
+      <div class="feat-section-header">
+        <span class="section-tag">// immersive experience</span>
+        <h2 class="section-title">A World Built Around Your Financial Journey</h2>
+        <p class="section-desc">From a mascot that reacts to your behavior to a personalized onboarding that sets you up in minutes — every detail is designed to keep you engaged.</p>
+      </div>
+      <div class="two-col-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-violet)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+          </div>
+          <h2>Mascot System</h2>
+          <p>A dynamic character that reacts to your financial behavior — celebrating wins, nudging you on quiet weeks, and making the experience feel alive.</p>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Dynamic reactions
+          </span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--neon-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h2>Personalized Onboarding Journey</h2>
+          <p>Smart setup based on your goals, with automatic currency detection and a guided start that gets you fully configured in minutes — no tutorials required.</p>
+          <ul class="feat-list">
+            <li>Personalized setup based on your goals</li>
+            <li>Smart currency detection</li>
+            <li>Guided start in minutes</li>
+          </ul>
+          <span class="feature-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 12 10 17 20 7"/></svg>
+            Ready in minutes
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─── Privacy ─── -->
+    <div class="feat-section">
+      <div class="feature-highlight" style="margin-top: 0;">
+        <div class="feature-highlight-text">
+          <span class="section-tag">// private & secure by design</span>
+          <h3>Your Data Stays Yours. Always.</h3>
+          <p>HunterVault never connects to a server. All data is stored locally on your device, fully encrypted, with zero collection and zero risk.</p>
+        </div>
+        <div class="feature-highlight-visual">
+          <div class="stat-pill"><span class="stat-pill-dot green"></span> No account required</div>
+          <div class="stat-pill"><span class="stat-pill-dot blue"></span> 100% local data storage</div>
+          <div class="stat-pill"><span class="stat-pill-dot purple"></span> Fully encrypted on-device</div>
+          <div class="stat-pill"><span class="stat-pill-dot gold"></span> Zero data collection</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Hunter Elite ─── -->
+    <div class="elite-box">
+      <div class="elite-box-header">
+        <span class="elite-crown">💎</span>
+        <div>
+          <h2>Upgrade to Hunter Elite</h2>
+          <p>Unlock advanced features that take your financial game to the next level — one-time purchase, no subscription.</p>
+        </div>
+      </div>
+      <div class="elite-items">
+        <div class="elite-item"><span class="elite-dot"></span>Debt tracking & strategic payoff system</div>
+        <div class="elite-item"><span class="elite-dot"></span>Hunter Shop — themes, badges & cosmetics</div>
+        <div class="elite-item"><span class="elite-dot"></span>Advanced analytics & in-depth reports</div>
+        <div class="elite-item"><span class="elite-dot"></span>Enhanced financial tools & insights</div>
+      </div>
+    </div>
+
+    <!-- ─── Why it works ─── -->
+    <div class="feat-closing">
+      <span class="section-tag" style="color: var(--neon-blue);">// why huntervault works</span>
+      <h2>It Doesn't Just Track Your Money.<br />It Changes Your Behavior.</h2>
+      <p>By combining psychology, gamification, and powerful financial tools, HunterVault turns discipline into something you actually enjoy — and habits you actually keep.</p>
+      <a href="/#download" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Free
+      </a>
+      <a href="/about" class="btn-secondary" style="margin-top: 0.5rem;">About the App →</a>
+    </div>
+
+  </div><!-- /page-wrap -->
+
+</PageLayout>

@@ -1,0 +1,206 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Hunter Vault",
+  "url": "https://huntervault.app/contact",
+  "description": "Contact Hunter Vault for support, feedback, or partnership inquiries.",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Hunter Vault",
+    "email": "support@huntervault.app",
+    "url": "https://huntervault.app"
+  }
+});
+---
+
+<PageLayout
+  title="Contact Hunter Vault — Support & Feedback"
+  description="Get in touch with Hunter Vault for app support, bug reports, feature requests, or partnership inquiries. We respond within 1–2 business days."
+  canonical="https://huntervault.app/contact/"
+  activePage="contact"
+  structuredData={structuredData}
+>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <span class="page-hero-tag">// support terminal</span>
+    <h1>Get in <span class="hl">Touch</span></h1>
+    <p>Questions, bugs, feedback, or ideas — we read every message. Drop us a line and we'll get back to you.</p>
+  </section>
+
+  <div class="page-wrap">
+
+    <!-- Contact Grid -->
+    <div class="contact-grid">
+
+      <!-- Left: Info -->
+      <div class="contact-info">
+        <h2>How Can We Help?</h2>
+        <p>Whether you have a question about the app, found a bug, or just want to share your progress — we'd love to hear from you.</p>
+
+        <div class="contact-methods">
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Email Support</h4>
+              <a href="mailto:support@huntervault.app">support@huntervault.app</a>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>App Store Reviews</h4>
+              <p>Leave feedback directly on Google Play or the App Store — we monitor and respond to every review.</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Privacy Policy</h4>
+              <a href="/privacy-policy.html">Read our Privacy Policy →</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="response-note">
+          <strong>Response time:</strong> We typically reply within 1–2 business days. For urgent app issues, include your device model and OS version to help us troubleshoot faster.
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form-wrap">
+        <h3>// SEND A MESSAGE</h3>
+        <form
+          action="mailto:support@huntervault.app"
+          method="get"
+          enctype="text/plain"
+          id="contact-form"
+        >
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" name="name" placeholder="Your name" autocomplete="name" />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <select id="contact-subject" name="subject">
+              <option value="">Select a topic…</option>
+              <option value="App Support">App Support</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="Feature Request">Feature Request</option>
+              <option value="Partnership / Press">Partnership / Press</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="body" placeholder="Describe your question or issue…" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </form>
+      </div>
+
+    </div><!-- /contact-grid -->
+
+    <!-- FAQ -->
+    <div class="contact-faq">
+      <span class="section-tag">// common questions</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Is Hunter Vault really free?
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">Yes. The core app — expense tracking, budgeting, debt tracking, savings goals, quests, and rank progression — is completely free. There is an optional Pro upgrade that unlocks extra themes and advanced reports, but nothing essential is paywalled.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Does Hunter Vault need internet or an account?
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">No. Hunter Vault is 100% offline. All data is stored locally on your device. You never need to create an account, connect to a server, or share any information. Your finances stay completely private.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            I found a bug. How do I report it?
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">Email us at support@huntervault.app with your device model, operating system version, and a description of the bug. Screenshots or screen recordings are extremely helpful. We aim to acknowledge all bug reports within 24 hours.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Can I transfer my data to a new phone?
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">Yes. Hunter Vault includes a data export/import feature. You can export a backup file and import it on your new device. Since we're offline-first, you manage your own backups — no cloud involved.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Is Hunter Vault available on iOS and Android?
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">Yes. Hunter Vault is available on both Google Play (Android) and the Apple App Store (iOS). Search "Hunter Vault" or use the download links on our homepage.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            I have a feature idea. Where do I send it?
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-a">Use the contact form above or email support@huntervault.app with "Feature Request" as the subject. We read every suggestion. Several features in the current app came directly from user feedback.</div>
+        </div>
+
+      </div>
+    </div><!-- /contact-faq -->
+
+  </div><!-- /page-wrap -->
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item')!;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</PageLayout>
