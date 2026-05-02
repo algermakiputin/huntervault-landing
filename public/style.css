@@ -514,17 +514,8 @@ body {
 
 .phone-mockup {
   position: relative;
-  width: 360px;
-  height: 720px;
-  background: linear-gradient(145deg, #1a2235, #0f1428);
-  border-radius: 40px;
-  border: 2px solid rgba(123, 47, 255, 0.2);
-  box-shadow:
-    0 0 40px rgba(123, 47, 255, 0.12),
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    inset 0 0 30px rgba(123, 47, 255, 0.03);
-  padding: 12px;
-  overflow: hidden;
+  width: 320px;
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 40px rgba(123, 47, 255, 0.2));
 }
 
 /* .phone-mockup::before {
@@ -560,11 +551,8 @@ body {
 
 .hero-screenshot {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
-  /* reduce green ~5%, very subtle cool tone */
-  filter: saturate(0.95) hue-rotate(5deg) brightness(0.98);
 }
 
 /* purple color grade overlay */
@@ -756,6 +744,39 @@ section {
 #features > * {
   position: relative;
   z-index: 1;
+}
+
+.rpg-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(123, 47, 255, 0.07);
+  border: 1px solid rgba(123, 47, 255, 0.25);
+  border-radius: 10px;
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.rpg-legend-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--neon-purple);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.rpg-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.rpg-legend-items strong {
+  color: var(--neon-gold);
+  font-weight: 600;
 }
 
 .features-grid {
@@ -1946,17 +1967,9 @@ section {
     margin-top: 0;
   }
 
-  /* Phone: fills column, capped at 380px, proportional height */
+  /* Phone: fills column, capped at 380px */
   .hero-visual .phone-mockup {
     width: min(380px, 100%);
-    height: auto;
-    aspect-ratio: 360 / 720;
-    border-radius: 44px;
-    box-shadow:
-      0 0 80px rgba(123, 47, 255, 0.45),
-      0 0 160px rgba(123, 47, 255, 0.18),
-      0 32px 80px rgba(0, 0, 0, 0.6),
-      inset 0 0 30px rgba(123, 47, 255, 0.05);
   }
 
   /* Glow: bleeds left into text column */
@@ -2132,7 +2145,7 @@ section {
     letter-spacing: 0.4px;
   }
 
-  /* ── Phone mockup: intentional 70% crop ── */
+  /* ── Phone mockup ── */
   .hero-visual {
     display: flex;
     justify-content: center;
@@ -2142,21 +2155,11 @@ section {
     grid-column: unset;
     grid-row: unset;
     align-self: unset;
-    height: 300px;
-    overflow: hidden;
   }
   .hero-visual .phone-mockup {
     width: 220px;
-    height: 440px;
-    border-radius: 28px;
     animation: none;
     flex-shrink: 0;
-    box-shadow:
-      0 0 40px rgba(123, 47, 255, 0.22),
-      0 24px 48px rgba(0, 0, 0, 0.55);
-  }
-  .hero-visual .phone-mockup .phone-screen {
-    border-radius: 22px;
   }
   /* Hard fade — makes the crop feel designed */
   .hero-visual::after {
@@ -3197,23 +3200,10 @@ section.slide {
     margin-top: 0;
   }
 
-  /* Phone mockup: slightly smaller, proportional */
+  /* Phone mockup: slightly smaller on mid-desktop */
   .hero-visual .phone-mockup {
     width: min(300px, 100%);
-    height: auto;
-    aspect-ratio: 360 / 720;
-    border-radius: 40px;
-    animation: none;
-    flex-shrink: 0;
-    box-shadow:
-      0 0 60px rgba(123, 47, 255, 0.35),
-      0 0 120px rgba(123, 47, 255, 0.12),
-      0 24px 64px rgba(0, 0, 0, 0.55),
-      inset 0 0 24px rgba(123, 47, 255, 0.04);
   }
-
-  /* Phone screen proportional to mockup */
-  .hero-visual .phone-mockup .phone-screen { border-radius: 32px; }
 
   /* Glow: reduced so text side guides the eye */
   .hero-visual::before {
