@@ -242,7 +242,7 @@ body {
   width: 500px;
   height: 500px;
   background: var(--neon-violet);
-  opacity: 0.08;
+  opacity: 0.06;
 }
 
 /* Main glow — wide, soft, shifted right toward phone */
@@ -252,13 +252,13 @@ body {
   width: 740px;
   height: 480px;
   background: var(--neon-purple);
-  opacity: 0.13;
+  opacity: 0.10;
   animation: glow-pulse 7s ease-in-out infinite;
 }
 
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.13; transform: scale(1); }
-  50%       { opacity: 0.20; transform: scale(1.07); }
+  0%, 100% { opacity: 0.10; transform: scale(1); }
+  50%       { opacity: 0.15; transform: scale(1.07); }
 }
 
 .hero-content {
@@ -288,9 +288,16 @@ body {
 }
 
 /* Mobile-only elements hidden on desktop */
-.hero-br         { display: none; }
+.hero-br         { display: block; }
 .hero-desc-short { display: none; }
-.hero-microcopy  { display: none; }
+.hero-microcopy  {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(232, 234, 246, 0.5);
+  margin-top: 0.8rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.3px;
+}
 
 .hero-text {
   animation: fadeInUp 0.8s ease-out;
@@ -324,30 +331,25 @@ body {
 
 .hero-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--neon-blue);
-  opacity: 0.82;
-  margin-bottom: 0.9rem;
+  opacity: 1;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.hero-primary-cta {
-  display: none;
-}
-
-
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2.8rem, 3.2vw, 3rem);
   font-weight: 800;
   line-height: 1.15;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
 }
 
 .hero h1 .highlight {
@@ -365,10 +367,10 @@ body {
 }
 
 .hero-description {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   color: var(--text-secondary);
   line-height: 1.8;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.2rem;
   max-width: 560px;
 }
 
@@ -381,6 +383,19 @@ body {
   line-height: 1.7;
 }
 
+
+.hero-scroll-hint {
+  display: none; /* shown only on mobile via media query */
+  justify-content: center;
+  padding: 1rem 0 1.5rem;
+  color: rgba(232, 234, 246, 0.35);
+  animation: scroll-bounce 2.2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0);    opacity: 0.35; }
+  50%       { transform: translateY(5px); opacity: 0.65; }
+}
 
 .hero-trust-strip {
   display: flex;
@@ -395,8 +410,8 @@ body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  font-size: 1rem;
+  color: rgba(232, 234, 246, 0.92);
   font-family: var(--font-mono);
   letter-spacing: 0.3px;
 }
@@ -435,6 +450,12 @@ body {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.hero-text .hero-buttons .store-btn {
+  background: rgba(123, 47, 255, 0.12);
+  border-color: rgba(123, 47, 255, 0.4);
+  box-shadow: 0 2px 16px rgba(123, 47, 255, 0.15);
 }
 
 .btn {
@@ -507,8 +528,8 @@ body {
   width: 580px;
   height: 580px;
   background: radial-gradient(ellipse at center,
-    rgba(123,47,255,0.32) 0%,
-    rgba(0,212,255,0.08) 38%,
+    rgba(123,47,255,0.20) 0%,
+    rgba(0,212,255,0.05) 38%,
     transparent 68%);
   pointer-events: none;
   z-index: 0;
@@ -557,6 +578,171 @@ body {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Second headline line — finance leads, gamification supports */
+.hero-h1-sub {
+  font-size: 0.82em;
+  color: rgba(232, 234, 246, 0.62);
+}
+
+/* Hero CTA — slightly larger than global .btn */
+.hero-primary-cta {
+  padding: 1.1rem 2.3rem;
+  font-size: 1.08rem;
+}
+
+/* Parallax tilt wrapper — float-anim stays on inner phone-mockup */
+.phone-tilt-wrapper {
+  transition: transform 0.08s linear;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+}
+
+/* Highlight ring — glowing RPG outline around key word */
+.highlight-ring {
+  position: relative;
+  display: inline-block;
+}
+.highlight-ring::after {
+  content: '';
+  position: absolute;
+  inset: -0.12em -0.22em;
+  border-radius: 0.38em;
+  border: 2px solid rgba(123, 47, 255, 0.42);
+  box-shadow: 0 0 10px rgba(123, 47, 255, 0.16), inset 0 0 6px rgba(123, 47, 255, 0.05);
+  pointer-events: none;
+}
+
+/* Floating hero stat cards */
+.hero-float-card {
+  position: absolute;
+  background: rgba(8, 6, 22, 0.88);
+  border: 1px solid rgba(123, 47, 255, 0.28);
+  border-radius: 12px;
+  padding: 0.7rem 0.95rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 24px rgba(123,47,255,0.08);
+  z-index: 2;
+  min-width: 148px;
+}
+
+.hfc-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--neon-blue);
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  margin-bottom: 0.3rem;
+}
+
+.hfc-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.hfc-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2px;
+  margin: 0.45rem 0 0.3rem;
+  overflow: hidden;
+}
+
+.hfc-bar-fill {
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-main);
+  border-radius: 2px;
+}
+
+.hfc-sub {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: rgba(232,234,246,0.45);
+  letter-spacing: 0.04em;
+}
+
+.hfc-value {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f0c040;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+
+.hfc-trend {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #4ade80;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.hfc-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4ade80;
+  flex-shrink: 0;
+}
+
+.hfc-check svg {
+  width: 10px;
+  height: 10px;
+}
+
+.hfc-quest-title {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(232,234,246,0.92);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.hfc-xp {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #4ade80;
+  margin-top: 0.08rem;
+}
+
+/* Card positions — inside hero-visual (right column, ~568px wide, phone 320px centered) */
+.hero-float-card--rank {
+  top: 20%;
+  left: 0;
+  animation: fadeInUp 0.7s ease-out 0.45s both;
+}
+
+.hero-float-card--balance {
+  top: 6%;
+  right: 0;
+  animation: fadeInUp 0.7s ease-out 0.6s both;
+}
+
+.hero-float-card--quest {
+  bottom: 22%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.65rem;
+  animation: fadeInUp 0.7s ease-out 0.75s both;
 }
 
 /* purple color grade overlay */
@@ -1263,6 +1449,7 @@ section {
   .email-form { flex-direction: column; }
   .email-capture-card { padding: 2rem 1.5rem; }
   .email-input { font-size: 1rem; }
+   .hero-eyebrow { text-align: center; display: block; }
 }
 
 /* ===== Privacy Section ===== */
@@ -1926,6 +2113,22 @@ section {
   /* Trust strip hidden — microcopy replaces it */
   .hero-trust-strip { display: none !important; }
 
+  /* Floating cards: scaled down for tablet column width */
+  .hero-float-card {
+    min-width: 0;
+    padding: 0.6rem 0.8rem;
+    border-radius: 11px;
+  }
+  .hfc-tag         { font-size: 0.58rem; }
+  .hfc-title       { font-size: 0.9rem;  }
+  .hfc-value       { font-size: 1rem;    }
+  .hfc-trend       { font-size: 0.58rem; }
+  .hfc-sub         { font-size: 0.55rem; }
+  .hfc-quest-title { font-size: 0.65rem; }
+  .hfc-xp          { font-size: 0.58rem; }
+  .hfc-check       { width: 20px; height: 20px; }
+  .hero-float-card--quest { gap: 0.45rem; padding: 0.45rem 0.65rem; }
+
   /* Left column alignment overrides */
   .hero-description { margin: 0 0 1.25rem; text-align: left; }
   .hero-stats  { justify-content: flex-start; }
@@ -1935,6 +2138,8 @@ section {
   .hero-br  { display: inline; }
   .hero-dot { display: none; }
   .hero h1  { font-size: 2.5rem; line-height: 1.15; margin-bottom: 1rem; }
+  /* Sub-line: slightly softer but not as reduced as desktop — column is narrower */
+  .hero-h1-sub { font-size: 0.9em; color: rgba(232, 234, 246, 0.75); }
 
   /* Short description — hide long, show compact */
   .hero-desc-long  { display: none; }
@@ -2098,10 +2303,41 @@ section {
   /* ── Kill grid gap between items on mobile ── */
   .hero-content { gap: 0; }
 
-  /* ── Headline: intentional break, no periods ── */
-  .hero-br  { display: inline; }
+  /* ── Headline: intentional 2-line break ── */
+  .hero-br  { display: block; }
   .hero-dot { display: none; }
-  .hero h1  { font-size: 2rem; line-height: 1.15; margin-bottom: 0.65rem; }
+  .hero h1  { font-size: 1.55rem; line-height: 1.25; margin-bottom: 0.65rem; }
+  .highlight-ring::after { display: none; }
+  /* "Money" highlight less intense on mobile — solid muted purple, not gradient */
+  .hero h1 .highlight {
+    background: none;
+    -webkit-text-fill-color: rgba(170, 130, 255, 0.88);
+    color: rgba(170, 130, 255, 0.88);
+  }
+  .hero-h1-sub { font-size: 1em; color: rgba(232, 234, 246, 0.82); }
+
+  /* ── Floating stat cards: 2 cards only on mobile ── */
+  .hero-float-card {
+    min-width: 0;
+    padding: 0.5rem 0.65rem;
+    border-radius: 10px;
+    z-index: 3;
+  }
+  .hero-float-card--rank    { top: 14%; left: 4px; }
+  .hero-float-card--balance { top: 4%;  right: 4px; }
+  .hero-float-card--quest   { top: 50%; bottom: auto; right: 4px; display: flex; }
+                                        
+  .hfc-tag         { font-size: 0.55rem; margin-bottom: 0.2rem; }
+  .hfc-title       { font-size: 0.82rem; }
+  .hfc-value       { font-size: 0.9rem;  margin-bottom: 0.2rem; }
+  .hfc-trend       { font-size: 0.55rem; }
+  .hfc-sub         { font-size: 0.52rem; }
+  .hfc-bar         { margin: 0.3rem 0 0.2rem; }
+  .hfc-check       { width: 20px; height: 20px; }
+  .hfc-check svg   { width: 10px; height: 10px; }
+  .hfc-quest-title { font-size: 0.65rem; }
+  .hfc-xp          { font-size: 0.55rem; }
+  .hero-float-card--quest { gap: 0.4rem; }
 
   /* ── Short description, hide long one ── */
   .hero-desc-long  { display: none; }
@@ -2115,10 +2351,10 @@ section {
   .desc-solution { display: block; margin-top: 0.45rem; }
 
   /* ── Eyebrow: hide on mobile, it's noise ── */
-  .hero-eyebrow { display: none; }
+ 
 
   /* ── Primary CTA: full-width above store buttons ── */
-  .hero-primary-cta {
+  .hero-buttons .hero-primary-cta {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -2135,11 +2371,12 @@ section {
     gap: 0.55rem;
   }
   .hero-text .hero-buttons .store-btn {
-    background: rgba(123, 47, 255, 0.15);
-    border-color: rgba(123, 47, 255, 0.45);
-    box-shadow: 0 4px 20px rgba(123, 47, 255, 0.18);
+    background: rgba(123, 47, 255, 0.10);
+    border-color: rgba(123, 47, 255, 0.30);
+    box-shadow: none;
     justify-content: center;
-    padding: 0.85rem 0.75rem;
+    padding: 0.75rem 0.75rem;
+    opacity: 0.8;
   }
   .hero-text .hero-buttons .store-btn:hover {
     background: rgba(123, 47, 255, 0.25);
@@ -2163,6 +2400,12 @@ section {
     letter-spacing: 0.4px;
   }
 
+  /* ── CTA: more breathing room above ── */
+  .hero-buttons { margin-top: 1rem; }
+
+  /* ── Scroll hint: show on mobile only ── */
+  .hero-scroll-hint { display: flex; }
+
   /* ── Phone mockup ── */
   .hero-visual {
     display: flex;
@@ -2175,7 +2418,7 @@ section {
     align-self: unset;
   }
   .hero-visual .phone-mockup {
-    width: 220px;
+    width: 205px;
     animation: none;
     flex-shrink: 0;
   }
@@ -2292,7 +2535,7 @@ section {
 
 @media (max-width: 480px) {
   .hero h1 {
-    font-size: 1.7rem;
+    font-size: 1.55rem;
   }
 
   .hero-strapline {
@@ -3172,6 +3415,22 @@ section.slide {
   /* Trust strip replaced by microcopy */
   .hero-trust-strip { display: none !important; }
 
+  /* Floating cards: scaled down for iPad column */
+  .hero-float-card {
+    min-width: 0;
+    padding: 0.58rem 0.75rem;
+    border-radius: 11px;
+  }
+  .hfc-tag         { font-size: 0.57rem; }
+  .hfc-title       { font-size: 0.88rem; }
+  .hfc-value       { font-size: 0.95rem; }
+  .hfc-trend       { font-size: 0.57rem; }
+  .hfc-sub         { font-size: 0.54rem; }
+  .hfc-quest-title { font-size: 0.65rem; }
+  .hfc-xp          { font-size: 0.58rem; }
+  .hfc-check       { width: 20px; height: 20px; }
+  .hero-float-card--quest { gap: 0.45rem; padding: 0.45rem 0.65rem; }
+
   /* Left-align text elements */
   .hero-description { margin: 0 0 1rem; text-align: left; }
   .hero-stats       { justify-content: flex-start; }
@@ -3180,6 +3439,7 @@ section.slide {
   .hero-br  { display: inline; }
   .hero-dot { display: none; }
   .hero h1  { font-size: 2.3rem; line-height: 1.15; margin-bottom: 0.85rem; }
+  .hero-h1-sub { font-size: 0.9em; color: rgba(232, 234, 246, 0.75); }
 
   /* Short desc: hide long version */
   .hero-desc-long  { display: none; }
@@ -3301,7 +3561,7 @@ section.slide {
   /* ── Hero: cut the generous 8rem padding ── */
   .hero { padding: 5rem 2rem 2rem; }
   .hero h1 { font-size: 2.8rem; margin-bottom: 0.85rem; }
-  .hero-description { font-size: 0.95rem; margin-bottom: 1.25rem; }
+  .hero-description { font-size: 1.05rem; margin-bottom: 1.25rem; }
 
   /* ── Screenshots: less top padding so cards have room ── */
   #screenshots.slide { padding: 3.5rem 0 0.75rem; }
