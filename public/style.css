@@ -2499,6 +2499,24 @@ section {
     padding: 1.25rem 1.25rem;
   }
 
+  .reviews-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .guide-top .section-title { font-size: 1.5rem; }
+  .live-proof-bar { white-space: normal; }
+  .lpb-sep { display: none; }
+  .live-proof-bar span { display: block; }
+
   .email-capture-card {
     padding: 1.75rem 1.25rem;
     border-radius: 16px;
@@ -2757,6 +2775,8 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.07);
   padding: 0.25rem 0.65rem;
   border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hunter-message-body {
@@ -2771,6 +2791,98 @@ section {
   color: var(--neon-gold);
   font-size: 0.9rem;
   letter-spacing: 3px;
+}
+
+/* Guide section — compact 3-col layout */
+.guide-container {
+  max-width: 960px;
+}
+
+.guide-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.guide-top .section-header {
+  margin-bottom: 0;
+  text-align: left;
+}
+.guide-top .section-title {
+  font-size: 1.9rem;
+  margin-bottom: 0;
+}
+
+.live-proof-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  background: rgba(123, 47, 255, 0.06);
+  border: 1px solid rgba(123, 47, 255, 0.18);
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  white-space: nowrap;
+}
+.lpb-sep {
+  opacity: 0.35;
+}
+
+.reviews-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+.reviews-grid-3 .hunter-message {
+  max-width: none;
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+}
+.reviews-grid-3 .hunter-message-body {
+  font-size: 0.92rem;
+  margin-bottom: 0.85rem;
+}
+
+.hm-activity {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #4ade80;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(74, 222, 128, 0.12);
+  letter-spacing: 0.02em;
+}
+
+.hunter-message {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.hunter-message:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 60px rgba(123, 47, 255, 0.18), 0 16px 48px rgba(0, 0, 0, 0.55);
+}
+
+.reviews-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 640px;
+  margin: 0 auto 1.5rem;
+}
+.reviews-row .hunter-message {
+  max-width: none;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+}
+.reviews-row .hunter-message-body {
+  font-size: 0.88rem;
 }
 
 .inline-cta {
@@ -3051,8 +3163,6 @@ section.slide {
 }
 
 /* Compact guide slide */
-#guide.slide .guide-body { font-size: 0.93rem; margin-bottom: 1.25rem; }
-#guide.slide .hunter-message { margin-bottom: 1.25rem; }
 #guide.slide .inline-cta { margin-top: 0.5rem; }
 
 /* Compact features slide */
@@ -3479,6 +3589,10 @@ section.slide {
 
   /* Allow screenshots slide to grow past 100vh so full-height cards aren't clipped */
   #screenshots.slide { height: auto; min-height: 100vh; overflow: visible; }
+
+  /* Guide: 2-col on tablet */
+  .reviews-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .guide-top { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
 
   /* Hide swipe hints for every section that shows a full grid on tablet (not a carousel) */
   #stakes .swipe-hint,
