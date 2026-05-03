@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { entry, headings } = Astro.props;
-const { title, description, pubDate, category, readTime, image, imageAlt, faq } = entry.data;
+const { title, description, pubDate, dateModified, category, readTime, image, imageAlt, faq } = entry.data;
 const slug = entry.slug;
 
 const catClass: Record<string, string> = {
@@ -38,6 +38,7 @@ const articleJsonLd = JSON.stringify({
   "headline": title,
   "description": description,
   "datePublished": pubDate.toISOString(),
+  "dateModified": (dateModified ?? pubDate).toISOString(),
   "author": { "@type": "Organization", "name": "Hunter Vault" },
   "publisher": {
     "@type": "Organization",
@@ -46,6 +47,16 @@ const articleJsonLd = JSON.stringify({
   },
   "image": image ? `https://huntervault.app${image}` : "https://huntervault.app/assets/og-image.jpg",
   "mainEntityOfPage": { "@type": "WebPage", "@id": `https://huntervault.app/blog/${slug}/` }
+});
+
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://huntervault.app/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://huntervault.app/blog/" },
+    { "@type": "ListItem", "position": 3, "name": title, "item": `https://huntervault.app/blog/${slug}/` }
+  ]
 });
 
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
@@ -74,10 +85,15 @@ const relatedPosts = allPosts
   <meta property="og:description" content={description} />
   <meta property="og:url" content={`https://huntervault.app/blog/${slug}/`} />
   {image && <meta property="og:image" content={`https://huntervault.app${image}`} />}
+  {image && <meta property="og:image:alt" content={imageAlt ?? title} />}
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Hunter Vault" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  {image && <meta name="twitter:image" content={`https://huntervault.app${image}`} />}
+  {image && <meta name="twitter:image:alt" content={imageAlt ?? title} />}
 
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
@@ -89,6 +105,7 @@ const relatedPosts = allPosts
   <link rel="stylesheet" href="/blog-post.css" />
 
   <script type="application/ld+json" set:html={articleJsonLd} />
+  <script type="application/ld+json" set:html={breadcrumbJsonLd} />
   {faqJsonLd && <script type="application/ld+json" set:html={faqJsonLd} />}
 </head>
 <body>
