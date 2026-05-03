@@ -1,0 +1,67 @@
+---
+title: "Hunter Vault v2.0 — Update"
+description: "Version 2.0 introduces a fully reimagined onboarding experience, critical bug fixes, and significant under-the-hood stability improvements."
+pubDate: 2026-05-01
+category: Update
+readTime: "4 min read"
+featured: false
+image: "/assets/updates/app-update-v2-0.webp"
+imageAlt: "Hunter Vault v2.0 — Release Notes"
+tags: ["update", "hunter vault", "changelog", "v2.0"]
+---
+
+Version 2.0 is a major milestone focused on first impressions, clarity, and long-term stability. This release introduces a fully redesigned onboarding experience, critical bug fixes, and foundational improvements across the codebase.
+
+## Onboarding — Fully Reimagined
+
+The onboarding experience has been rebuilt from the ground up with a new flow, improved clarity, and a more polished, premium feel.
+
+**New flow:** Welcome → Choose Your Path → Name Your Hunter → Your Arsenal → Currency → Begin Your Journey → Notifications
+
+### Welcome Screen
+
+Visual noise has been reduced, with ambient effects pushed to the edges to keep focus on core content. Feature highlights are now presented as a clean, stacked list for better readability. The primary action button has been refined with improved depth and responsiveness.
+
+### Choose Your Path
+
+Selection is now clearer with a visible checkmark indicator. The Tracker path is highlighted as a popular option. Card content has been condensed to keep decisions quick and scannable, and the CTA now reinforces commitment with "Confirm Path." Additional trust messaging has been added.
+
+### Your Arsenal (New)
+
+A new step that highlights the tools unlocked based on the chosen path. This reinforces user decisions and provides clarity before continuing.
+
+### Currency Detection Improvements
+
+Currency is now determined using device timezone rather than language settings, improving accuracy for international users. The interface prioritizes the detected currency while still allowing full manual selection.
+
+### Begin Your Journey
+
+CTA messaging is now personalized based on the selected path, giving each user a more tailored and immersive start.
+
+## Bug Fixes
+
+### Currency Selection Persistence
+
+Fixed an issue where accepting the default detected currency did not save the selection, causing the app to revert to USD. The selected currency is now always stored correctly.
+
+### Getting Started Checklist
+
+Resolved an incorrect premium restriction on "Set a Financial Goal." This feature is now properly available to all users.
+
+## Android Icon Update
+
+Updated the Android app icon to properly support adaptive icon systems. The new purple shield design now displays correctly across all devices and densities, replacing the outdated placeholder icon.
+
+## Code Quality & Stability
+
+This release also includes significant under-the-hood improvements:
+
+- Zero TypeScript compilation errors across the entire codebase
+- Improved type safety and cleaner handler patterns across multiple components
+- Expanded database schema to support new financial structures
+- Debug tools are now correctly excluded from production builds
+- All 145 unit tests passing with updated assertions for current rank naming
+
+---
+
+Update your app to get v2.0. As always, if you run into anything unexpected, let us know through the in-app feedback or reach out on our socials.
