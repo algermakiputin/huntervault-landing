@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["JGXQ7GN7U4.com.hunter.vault"],
+        "components": [
+          { "/": "/*" }
+        ]
+      }
+    ]
+  }
+}
