@@ -1,10 +1,15 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.hunter.vault",
-      "sha256_cert_fingerprints": ["31:3E:90:4D:F0:31:C8:A6:E5:01:EE:3D:A0:48:69:63:58:A0:09:A5:12:5B:90:83:16:24:14:AE:23:54:35:F0"]
+      "sha256_cert_fingerprints": [
+        "31:3E:90:4D:F0:31:C8:A6:E5:01:EE:3D:A0:48:69:63:58:A0:09:A5:12:5B:90:83:16:24:14:AE:23:54:35:F0",
+        "43:E0:94:18:AF:FA:4F:98:09:23:BD:CC:FD:82:4F:46:DF:60:96:5B:5B:C4:91:F8:67:8E:84:1F:27:B0:CF:10"
+      ]
     }
   }
 ]
