@@ -1,19 +1,20 @@
 ---
 interface Props {
-  type?: 'tip' | 'warn' | 'info' | 'hv';
+  type?: 'tip' | 'warn' | 'info' | 'hv' | 'example' | 'mistake';
   title?: string;
 }
 const { type = 'info', title } = Astro.props;
 
 const defaults: Record<string, { icon: string; label: string }> = {
-  tip:  { icon: '💡', label: 'Pro Tip' },
-  warn: { icon: '⚠️', label: 'Watch Out' },
-  info: { icon: '🔮', label: 'Note' },
-  hv:   { icon: '🗡️', label: 'Hunter Vault' },
+  tip:     { icon: '💡', label: 'Pro Tip' },
+  warn:    { icon: '⚠️', label: 'Watch Out' },
+  info:    { icon: '🔮', label: 'Note' },
+  hv:      { icon: '🗡️', label: 'Hunter Vault' },
+  example: { icon: '📋', label: 'Example' },
+  mistake: { icon: '❌', label: 'Common Mistake' },
 };
 const { icon, label } = defaults[type] ?? defaults.info;
 const displayTitle = title ?? label;
-// hv type uses info styling (same purple background)
 const cssType = type === 'hv' ? 'info' : type;
 ---
 <div class={`callout callout--${cssType}`}>

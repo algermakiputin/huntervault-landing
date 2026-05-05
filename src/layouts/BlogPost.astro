@@ -183,11 +183,17 @@ const relatedPosts = allPosts
     <!-- TOC Sidebar -->
     {tocHeadings.length > 0 && (
       <div class="article-toc" id="toc-box">
-        <span class="toc-label">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
-          Contents
-        </span>
-        <ul class="toc-list">
+        <div class="toc-header">
+          <span class="toc-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+            Contents
+          </span>
+          <button class="toc-toggle-btn" id="toc-toggle" aria-expanded="false" aria-controls="toc-list">
+            Show
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+        </div>
+        <ul class="toc-list" id="toc-list">
           {tocHeadings.map(h => (
             <li class={h.depth === 3 ? 'toc-sub' : ''}>
               <a href={`#${h.slug}`}>{h.text}</a>
@@ -238,6 +244,7 @@ const relatedPosts = allPosts
         <a href="/features">Features</a>
         <a href="/about">About</a>
         <a href="/blog/">Blog</a>
+        <a href="/tools/savings-challenge-calculator/">Tools</a>
         <a href="/faq">FAQ</a>
         <a href="/contact">Contact</a>
         <a href="/privacy-policy.html">Privacy Policy</a>
@@ -247,6 +254,37 @@ const relatedPosts = allPosts
   </footer>
 
   <script>
+    // Anchor links on headings
+    document.querySelectorAll<HTMLElement>('.article-prose h2, .article-prose h3').forEach(h => {
+      if (!h.id) return;
+      const anchor = document.createElement('a');
+      anchor.href = `#${h.id}`;
+      anchor.className = 'heading-anchor';
+      anchor.setAttribute('aria-hidden', 'true');
+      anchor.textContent = '#';
+      h.appendChild(anchor);
+    });
+
+    // Mobile TOC toggle
+    const tocBox = document.getElementById('toc-box');
+    const tocToggle = document.getElementById('toc-toggle');
+    tocToggle?.addEventListener('click', () => {
+      const isOpen = tocBox?.classList.toggle('toc-open');
+      tocToggle.setAttribute('aria-expanded', String(isOpen));
+      tocToggle.childNodes[0].textContent = isOpen ? 'Hide' : 'Show';
+    });
+
+    // Close TOC on link click (mobile)
+    document.querySelectorAll<HTMLAnchorElement>('#toc-list a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          tocBox?.classList.remove('toc-open');
+          tocToggle?.setAttribute('aria-expanded', 'false');
+          if (tocToggle) tocToggle.childNodes[0].textContent = 'Show';
+        }
+      });
+    });
+
     // Reading progress bar
     const bar = document.getElementById('read-progress') as HTMLElement;
     const article = document.getElementById('article-content') as HTMLElement;

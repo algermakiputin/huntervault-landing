@@ -1,0 +1,242 @@
+---
+---
+<div class="game-customizer">
+  <div class="gc-header">
+    <span class="gc-tag">// Challenge Customizer</span>
+    <h3 class="gc-title">Build Your Savings Mission</h3>
+    <p class="gc-subtitle">Enter your numbers and generate your personal XP quest.</p>
+  </div>
+
+  <div class="gc-fields">
+    <div class="gc-field">
+      <label class="gc-label" for="gc-goal">Savings Goal ($)</label>
+      <input class="gc-input" id="gc-goal" type="number" placeholder="300" min="1" />
+    </div>
+    <div class="gc-field">
+      <label class="gc-label" for="gc-days">Timeframe (Days)</label>
+      <input class="gc-input" id="gc-days" type="number" placeholder="60" min="1" />
+    </div>
+    <div class="gc-field">
+      <label class="gc-label" for="gc-xp">XP Per Daily Mission</label>
+      <input class="gc-input" id="gc-xp" type="number" placeholder="20" min="1" />
+    </div>
+  </div>
+
+  <button class="gc-btn" id="gc-submit">Build My Challenge</button>
+
+  <div class="gc-result" id="gc-result" hidden>
+    <div class="gc-result-row">
+      <span class="gc-result-icon">🎯</span>
+      <div>
+        <span class="gc-result-label">Daily Savings Mission</span>
+        <span class="gc-result-value" id="gc-daily"></span>
+      </div>
+    </div>
+    <div class="gc-result-row">
+      <span class="gc-result-icon">📅</span>
+      <div>
+        <span class="gc-result-label">Weekly Savings Goal</span>
+        <span class="gc-result-value" id="gc-weekly"></span>
+      </div>
+    </div>
+    <div class="gc-result-row">
+      <span class="gc-result-icon">⭐</span>
+      <div>
+        <span class="gc-result-label">Weekly XP Target</span>
+        <span class="gc-result-value" id="gc-xp-out"></span>
+      </div>
+    </div>
+    <p class="gc-mission" id="gc-mission"></p>
+  </div>
+
+  <p class="gc-error" id="gc-error" hidden>Please fill in all fields to build your challenge.</p>
+</div>
+
+<style>
+.game-customizer {
+  background: rgba(123, 47, 255, 0.05);
+  border: 1px solid rgba(123, 47, 255, 0.25);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  margin: 2rem 0;
+}
+
+.gc-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--neon-purple);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.gc-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem;
+}
+
+.gc-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.gc-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .gc-fields { grid-template-columns: 1fr; }
+}
+
+.gc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.gc-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #00d4ff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.gc-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(123, 47, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: var(--font-mono);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gc-input:focus {
+  border-color: var(--neon-purple);
+}
+
+.gc-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.gc-btn {
+  background: linear-gradient(135deg, #7b2fff, #00d4ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.gc-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.gc-result[hidden],
+.gc-error[hidden] {
+  display: none !important;
+}
+
+.gc-result {
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(123, 47, 255, 0.2);
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.gc-result-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.gc-result-icon {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.gc-result-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.1rem;
+}
+
+.gc-result-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #00d4ff;
+}
+
+.gc-mission {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(74, 222, 128, 0.06);
+  border: 1px solid rgba(74, 222, 128, 0.15);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0 0;
+}
+
+.gc-error {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: #f87171;
+  font-family: var(--font-mono);
+}
+</style>
+
+<script>
+  const btn = document.getElementById('gc-submit');
+  btn?.addEventListener('click', () => {
+    const goal = parseFloat((document.getElementById('gc-goal') as HTMLInputElement).value);
+    const days = parseFloat((document.getElementById('gc-days') as HTMLInputElement).value);
+    const xp   = parseFloat((document.getElementById('gc-xp')   as HTMLInputElement).value);
+
+    const result = document.getElementById('gc-result')!;
+    const error  = document.getElementById('gc-error')!;
+
+    if (!goal || !days || !xp) {
+      result.hidden = true;
+      error.hidden  = false;
+      return;
+    }
+
+    error.hidden  = true;
+
+    const daily   = goal / days;
+    const weekly  = daily * 7;
+    const weeklyXP = xp * 7;
+
+    (document.getElementById('gc-daily')   as HTMLElement).textContent = `$${daily.toFixed(2)} per day`;
+    (document.getElementById('gc-weekly')  as HTMLElement).textContent = `$${weekly.toFixed(2)} per week`;
+    (document.getElementById('gc-xp-out') as HTMLElement).textContent = `${weeklyXP} XP`;
+    (document.getElementById('gc-mission') as HTMLElement).textContent =
+      `Your mission: save $${daily.toFixed(2)} every day and earn ${xp} XP each time you complete it.`;
+
+    result.hidden = false;
+  });
+</script>

@@ -1,0 +1,773 @@
+---
+const title = "Savings Challenge Calculator — Build Your Money Game Mission | Hunter Vault";
+const description = "Free gamified savings calculator. Set your goal, get your daily mission, XP target, and weekly savings plan. Turn saving into a game you'll actually keep playing.";
+const canonical = "https://huntervault.app/tools/savings-challenge-calculator/";
+const ogImage = "https://huntervault.app/assets/og-image.jpg";
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Savings Challenge Calculator",
+  "url": canonical,
+  "description": description,
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "Hunter Vault", "url": "https://huntervault.app" }
+});
+
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does the savings challenge calculator work?", "acceptedAnswer": { "@type": "Answer", "text": "Enter your savings goal and timeframe using the sliders, then pick your XP level. The calculator instantly shows your daily savings mission, weekly target, and XP goal — turning your plan into a gamified daily challenge." } },
+    { "@type": "Question", "name": "What is XP in a savings challenge?", "acceptedAnswer": { "@type": "Answer", "text": "XP (Experience Points) rewards you for completing daily financial habits — logging expenses, hitting your daily savings target, or completing a no-spend day. It makes progress feel rewarding even when the amounts are small." } },
+    { "@type": "Question", "name": "How much should I save per day?", "acceptedAnswer": { "@type": "Answer", "text": "Start small — $1 to $5 per day builds the habit first. Use the slider to find a daily target that fits your income. Consistency matters more than the amount in the early weeks." } },
+    { "@type": "Question", "name": "Can I share my savings challenge?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — after generating your plan, a shareable link is created that pre-fills your exact goal and timeframe for anyone who opens it." } },
+    { "@type": "Question", "name": "Can I embed this calculator on my blog?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free. Expand the Embed section and copy the iframe code — works on any platform that supports iframes." } }
+  ]
+});
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="Hunter Vault" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" set:html={structuredData} />
+  <script type="application/ld+json" set:html={faqLd} />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #050812;
+      --bg-card:  rgba(255,255,255,0.025);
+      --purple:   #7b2fff;
+      --violet:   #9b59ff;
+      --cyan:     #00d4ff;
+      --green:    #4ade80;
+      --red:      #f87171;
+      --gold:     #f5c400;
+      --text-1:   #E6EAF2;
+      --text-2:   #AAB2C0;
+      --text-3:   #7F8A9A;
+      --mono:     'JetBrains Mono', monospace;
+      --display:  'Orbitron', sans-serif;
+      --body:     'Inter', sans-serif;
+      --radius:   12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); background: var(--bg); color: var(--text-1); line-height: 1.7; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(5,8,18,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(123,47,255,0.1); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: var(--display); font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; }
+    .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nav-logo span { color: var(--purple); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.85rem; color: var(--text-2); }
+    .nav-links a:hover { color: var(--text-1); }
+    .nav-active { color: var(--text-1) !important; font-weight: 600; }
+    .nav-cta { background: var(--purple); color: #fff !important; padding: 0.45rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .tool-hero { text-align: center; padding: 4.5rem 2rem 2.5rem; background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(123,47,255,0.13) 0%, transparent 70%); border-bottom: 1px solid rgba(123,47,255,0.07); }
+    .tool-hero-tag { font-family: var(--mono); font-size: 0.62rem; color: var(--purple); letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 1.1rem; }
+    .tool-hero h1 { font-family: var(--display); font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800; line-height: 1.2; max-width: 680px; margin: 0 auto 0.9rem; }
+    .tool-hero h1 span { background: linear-gradient(135deg, var(--purple), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .tool-hero p { font-size: 1rem; color: var(--text-2); max-width: 420px; margin: 0 auto 2rem; }
+
+    /* SOCIAL PROOF STRIP */
+    .proof-strip { display: flex; align-items: center; justify-content: center; gap: 0.5rem 1.75rem; flex-wrap: wrap; font-family: var(--mono); font-size: 0.72rem; color: var(--text-3); }
+    .proof-strip strong { color: var(--text-2); }
+    .proof-sep { opacity: 0.3; }
+
+    /* MAIN WRAP */
+    .tool-wrap { max-width: 960px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    /* TOOL COLUMNS */
+    .tool-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    @media (max-width: 720px) { .tool-columns { grid-template-columns: 1fr; } }
+
+    /* INPUTS PANEL */
+    .inputs-panel { background: rgba(123,47,255,0.05); border: 1px solid rgba(123,47,255,0.2); border-radius: 18px; padding: 1.75rem 1.75rem; }
+    .panel-tag { font-family: var(--mono); font-size: 0.6rem; color: var(--purple); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.4rem; }
+    .panel-title { font-family: var(--display); font-size: 1.1rem; margin-bottom: 1.5rem; }
+
+    /* SLIDERS */
+    .slider-group { margin-bottom: 1.5rem; }
+    .slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+    .slider-label { font-family: var(--mono); font-size: 0.65rem; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase; }
+    .slider-val { font-family: var(--mono); font-size: 1.05rem; font-weight: 700; color: var(--text-1); }
+    .slider-hint { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); margin-top: 0.3rem; }
+
+    input[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px; outline: none; cursor: pointer;
+      accent-color: var(--purple);
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      cursor: pointer; border: 2px solid var(--bg);
+      box-shadow: 0 0 8px rgba(123,47,255,0.5);
+      transition: box-shadow 0.2s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { box-shadow: 0 0 14px rgba(123,47,255,0.8); }
+    input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, var(--purple), var(--cyan)); cursor: pointer; border: 2px solid var(--bg); }
+
+    /* XP PRESETS */
+    .xp-label { font-family: var(--mono); font-size: 0.65rem; color: var(--cyan); letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 0.6rem; }
+    .xp-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1.5rem; }
+    .xp-preset { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.55rem 0.5rem; text-align: center; cursor: pointer; transition: all 0.18s; font-family: var(--body); color: var(--text-2); }
+    .xp-preset:hover { border-color: rgba(123,47,255,0.4); background: rgba(123,47,255,0.06); }
+    .xp-preset.active { border-color: var(--purple); background: rgba(123,47,255,0.12); color: var(--text-1); }
+    .xp-preset-name { display: block; font-size: 0.82rem; font-weight: 600; }
+    .xp-preset-xp { display: block; font-family: var(--mono); font-size: 0.62rem; color: var(--cyan); margin-top: 0.1rem; }
+    .xp-preset-hint { display: block; font-size: 0.62rem; color: var(--text-3); margin-top: 0.2rem; }
+
+    /* CTA BUTTON */
+    .gen-btn { width: 100%; background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff; border: none; border-radius: 10px; padding: 0.85rem 1.5rem; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s; letter-spacing: 0.02em; }
+    .gen-btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(123,47,255,0.35); }
+
+    /* LIVE PREVIEW PANEL */
+    .preview-panel { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .preview-header { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); letter-spacing: 2px; text-transform: uppercase; }
+    .preview-mission { background: rgba(123,47,255,0.07); border: 1px solid rgba(123,47,255,0.2); border-radius: 12px; padding: 1.1rem 1.25rem; }
+    .preview-mission-day { font-family: var(--mono); font-size: 0.6rem; color: var(--purple); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .preview-mission-amount { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--cyan); line-height: 1; margin-bottom: 0.2rem; }
+    .preview-mission-label { font-size: 0.78rem; color: var(--text-3); }
+
+    .preview-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
+    .preview-stat { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 0.8rem; }
+    .preview-stat-label { font-family: var(--mono); font-size: 0.58rem; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .preview-stat-val { font-family: var(--mono); font-size: 1rem; font-weight: 700; color: var(--text-1); }
+
+    /* PROGRESS BAR */
+    .preview-progress { }
+    .preview-progress-header { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); margin-bottom: 0.5rem; }
+    .preview-bar-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; }
+    .preview-bar-fill { height: 100%; background: linear-gradient(90deg, var(--purple), var(--cyan)); border-radius: 99px; transition: width 0.4s ease; width: 0%; }
+    .preview-bar-milestones { display: flex; justify-content: space-between; margin-top: 0.3rem; font-family: var(--mono); font-size: 0.55rem; color: var(--text-3); }
+
+    /* RESULT CARD */
+    .result-card[hidden] { display: none !important; }
+    .result-card { border: 1px solid rgba(123,47,255,0.28); border-radius: 20px; overflow: hidden; margin-bottom: 2.5rem; animation: slideUp 0.35s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    .result-header { background: linear-gradient(135deg, rgba(123,47,255,0.18), rgba(0,212,255,0.08)); padding: 1.5rem 2rem; border-bottom: 1px solid rgba(123,47,255,0.15); }
+    .result-identity { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .result-badge { font-family: var(--mono); font-size: 0.65rem; color: var(--purple); background: rgba(123,47,255,0.15); border: 1px solid rgba(123,47,255,0.3); border-radius: 100px; padding: 0.2rem 0.7rem; letter-spacing: 1px; text-transform: uppercase; }
+    .result-title { font-family: var(--display); font-size: 1.2rem; font-weight: 800; }
+    .result-level { font-family: var(--mono); font-size: 0.7rem; color: var(--gold); letter-spacing: 1px; margin-top: 0.2rem; }
+
+    .result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+    @media (max-width: 580px) { .result-stats { grid-template-columns: 1fr; } }
+    .result-stat { padding: 1.5rem; border-right: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .result-stat:last-child { border-right: none; }
+    .result-stat-icon { font-size: 1.4rem; display: block; margin-bottom: 0.5rem; }
+    .result-stat-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.35rem; display: block; }
+    .result-stat-val { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--cyan); }
+
+    .result-progress { padding: 1.25rem 2rem; border-top: 1px solid rgba(255,255,255,0.04); }
+    .result-progress-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.6rem; display: flex; justify-content: space-between; }
+    .result-bar-track { height: 8px; background: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; margin-bottom: 0.5rem; }
+    .result-bar-fill { height: 100%; background: linear-gradient(90deg, var(--purple), var(--cyan)); border-radius: 99px; width: 0%; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); }
+    .result-mission { padding: 1rem 2rem 1.5rem; }
+    .result-mission p { font-size: 0.9rem; color: var(--text-2); background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.15); border-radius: 10px; padding: 0.85rem 1.1rem; }
+    .result-mission strong { color: var(--green); }
+
+    /* SHARE (appears after result) */
+    .share-block[hidden] { display: none !important; }
+    .share-block { margin-bottom: 2.5rem; }
+    .share-block-inner { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .share-label-text { font-family: var(--mono); font-size: 0.65rem; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; }
+    .share-icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+    .share-icon-btn:hover { opacity: 0.8; transform: translateY(-1px); }
+    .si-copy   { background: rgba(123,47,255,0.15); border: 1px solid rgba(123,47,255,0.3); color: var(--violet); }
+    .si-x      { background: #000; color: #fff; }
+    .si-fb     { background: #1877F2; color: #fff; }
+    .si-reddit { background: #FF4500; color: #fff; }
+    .si-wa     { background: #25D366; color: #fff; }
+    .share-copy-confirm { font-family: var(--mono); font-size: 0.72rem; color: var(--green); display: none; }
+    .share-copy-confirm.show { display: inline; }
+
+    /* HOW IT WORKS */
+    .section-label { font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+    .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    @media (max-width: 640px) { .steps-row { grid-template-columns: 1fr; } }
+    .step-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.4rem; position: relative; }
+    .step-num { font-family: var(--mono); font-size: 0.6rem; color: var(--purple); letter-spacing: 1px; margin-bottom: 0.75rem; display: block; }
+    .step-icon { font-size: 1.6rem; display: block; margin-bottom: 0.6rem; }
+    .step-box h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .step-box p { font-size: 0.83rem; color: var(--text-2); line-height: 1.6; }
+
+    /* BENEFITS */
+    .benefits-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 2.5rem; }
+    @media (max-width: 640px) { .benefits-row { grid-template-columns: 1fr; } }
+    .benefit { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 1rem 1.1rem; font-size: 0.85rem; color: var(--text-2); display: flex; align-items: flex-start; gap: 0.5rem; }
+    .benefit-check { color: var(--green); flex-shrink: 0; font-weight: 700; margin-top: 0.1rem; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 2.5rem; border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; overflow: hidden; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { width: 100%; text-align: left; background: none; border: none; padding: 1rem 1.25rem; font-size: 0.92rem; font-weight: 600; color: var(--text-1); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-family: var(--body); transition: background 0.15s; }
+    .faq-q:hover { background: rgba(123,47,255,0.04); }
+    .faq-q svg { flex-shrink: 0; transition: transform 0.25s ease; color: var(--text-3); }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 1.25rem 1rem; font-size: 0.88rem; color: var(--text-2); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* EMBED */
+    .embed-toggle-btn { background: none; border: none; color: var(--text-3); font-size: 0.78rem; font-family: var(--mono); cursor: pointer; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; padding: 0; transition: color 0.2s; }
+    .embed-toggle-btn:hover { color: var(--text-2); }
+    .embed-toggle-btn svg { transition: transform 0.25s; }
+    .embed-toggle-btn.open svg { transform: rotate(180deg); }
+    .embed-panel[hidden] { display: none !important; }
+    .embed-wrap { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden; margin-bottom: 2.5rem; }
+    .embed-code { font-family: var(--mono); font-size: 0.75rem; color: var(--text-2); padding: 1rem 1.25rem; overflow-x: auto; white-space: nowrap; line-height: 1.6; }
+    .embed-footer { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 1rem; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+    .embed-note { font-size: 0.72rem; color: var(--text-3); }
+    .btn-copy-embed { background: rgba(123,47,255,0.15); color: var(--violet); border: 1px solid rgba(123,47,255,0.25); border-radius: 6px; padding: 0.3rem 0.8rem; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+    .btn-copy-embed:hover { opacity: 0.8; }
+
+    /* CTA */
+    .tool-cta { text-align: center; background: rgba(123,47,255,0.06); border: 1px solid rgba(123,47,255,0.2); border-radius: 20px; padding: 2.5rem 2rem; margin-bottom: 2.5rem; }
+    .tool-cta h2 { font-family: var(--display); font-size: 1.2rem; margin-bottom: 0.65rem; }
+    .tool-cta p { font-size: 0.9rem; color: var(--text-2); max-width: 420px; margin: 0 auto 1.5rem; }
+    .cta-store-row { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+    .cta-store-btn { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+    .cta-store-btn:hover { background: rgba(255,255,255,0.1); }
+
+    /* FOOTER */
+    .tool-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 1.75rem 2rem; text-align: center; font-size: 0.78rem; color: var(--text-3); }
+    .tool-footer a { color: var(--text-3); margin: 0 0.5rem; }
+    .tool-footer a:hover { color: var(--text-2); }
+
+    /* EMBED MODE */
+    body.is-embed .site-nav,
+    body.is-embed .tool-hero,
+    body.is-embed .share-block,
+    body.is-embed .embed-section,
+    body.is-embed .how-it-works,
+    body.is-embed .faq-section,
+    body.is-embed .tool-cta,
+    body.is-embed .tool-footer { display: none !important; }
+    body.is-embed .tool-wrap { padding: 1rem; }
+    body.is-embed .tool-columns { margin-bottom: 0.75rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">
+      <img src="/assets/hunter-vault-logo.webp" alt="Hunter Vault" />
+      <span>HUNTER</span> VAULT
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/features">Features</a>
+      <a href="/blog/">Blog</a>
+      <a href="/tools/savings-challenge-calculator/" class="nav-active">Tools</a>
+      <a href="/contact">Contact</a>
+      <a href="/#download" class="nav-cta">Download Free</a>
+    </div>
+  </nav>
+
+  <header class="tool-hero">
+    <span class="tool-hero-tag">// Free Tool</span>
+    <h1>Turn Any Savings Goal Into a <span>Game You'll Actually Win</span></h1>
+    <p>Get a daily plan, XP targets, and weekly milestones in seconds.</p>
+    <div class="proof-strip">
+      <span>🔥 <strong>1,000+</strong> Hunters using this</span>
+      <span class="proof-sep">·</span>
+      <span>⚡ <strong>8.7-day</strong> avg streak</span>
+      <span class="proof-sep">·</span>
+      <span>📈 <strong>₱1.8M</strong> tracked</span>
+    </div>
+  </header>
+
+  <div class="tool-wrap">
+
+    <!-- TOOL -->
+    <div class="tool-columns">
+
+      <!-- Inputs -->
+      <div class="inputs-panel">
+        <span class="panel-tag">// Challenge Builder</span>
+        <h2 class="panel-title">Set Your Mission</h2>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Savings Goal</span>
+            <span class="slider-val" id="goal-display">$500</span>
+          </div>
+          <input type="range" id="sc-goal" min="50" max="50000" step="50" value="500" />
+          <p class="slider-hint">💡 Most people start with $300–$5,000</p>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Timeframe</span>
+            <span class="slider-val" id="days-display">60 days</span>
+          </div>
+          <input type="range" id="sc-days" min="7" max="365" step="1" value="60" />
+          <p class="slider-hint">💡 Most people pick 60–90 days</p>
+        </div>
+
+        <span class="xp-label">XP Level</span>
+        <div class="xp-presets" id="xp-presets">
+          <button class="xp-preset" data-xp="10">
+            <span class="xp-preset-name">Casual</span>
+            <span class="xp-preset-xp">10 XP/day</span>
+            <span class="xp-preset-hint">Easy pace</span>
+          </button>
+          <button class="xp-preset active" data-xp="20">
+            <span class="xp-preset-name">Regular</span>
+            <span class="xp-preset-xp">20 XP/day</span>
+            <span class="xp-preset-hint">Recommended</span>
+          </button>
+          <button class="xp-preset" data-xp="40">
+            <span class="xp-preset-name">Hardcore</span>
+            <span class="xp-preset-xp">40 XP/day</span>
+            <span class="xp-preset-hint">Max grind</span>
+          </button>
+        </div>
+
+        <button class="gen-btn" id="sc-submit">Generate My Game Plan →</button>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="preview-panel">
+        <span class="preview-header">// Live Preview</span>
+
+        <div class="preview-mission">
+          <div class="preview-mission-day">Day 1 Mission</div>
+          <div class="preview-mission-amount" id="prev-daily">$8.33</div>
+          <div class="preview-mission-label">to save today</div>
+        </div>
+
+        <div class="preview-stats">
+          <div class="preview-stat">
+            <div class="preview-stat-label">Weekly Target</div>
+            <div class="preview-stat-val" id="prev-weekly">$58.33</div>
+          </div>
+          <div class="preview-stat">
+            <div class="preview-stat-label">Weekly XP</div>
+            <div class="preview-stat-val" id="prev-xp">140 XP</div>
+          </div>
+          <div class="preview-stat">
+            <div class="preview-stat-label">Days Left</div>
+            <div class="preview-stat-val" id="prev-days">60</div>
+          </div>
+          <div class="preview-stat">
+            <div class="preview-stat-label">Total XP</div>
+            <div class="preview-stat-val" id="prev-total-xp">1,200</div>
+          </div>
+        </div>
+
+        <div class="preview-progress">
+          <div class="preview-progress-header">
+            <span>Day 1</span>
+            <span id="prev-midpoint">Day 30</span>
+            <span id="prev-endpoint">Day 60</span>
+          </div>
+          <div class="preview-bar-track">
+            <div class="preview-bar-fill" id="prev-bar" style="width:1%"></div>
+          </div>
+          <div class="preview-bar-milestones">
+            <span>Start</span>
+            <span id="prev-mid-label">$250 saved</span>
+            <span id="prev-end-label">$500 ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-card" id="result-card" hidden>
+      <div class="result-header">
+        <div class="result-identity">
+          <span class="result-badge" id="res-badge">🔥 Your 60-Day Challenge</span>
+        </div>
+        <div class="result-title" id="res-title">Mission Generated</div>
+        <div class="result-level" id="res-level">// CONSISTENCY BUILDER · LVL UP UNLOCKED</div>
+      </div>
+      <div class="result-stats">
+        <div class="result-stat">
+          <span class="result-stat-icon">🎯</span>
+          <span class="result-stat-label">Daily Mission</span>
+          <span class="result-stat-val" id="res-daily">$0</span>
+        </div>
+        <div class="result-stat">
+          <span class="result-stat-icon">📅</span>
+          <span class="result-stat-label">Weekly Goal</span>
+          <span class="result-stat-val" id="res-weekly">$0</span>
+        </div>
+        <div class="result-stat">
+          <span class="result-stat-icon">⭐</span>
+          <span class="result-stat-label">Weekly XP</span>
+          <span class="result-stat-val" id="res-xp">0 XP</span>
+        </div>
+      </div>
+      <div class="result-progress">
+        <div class="result-progress-label">
+          <span>Challenge Progress</span>
+          <span id="res-prog-label">Day 0 of 60</span>
+        </div>
+        <div class="result-bar-track">
+          <div class="result-bar-fill" id="res-bar"></div>
+        </div>
+      </div>
+      <div class="result-mission">
+        <p id="res-mission"></p>
+      </div>
+    </div>
+
+    <!-- SHARE (hidden until result) -->
+    <div class="share-block" id="share-block" hidden>
+      <div class="share-block-inner">
+        <span class="share-label-text">Share challenge</span>
+        <button class="share-icon-btn si-copy" id="btn-copy-link" title="Copy link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+        <button class="share-icon-btn si-x" id="btn-share-x" title="Share on X">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.733-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </button>
+        <button class="share-icon-btn si-fb" id="btn-share-fb" title="Share on Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </button>
+        <button class="share-icon-btn si-reddit" id="btn-share-reddit" title="Share on Reddit">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+        </button>
+        <button class="share-icon-btn si-wa" id="btn-share-wa" title="WhatsApp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </button>
+        <span class="share-copy-confirm" id="copy-confirm">✓ Copied!</span>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="how-it-works">
+      <p class="section-label">How It Works</p>
+      <div class="steps-row">
+        <div class="step-box">
+          <span class="step-num">// STEP 01</span>
+          <span class="step-icon">🎯</span>
+          <h3>Set Your Goal</h3>
+          <p>Pick a savings target and timeframe. The calculator breaks it into a daily mission — no more guesswork.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">// STEP 02</span>
+          <span class="step-icon">⭐</span>
+          <h3>Earn XP Daily</h3>
+          <p>Every completed mission earns XP. You're no longer chasing a number — you're building a streak.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">// STEP 03</span>
+          <span class="step-icon">🏆</span>
+          <h3>Level Up</h3>
+          <p>Hit your goal, rank up, and set your next challenge. The system scales with you.</p>
+        </div>
+      </div>
+
+      <div class="benefits-row">
+        <div class="benefit"><span class="benefit-check">✓</span> No more guesswork — clear daily target every morning</div>
+        <div class="benefit"><span class="benefit-check">✓</span> Feels like a game, not a chore</div>
+        <div class="benefit"><span class="benefit-check">✓</span> Works with $5/day or $50/day</div>
+        <div class="benefit"><span class="benefit-check">✓</span> XP keeps you coming back even on hard days</div>
+        <div class="benefit"><span class="benefit-check">✓</span> Share your challenge to stay accountable</div>
+        <div class="benefit"><span class="benefit-check">✓</span> 100% free — no account needed</div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <p class="section-label">FAQ</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">How does this calculator work? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a">Set your savings goal and timeframe with the sliders, pick your XP level, and hit Generate. You get a daily mission amount, weekly target, and XP goal — live as you adjust the sliders.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What is XP and why does it matter? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a">XP rewards effort, not just results. You earn it for completing daily habits — tracking expenses, hitting your daily save target, or going a full day without impulse spending. It creates a motivation loop that keeps you consistent even when progress feels slow.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How much should I save per day? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a">Start with what you can hit 90% of the time. For most people, that's $2–$10/day. Use the slider to find a goal that produces a daily amount that feels achievable — not aspirational.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I share my challenge with others? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a">Yes — after generating your plan, the share buttons appear. Copy the link or send directly to X, Facebook, Reddit, or WhatsApp. The URL encodes your goal and timeframe so anyone who opens it sees the same challenge.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I embed this on my website? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-a">Yes, completely free. Expand the embed section below, copy the iframe code, and paste it anywhere. No account or attribution required.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMBED (collapsed) -->
+    <div class="embed-section">
+      <button class="embed-toggle-btn" id="embed-toggle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        Embed this tool on your site — free
+      </button>
+      <div class="embed-panel" id="embed-panel" hidden>
+        <div class="embed-wrap">
+          <div class="embed-code" id="embed-code-display"></div>
+          <div class="embed-footer">
+            <span class="embed-note">Free to embed. No account required.</span>
+            <button class="btn-copy-embed" id="btn-copy-embed">Copy Code</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD CTA -->
+    <div class="tool-cta">
+      <h2>Your Mission Is Set. Now Track It.</h2>
+      <p>Hunter Vault turns your challenge into a full RPG — XP, quests, rank progression, and debt dungeons. Free to download.</p>
+      <div class="cta-store-row">
+        <a href="https://play.google.com/store/apps/details?id=com.hunter.vault" class="cta-store-btn" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 0 1 0 1.38l-2.302 2.302L15.396 12l2.302-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+          Google Play
+        </a>
+        <a href="https://apps.apple.com/app/hunter-vault-finance-tracker/id6761086056" class="cta-store-btn" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="tool-footer">
+    <p style="margin-bottom:0.4rem;">
+      <a href="/">Home</a><a href="/features">Features</a><a href="/blog/">Blog</a>
+      <a href="/faq">FAQ</a><a href="/contact">Contact</a><a href="/privacy-policy.html">Privacy</a>
+    </p>
+    <p>© 2026 Hunter Vault — Free tool, no account required.</p>
+  </footer>
+
+  <script>
+    const BASE_URL = 'https://huntervault.app/tools/savings-challenge-calculator/';
+    const EMBED_CODE = `<iframe src="${BASE_URL}?embed=1" width="100%" height="560" style="border:none;border-radius:16px;" title="Savings Challenge Calculator — Hunter Vault" loading="lazy"></iframe>`;
+
+    // Embed mode
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('embed') === '1') document.body.classList.add('is-embed');
+
+    // State
+    let goal = 500, days = 60, xp = 20;
+
+    const levels: Record<string, string> = {
+      speed: 'SPEED RUNNER',
+      consistency: 'CONSISTENCY BUILDER',
+      endurance: 'ENDURANCE HUNTER',
+      legendary: 'LEGENDARY GRINDER',
+    };
+
+    function getLevel(d: number) {
+      if (d < 30)  return levels.speed;
+      if (d <= 60) return levels.consistency;
+      if (d <= 90) return levels.endurance;
+      return levels.legendary;
+    }
+
+    function fmt(n: number) { return n.toFixed(2); }
+    function fmtInt(n: number) { return Math.round(n).toLocaleString(); }
+
+    // Live preview update
+    function updatePreview() {
+      const daily   = goal / days;
+      const weekly  = daily * 7;
+      const weeklyXP = xp * 7;
+      const totalXP  = xp * days;
+      const mid = Math.round(days / 2);
+
+      (document.getElementById('prev-daily')    as HTMLElement).textContent = `$${fmt(daily)}`;
+      (document.getElementById('prev-weekly')   as HTMLElement).textContent = `$${fmt(weekly)}`;
+      (document.getElementById('prev-xp')       as HTMLElement).textContent = `${weeklyXP} XP`;
+      (document.getElementById('prev-days')     as HTMLElement).textContent = String(days);
+      (document.getElementById('prev-total-xp') as HTMLElement).textContent = fmtInt(totalXP);
+      (document.getElementById('prev-midpoint') as HTMLElement).textContent = `Day ${mid}`;
+      (document.getElementById('prev-endpoint') as HTMLElement).textContent = `Day ${days}`;
+      (document.getElementById('prev-mid-label') as HTMLElement).textContent = `$${fmt(goal / 2)} saved`;
+      (document.getElementById('prev-end-label') as HTMLElement).textContent = `$${fmt(goal)} ✓`;
+    }
+
+    // Sliders
+    const goalSlider = document.getElementById('sc-goal') as HTMLInputElement;
+    const daysSlider = document.getElementById('sc-days') as HTMLInputElement;
+    const goalDisplay = document.getElementById('goal-display') as HTMLElement;
+    const daysDisplay = document.getElementById('days-display') as HTMLElement;
+
+    // Pre-fill from URL
+    if (urlParams.get('goal')) { goal = +urlParams.get('goal')!; goalSlider.value = String(goal); }
+    if (urlParams.get('days')) { days = +urlParams.get('days')!; daysSlider.value = String(days); }
+    if (urlParams.get('xp'))   { xp   = +urlParams.get('xp')!; }
+
+    goalDisplay.textContent = `$${goal.toLocaleString()}`;
+    daysDisplay.textContent = `${days} days`;
+    updatePreview();
+
+    goalSlider.addEventListener('input', () => {
+      goal = +goalSlider.value;
+      goalDisplay.textContent = `$${goal.toLocaleString()}`;
+      updatePreview();
+    });
+
+    daysSlider.addEventListener('input', () => {
+      days = +daysSlider.value;
+      daysDisplay.textContent = `${days} day${days !== 1 ? 's' : ''}`;
+      updatePreview();
+    });
+
+    // XP presets
+    document.querySelectorAll<HTMLButtonElement>('.xp-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.xp-preset').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        xp = +btn.dataset.xp!;
+        updatePreview();
+      });
+    });
+
+    // Count-up animation
+    function countUp(el: HTMLElement, target: number, prefix = '', suffix = '', duration = 700) {
+      const start = performance.now();
+      const from = 0;
+      function tick(now: number) {
+        const p = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const val = from + (target - from) * ease;
+        el.textContent = prefix + fmt(val) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = prefix + fmt(target) + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // Generate
+    function generate() {
+      const daily   = goal / days;
+      const weekly  = daily * 7;
+      const weeklyXP = xp * 7;
+
+      // Update URL
+      const u = new URL(window.location.href);
+      u.searchParams.set('goal', String(goal));
+      u.searchParams.set('days', String(days));
+      u.searchParams.set('xp',   String(xp));
+      history.replaceState(null, '', u.toString());
+
+      // Badge + identity
+      const level = getLevel(days);
+      (document.getElementById('res-badge')  as HTMLElement).textContent = `🔥 Your ${days}-Day Challenge`;
+      (document.getElementById('res-title')  as HTMLElement).textContent = `Save $${fmt(daily)}/day for ${days} days`;
+      (document.getElementById('res-level')  as HTMLElement).textContent = `// ${level} · LVL UP UNLOCKED`;
+      (document.getElementById('res-prog-label') as HTMLElement).textContent = `Day 0 of ${days}`;
+
+      // Count-up stats
+      const resDaily  = document.getElementById('res-daily')!;
+      const resWeekly = document.getElementById('res-weekly')!;
+      const resXP     = document.getElementById('res-xp')!;
+      countUp(resDaily,  daily,   '$', '', 700);
+      countUp(resWeekly, weekly,  '$', '', 850);
+      resXP.textContent = `${weeklyXP} XP`;
+
+      // Mission text
+      (document.getElementById('res-mission') as HTMLElement).innerHTML =
+        `<strong>Your mission:</strong> Save <strong>$${fmt(daily)}</strong> every day. Earn <strong>${xp} XP</strong> each time you complete it. Hit <strong>$${fmt(weekly)}</strong> by end of every week.`;
+
+      // Animate progress bar
+      const bar = document.getElementById('res-bar')!;
+      bar.style.width = '0%';
+      setTimeout(() => { bar.style.width = '3%'; }, 100);
+
+      // Show result + share
+      const card = document.getElementById('result-card')!;
+      card.hidden = false;
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      (document.getElementById('share-block') as HTMLElement).hidden = false;
+    }
+
+    document.getElementById('sc-submit')?.addEventListener('click', generate);
+
+    // Auto-generate if URL has params
+    if (urlParams.get('goal') && urlParams.get('days') && urlParams.get('xp')) generate();
+
+    // Share buttons
+    document.getElementById('btn-copy-link')?.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(window.location.href);
+      const confirm = document.getElementById('copy-confirm')!;
+      confirm.classList.add('show');
+      setTimeout(() => confirm.classList.remove('show'), 2000);
+    });
+    document.getElementById('btn-share-x')?.addEventListener('click', () => {
+      const text = encodeURIComponent(`I just set a $${goal} savings challenge in ${days} days using this free tool:`);
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+    });
+    document.getElementById('btn-share-fb')?.addEventListener('click', () => {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+    });
+    document.getElementById('btn-share-reddit')?.addEventListener('click', () => {
+      const t = encodeURIComponent('Free gamified savings challenge calculator — turns your goal into daily XP missions');
+      window.open(`https://reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${t}`, '_blank');
+    });
+    document.getElementById('btn-share-wa')?.addEventListener('click', () => {
+      window.open(`https://wa.me/?text=${encodeURIComponent('Check out this free savings challenge calculator: ' + window.location.href)}`, '_blank');
+    });
+
+    // Embed toggle
+    const embedToggle = document.getElementById('embed-toggle')!;
+    const embedPanel  = document.getElementById('embed-panel')!;
+    document.getElementById('embed-code-display')!.textContent = EMBED_CODE;
+    embedToggle.addEventListener('click', () => {
+      const open = embedPanel.hidden;
+      embedPanel.hidden = !open;
+      embedToggle.classList.toggle('open', open);
+    });
+    document.getElementById('btn-copy-embed')?.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(EMBED_CODE);
+      const btn = document.getElementById('btn-copy-embed')!;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.textContent = 'Copy Code'; }, 2000);
+    });
+
+    // FAQ accordion
+    document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => btn.closest('.faq-item')!.classList.toggle('open'));
+    });
+  </script>
+
+</body>
+</html>

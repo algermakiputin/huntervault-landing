@@ -1,16 +1,17 @@
 ---
 interface Props {
-  activePage?: 'features' | 'blog' | 'about' | 'contact' | '';
+  activePage?: 'features' | 'blog' | 'about' | 'contact' | 'tools' | '';
 }
 
 const { activePage = '' } = Astro.props;
 
 const links = [
-  { href: '/',         label: 'Home',     key: 'home',     icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>' },
-  { href: '/features', label: 'Features', key: 'features', icon: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
-  { href: '/blog/',    label: 'Blog',     key: 'blog',     icon: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>' },
-  { href: '/about',    label: 'About',    key: 'about',    icon: '<circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>' },
-  { href: '/contact',  label: 'Contact',  key: 'contact',  icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>' },
+  { href: '/',                                   label: 'Home',     key: 'home',     icon: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>' },
+  { href: '/features',                           label: 'Features', key: 'features', icon: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
+  { href: '/blog/',                              label: 'Blog',     key: 'blog',     icon: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>' },
+  { href: '/tools/savings-challenge-calculator/', label: 'Tools',   key: 'tools',   icon: '<rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="3" width="6" height="6" rx="1"/><rect x="2" y="10" width="6" height="11" rx="1"/><rect x="9" y="10" width="6" height="6" rx="1"/><rect x="16" y="10" width="6" height="6" rx="1"/>' },
+  { href: '/about',                              label: 'About',    key: 'about',    icon: '<circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>' },
+  { href: '/contact',                            label: 'Contact',  key: 'contact',  icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>' },
 ] as const;
 ---
 
