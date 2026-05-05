@@ -2845,10 +2845,13 @@ section {
   max-width: none;
   margin: 0;
   padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
 }
 .reviews-grid-3 .hunter-message-body {
   font-size: 0.92rem;
   margin-bottom: 0.85rem;
+  flex: 1;
 }
 
 .hm-activity {
