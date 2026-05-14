@@ -1135,7 +1135,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 640px) {
-  /* .article-hero { padding: 5.5rem 1.25rem 2rem; } */
+  .article-hero { padding: 5.5rem 1.25rem 2rem; } */
   .article-featured-img { padding: 1.5rem 1.25rem 0; }
   .article-page-wrap { padding: 2rem 1.25rem 3.5rem; }
   .article-related { padding: 0 1.25rem 3.5rem; }
