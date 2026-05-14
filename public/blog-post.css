@@ -221,7 +221,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== Article Hero ===== */
 .article-hero {
-  padding: 8rem 2rem 3rem;
+  padding: 5rem 2rem 3rem;
   background:
     linear-gradient(to bottom, rgba(5,8,18,0.5) 0%, transparent 60%),
     radial-gradient(ellipse 60% 50% at 50% 100%, rgba(123,47,255,0.15) 0%, transparent 70%);
