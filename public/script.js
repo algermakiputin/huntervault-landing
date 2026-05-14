@@ -1,6 +1,7 @@
 // ===== Particle Background =====
 (function() {
   const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return; // Exit if canvas isn't on the page
   const ctx = canvas.getContext('2d');
   let particles = [];
   let animId;

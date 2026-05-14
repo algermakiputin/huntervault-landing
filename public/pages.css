@@ -37,9 +37,11 @@ img { max-width: 100%; display: block; }
 
 /* ===== Nav ===== */
 .nav {
-  position: sticky;
+  position: fixed;
+  left: 0;
+  right: 0;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: rgba(5,8,18,0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -1207,4 +1209,8 @@ img { max-width: 100%; display: block; }
   .btn-secondary { display: none; }
   .team-grid { gap: 1rem; }
   .team-card { min-width: 160px; }
+}
+
+@media (max-width: 425px) {
+  .page-hero { padding: 5.5rem 1.5rem 3rem; }
 }
