@@ -41,6 +41,11 @@ const structuredData = JSON.stringify({
   activePage="features"
   structuredData={structuredData}
 >
+  <script slot="head" is:inline>
+    window.addEventListener('load', () => {
+      if (window.fbq) fbq('track', 'ViewContent', { content_name: 'features_page' });
+    });
+  </script>
 
   <!-- Hero -->
   <section class="page-hero">

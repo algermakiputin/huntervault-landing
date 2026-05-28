@@ -73,6 +73,15 @@ const {
   src="https://www.facebook.com/tr?id=1720235038986418&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
+
+  <script is:inline>
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href*="apps.apple.com"], a[href*="play.google.com"]');
+      if (!a || !window.fbq) return;
+      const platform = a.href.includes('apps.apple.com') ? 'app_store' : 'google_play';
+      fbq('track', 'Lead', { content_name: platform + '_' + (location.pathname.replace(/\//g, '_') || 'home') });
+    });
+  </script>
 </head>
 <body>
 

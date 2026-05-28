@@ -164,16 +164,20 @@ document.addEventListener('keydown', (e) => {
 // Use specific container selectors to avoid querySelector grabbing the wrong element
 document.querySelector('.hero-buttons a[href*="play.google.com"]')?.addEventListener('click', () => {
   gtag('event', 'download_click', { platform: 'google_play', location: 'hero' });
+  if (window.fbq) fbq('track', 'Lead', { content_name: 'google_play_hero' });
 });
 document.querySelector('.hero-buttons a[href*="apps.apple.com"]')?.addEventListener('click', () => {
   gtag('event', 'download_click', { platform: 'app_store', location: 'hero' });
+  if (window.fbq) fbq('track', 'Lead', { content_name: 'app_store_hero' });
 });
 
 document.querySelector('.cta-buttons a[href*="play.google.com"]')?.addEventListener('click', () => {
   gtag('event', 'download_click', { platform: 'google_play', location: 'cta_section' });
+  if (window.fbq) fbq('track', 'Lead', { content_name: 'google_play_cta' });
 });
 document.querySelector('.cta-buttons a[href*="apps.apple.com"]')?.addEventListener('click', () => {
   gtag('event', 'download_click', { platform: 'app_store', location: 'cta_section' });
+  if (window.fbq) fbq('track', 'Lead', { content_name: 'app_store_cta' });
 });
 
 // ===== Section View Tracking =====
