@@ -88,7 +88,46 @@ const faqLd = JSON.stringify({
     .nav-active { color: var(--text-1) !important; font-weight: 600; }
     .nav-cta { background: var(--purple); color: #fff !important; padding: 0.45rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: opacity 0.2s; }
     .nav-cta:hover { opacity: 0.85; }
-    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* Mobile hamburger */
+    .nav-burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: pointer; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--text-1); transition: transform 0.25s, opacity 0.2s; transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+    }
+
+    /* Mobile drawer */
+    .nav-drawer { position: fixed; inset: 64px 0 0 0; background: rgba(5,8,18,0.98); backdrop-filter: blur(14px); z-index: 99; padding: 1.5rem 1.5rem 2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.28s ease; display: flex; flex-direction: column; gap: 0.5rem; }
+    .nav-drawer.open { transform: translateX(0); }
+    body.drawer-open { overflow: hidden; }
+    .nd-tag { font-family: var(--mono); font-size: 0.58rem; color: var(--purple); letter-spacing: 2px; text-transform: uppercase; margin: 0.85rem 0 0.4rem; }
+    .nd-tag:first-child { margin-top: 0; }
+    .nd-item { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; font-size: 0.95rem; color: var(--text-1); transition: background 0.15s; }
+    .nd-item:hover { background: rgba(123,47,255,0.1); }
+    .nd-item .arr { color: var(--text-3); }
+    .nd-item-sub { display: block; font-size: 0.72rem; color: var(--text-3); margin-top: 0.15rem; font-weight: 400; }
+    .nd-cta { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff !important; padding: 0.85rem 1rem; border-radius: 10px; font-weight: 700; font-size: 0.95rem; margin-top: 1rem; }
+
+    /* Tools dropdown */
+    .nav-dd { position: relative; display: inline-flex; }
+    .nav-dd-btn { background: none; border: none; cursor: pointer; font: inherit; font-size: 0.85rem; color: var(--text-2); padding: 0; display: inline-flex; align-items: center; gap: 0.25rem; transition: color 0.2s; }
+    .nav-dd-btn.nav-active { color: var(--text-1); font-weight: 600; }
+    .nav-dd-btn svg { opacity: 0.7; transition: transform 0.2s; }
+    .nav-dd:hover .nav-dd-btn svg, .nav-dd:focus-within .nav-dd-btn svg { transform: rotate(180deg); }
+    .nav-dd-btn:hover { color: var(--text-1); }
+    .nav-dd-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 270px; background: rgba(10,14,28,0.97); border: 1px solid rgba(123,47,255,0.22); border-radius: 14px; padding: 0.75rem; box-shadow: 0 12px 36px rgba(0,0,0,0.55); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s, transform 0.18s, visibility 0.18s; z-index: 200; }
+    .nav-dd-menu::before { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px; background: rgba(10,14,28,0.97); border-left: 1px solid rgba(123,47,255,0.22); border-top: 1px solid rgba(123,47,255,0.22); }
+    .nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dd-tag { display: block; font-family: var(--mono); font-size: 0.56rem; color: var(--violet); letter-spacing: 2px; text-transform: uppercase; padding: 0.3rem 0.7rem 0.5rem; }
+    .nav-dd-item { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.6rem 0.75rem; border-radius: 9px; transition: background 0.15s; color: var(--text-2) !important; }
+    .nav-dd-item:hover { background: rgba(123,47,255,0.12); color: var(--text-1) !important; }
+    .nav-dd-item-title { font-size: 0.85rem; font-weight: 600; color: var(--text-1); }
+    .nav-dd-item-desc { font-size: 0.7rem; color: var(--text-3); line-height: 1.4; }
 
     /* HERO */
     .tool-hero { text-align: center; padding: 4.5rem 2rem 2.5rem; background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(123,47,255,0.13) 0%, transparent 70%); border-bottom: 1px solid rgba(123,47,255,0.07); }
@@ -294,11 +333,51 @@ const faqLd = JSON.stringify({
       <a href="/">Home</a>
       <a href="/features">Features</a>
       <a href="/blog/">Blog</a>
-      <a href="/tools/savings-challenge-calculator/" class="nav-active">Tools</a>
+      <div class="nav-dd">
+        <button class="nav-dd-btn nav-active" aria-haspopup="true" aria-expanded="false" type="button">
+          Tools
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-dd-menu">
+          <span class="nav-dd-tag">// Free Tools</span>
+          <a href="/tools/savings-challenge-calculator/" class="nav-dd-item">
+            <span class="nav-dd-item-title">Savings Challenge Calculator</span>
+            <span class="nav-dd-item-desc">Turn savings into a daily XP game</span>
+          </a>
+          <a href="/tools/shopee-profit-calculator/" class="nav-dd-item">
+            <span class="nav-dd-item-title">Shopee Profit Calculator</span>
+            <span class="nav-dd-item-desc">Real profit after marketplace fees</span>
+          </a>
+        </div>
+      </div>
       <a href="/contact">Contact</a>
       <a href="/#download" class="nav-cta">Download Free</a>
     </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" type="button">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+    <span class="nd-tag">// Navigation</span>
+    <a href="/" class="nd-item">Home <span class="arr">›</span></a>
+    <a href="/features" class="nd-item">Features <span class="arr">›</span></a>
+    <a href="/blog/" class="nd-item">Blog <span class="arr">›</span></a>
+    <a href="/about" class="nd-item">About <span class="arr">›</span></a>
+    <a href="/contact" class="nd-item">Contact <span class="arr">›</span></a>
+
+    <span class="nd-tag">// Free Tools</span>
+    <a href="/tools/savings-challenge-calculator/" class="nd-item">
+      <span>Savings Challenge Calculator<span class="nd-item-sub">Turn savings into a daily XP game</span></span>
+      <span class="arr">›</span>
+    </a>
+    <a href="/tools/shopee-profit-calculator/" class="nd-item">
+      <span>Shopee Profit Calculator<span class="nd-item-sub">Real profit after marketplace fees</span></span>
+      <span class="arr">›</span>
+    </a>
+
+    <a href="/#download" class="nd-cta">⬇ Download Free</a>
+  </div>
 
   <header class="tool-hero">
     <span class="tool-hero-tag">// Free Tool</span>
@@ -767,6 +846,23 @@ const faqLd = JSON.stringify({
     document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
       btn.addEventListener('click', () => btn.closest('.faq-item')!.classList.toggle('open'));
     });
+
+    // Mobile drawer
+    const burger = document.getElementById('nav-burger') as HTMLButtonElement | null;
+    const drawer = document.getElementById('nav-drawer') as HTMLElement | null;
+    burger?.addEventListener('click', () => {
+      const open = drawer!.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      drawer!.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('drawer-open', open);
+    });
+    drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      burger?.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('drawer-open');
+    }));
   </script>
 
 </body>

@@ -373,3 +373,27 @@ document.querySelectorAll('.faq-question').forEach(btn => {
     answer.style.maxHeight = isOpen ? null : answer.scrollHeight + 'px';
   });
 });
+
+// ===== Tools Dropdown =====
+(() => {
+  const dd  = document.getElementById('nav-tools-dd');
+  const btn = document.getElementById('nav-tools-btn');
+  if (!dd || !btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', (e) => {
+    if (!dd.contains(e.target)) {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();

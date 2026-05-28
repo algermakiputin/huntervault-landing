@@ -1,0 +1,633 @@
+---
+const title = "Free Shopee Profit Calculator Philippines | Hunter Vault";
+const description = "Calculate Shopee fees, net payout, profit margin, break-even price, and suggested selling price for Filipino sellers.";
+const canonical = "https://huntervault.app/tools/shopee-profit-calculator/";
+const ogImage = "https://huntervault.app/assets/og-image.jpg";
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Shopee Profit Calculator",
+  "url": canonical,
+  "description": description,
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PHP" },
+  "publisher": { "@type": "Organization", "name": "Hunter Vault", "url": "https://huntervault.app" }
+});
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="Hunter Vault" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json" set:html={structuredData} />
+
+  <!-- Meta Pixel Code -->
+  <script is:inline>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1720235038986418');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1720235038986418&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #050812;
+      --bg-card:  rgba(255,255,255,0.025);
+      --purple:   #7b2fff;
+      --violet:   #9b59ff;
+      --cyan:     #00d4ff;
+      --green:    #4ade80;
+      --red:      #f87171;
+      --gold:     #f5c400;
+      --orange:   #ff6b35;
+      --text-1:   #E6EAF2;
+      --text-2:   #AAB2C0;
+      --text-3:   #7F8A9A;
+      --mono:     'JetBrains Mono', monospace;
+      --display:  'Orbitron', sans-serif;
+      --body:     'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); background: var(--bg); color: var(--text-1); line-height: 1.7; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(5,8,18,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(123,47,255,0.1); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: var(--display); font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; }
+    .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nav-logo span { color: var(--purple); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.85rem; color: var(--text-2); }
+    .nav-links a:hover { color: var(--text-1); }
+    .nav-active { color: var(--text-1) !important; font-weight: 600; }
+    .nav-cta { background: var(--purple); color: #fff !important; padding: 0.45rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* Mobile hamburger */
+    .nav-burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; cursor: pointer; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: var(--text-1); transition: transform 0.25s, opacity 0.2s; transform-origin: center; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+    }
+
+    /* Mobile drawer */
+    .nav-drawer { position: fixed; inset: 64px 0 0 0; background: rgba(5,8,18,0.98); backdrop-filter: blur(14px); z-index: 99; padding: 1.5rem 1.5rem 2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.28s ease; display: flex; flex-direction: column; gap: 0.5rem; }
+    .nav-drawer.open { transform: translateX(0); }
+    body.drawer-open { overflow: hidden; }
+    .nd-tag { font-family: var(--mono); font-size: 0.58rem; color: var(--purple); letter-spacing: 2px; text-transform: uppercase; margin: 0.85rem 0 0.4rem; }
+    .nd-tag:first-child { margin-top: 0; }
+    .nd-item { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; font-size: 0.95rem; color: var(--text-1); transition: background 0.15s; }
+    .nd-item:hover { background: rgba(123,47,255,0.1); }
+    .nd-item .arr { color: var(--text-3); }
+    .nd-item-sub { display: block; font-size: 0.72rem; color: var(--text-3); margin-top: 0.15rem; font-weight: 400; }
+    .nd-cta { display: flex; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff !important; padding: 0.85rem 1rem; border-radius: 10px; font-weight: 700; font-size: 0.95rem; margin-top: 1rem; }
+
+    /* Tools dropdown */
+    .nav-dd { position: relative; display: inline-flex; }
+    .nav-dd-btn { background: none; border: none; cursor: pointer; font: inherit; font-size: 0.85rem; color: var(--text-2); padding: 0; display: inline-flex; align-items: center; gap: 0.25rem; transition: color 0.2s; }
+    .nav-dd-btn.nav-active { color: var(--text-1); font-weight: 600; }
+    .nav-dd-btn svg { opacity: 0.7; transition: transform 0.2s; }
+    .nav-dd:hover .nav-dd-btn svg, .nav-dd:focus-within .nav-dd-btn svg { transform: rotate(180deg); }
+    .nav-dd-btn:hover { color: var(--text-1); }
+    .nav-dd-menu { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-4px); min-width: 270px; background: rgba(10,14,28,0.97); border: 1px solid rgba(123,47,255,0.22); border-radius: 14px; padding: 0.75rem; box-shadow: 0 12px 36px rgba(0,0,0,0.55); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.18s, transform 0.18s, visibility 0.18s; z-index: 200; }
+    .nav-dd-menu::before { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px; background: rgba(10,14,28,0.97); border-left: 1px solid rgba(123,47,255,0.22); border-top: 1px solid rgba(123,47,255,0.22); }
+    .nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dd-tag { display: block; font-family: var(--mono); font-size: 0.56rem; color: var(--violet); letter-spacing: 2px; text-transform: uppercase; padding: 0.3rem 0.7rem 0.5rem; }
+    .nav-dd-item { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.6rem 0.75rem; border-radius: 9px; transition: background 0.15s; color: var(--text-2) !important; }
+    .nav-dd-item:hover { background: rgba(123,47,255,0.12); color: var(--text-1) !important; }
+    .nav-dd-item-title { font-size: 0.85rem; font-weight: 600; color: var(--text-1); }
+    .nav-dd-item-desc { font-size: 0.7rem; color: var(--text-3); line-height: 1.4; }
+
+    /* HERO */
+    .tool-hero { text-align: center; padding: 4.5rem 1.25rem 2.5rem; background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(255,107,53,0.13) 0%, transparent 70%); border-bottom: 1px solid rgba(255,107,53,0.08); }
+    .tool-hero-tag { font-family: var(--mono); font-size: 0.62rem; color: var(--orange); letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 1.1rem; }
+    .tool-hero h1 { font-family: var(--display); font-size: clamp(1.5rem, 4vw, 2.3rem); font-weight: 800; line-height: 1.2; max-width: 720px; margin: 0 auto 0.9rem; }
+    .tool-hero h1 span { background: linear-gradient(135deg, var(--orange), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .tool-hero p { font-size: 1rem; color: var(--text-2); max-width: 540px; margin: 0 auto 0.6rem; }
+    .tool-hero .hero-cta-line { font-family: var(--mono); font-size: 0.78rem; color: var(--text-3); max-width: 540px; margin: 0 auto 1.4rem; letter-spacing: 0.02em; }
+    .hero-hv-tag { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 0.65rem; color: var(--violet); background: rgba(123,47,255,0.08); border: 1px solid rgba(123,47,255,0.2); border-radius: 99px; padding: 0.3rem 0.8rem; letter-spacing: 0.05em; }
+
+    /* MAIN WRAP */
+    .tool-wrap { max-width: 1080px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+
+    /* TOOL COLUMNS */
+    .tool-columns { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; align-items: start; }
+    @media (max-width: 860px) { .tool-columns { grid-template-columns: 1fr; } }
+
+    /* PANELS */
+    .panel { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; padding: 1.5rem 1.5rem; }
+    .panel-inputs { background: rgba(255,107,53,0.04); border: 1px solid rgba(255,107,53,0.18); }
+    .panel-tag { font-family: var(--mono); font-size: 0.6rem; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+    .panel-tag.cyan { color: var(--cyan); }
+    .panel-title { font-family: var(--display); font-size: 1.05rem; margin-bottom: 1.25rem; }
+
+    /* INPUT GROUPS */
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 1rem; }
+    @media (max-width: 480px) { .input-grid { grid-template-columns: 1fr; } }
+    .input-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .input-group.full { grid-column: 1 / -1; }
+    .input-label { font-family: var(--mono); font-size: 0.62rem; color: var(--text-2); letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .input-label .hint { color: var(--text-3); text-transform: none; letter-spacing: 0; font-size: 0.6rem; }
+    .input-wrap { position: relative; display: flex; align-items: center; }
+    .input-prefix, .input-suffix { position: absolute; font-family: var(--mono); font-size: 0.78rem; color: var(--text-3); pointer-events: none; }
+    .input-prefix { left: 0.75rem; }
+    .input-suffix { right: 0.75rem; }
+    .field { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; padding: 0.65rem 0.85rem; color: var(--text-1); font-family: var(--mono); font-size: 0.92rem; font-weight: 500; transition: border-color 0.18s, background 0.18s; -moz-appearance: textfield; }
+    .field::-webkit-outer-spin-button, .field::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .field:focus { outline: none; border-color: var(--orange); background: rgba(255,107,53,0.05); }
+    .field.has-prefix { padding-left: 1.85rem; }
+    .field.has-suffix { padding-right: 1.85rem; }
+
+    .section-divider { display: flex; align-items: center; gap: 0.65rem; margin: 1.4rem 0 0.9rem; font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; }
+    .section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+    /* ACTION ROW */
+    .action-row { display: flex; gap: 0.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
+    .btn { border: none; border-radius: 9px; padding: 0.65rem 1.1rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s, transform 0.15s, background 0.2s; font-family: var(--body); letter-spacing: 0.02em; display: inline-flex; align-items: center; gap: 0.45rem; }
+    .btn-primary { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #1a0d00; flex: 1; min-width: 0; justify-content: center; }
+    .btn-primary:hover { opacity: 0.92; transform: translateY(-1px); }
+    .btn-ghost { background: rgba(255,255,255,0.04); color: var(--text-2); border: 1px solid rgba(255,255,255,0.08); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); color: var(--text-1); }
+
+    /* RESULTS PANEL */
+    .results-panel { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .results-panel.state-warn { border-color: rgba(248,113,113,0.35); background: linear-gradient(180deg, rgba(248,113,113,0.04), rgba(255,255,255,0.02)); }
+    .results-panel.state-success { border-color: rgba(74,222,128,0.35); background: linear-gradient(180deg, rgba(74,222,128,0.04), rgba(255,255,255,0.02)); }
+
+    .result-headline { background: rgba(123,47,255,0.07); border: 1px solid rgba(123,47,255,0.2); border-radius: 12px; padding: 1.1rem 1.25rem; transition: background 0.25s, border-color 0.25s; }
+    .results-panel.state-warn .result-headline { background: rgba(248,113,113,0.08); border-color: rgba(248,113,113,0.28); }
+    .results-panel.state-success .result-headline { background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.28); }
+    .result-headline-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.4rem; }
+    .result-headline-amount { font-family: var(--mono); font-size: 1.8rem; font-weight: 700; color: var(--cyan); line-height: 1.1; margin-bottom: 0.25rem; }
+    .results-panel.state-warn .result-headline-amount { color: var(--red); }
+    .results-panel.state-success .result-headline-amount { color: var(--green); }
+    .result-headline-sub { font-size: 0.78rem; color: var(--text-3); }
+    .result-headline-sub strong { color: var(--text-2); font-weight: 600; }
+
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .result-stat { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 0.75rem 0.85rem; }
+    .result-stat-label { font-family: var(--mono); font-size: 0.56rem; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .result-stat-val { font-family: var(--mono); font-size: 0.95rem; font-weight: 700; color: var(--text-1); }
+    .result-stat-val.neg { color: var(--red); }
+    .result-stat-val.pos { color: var(--green); }
+    .result-stat-val.cyan { color: var(--cyan); }
+    .result-stat-val.gold { color: var(--gold); }
+
+    .result-suggested { background: rgba(245,196,0,0.06); border: 1px solid rgba(245,196,0,0.25); border-radius: 12px; padding: 0.95rem 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+    .result-suggested-text { font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; }
+    .result-suggested-text strong { display: block; font-family: var(--mono); font-size: 1.15rem; color: var(--gold); margin-top: 0.2rem; letter-spacing: 0; text-transform: none; font-weight: 700; }
+
+    .result-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.25rem; }
+    .copy-confirm { font-family: var(--mono); font-size: 0.7rem; color: var(--green); display: none; align-self: center; }
+    .copy-confirm.show { display: inline; }
+
+    /* SEO CONTENT */
+    .seo-section { margin-top: 3rem; }
+    .seo-section h2 { font-family: var(--display); font-size: 1.25rem; margin-bottom: 1.5rem; }
+    .seo-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    @media (max-width: 720px) { .seo-row { grid-template-columns: 1fr; } }
+    .seo-card { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 1.25rem 1.4rem; }
+    .seo-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-1); display: flex; align-items: center; gap: 0.5rem; }
+    .seo-card h3 .dot { width: 6px; height: 6px; border-radius: 99px; background: var(--orange); }
+    .seo-card p { font-size: 0.86rem; color: var(--text-2); line-height: 1.7; }
+
+    /* HV FUNNEL CTA */
+    .hv-funnel { margin-top: 3rem; background: linear-gradient(135deg, rgba(123,47,255,0.12), rgba(0,212,255,0.06)); border: 1px solid rgba(123,47,255,0.25); border-radius: 20px; padding: 2rem 1.75rem; text-align: center; }
+    .hv-funnel-tag { font-family: var(--mono); font-size: 0.6rem; color: var(--violet); letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 0.85rem; }
+    .hv-funnel h2 { font-family: var(--display); font-size: 1.2rem; margin-bottom: 0.65rem; }
+    .hv-funnel p { font-size: 0.92rem; color: var(--text-2); max-width: 480px; margin: 0 auto 1.4rem; }
+    .hv-funnel-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff; padding: 0.75rem 1.6rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s; }
+    .hv-funnel-btn:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(123,47,255,0.35); }
+
+    /* FOOTER */
+    .tool-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 1.75rem 2rem; text-align: center; font-size: 0.78rem; color: var(--text-3); }
+    .tool-footer a { color: var(--text-3); margin: 0 0.5rem; }
+    .tool-footer a:hover { color: var(--text-2); }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-logo">
+      <img src="/assets/hunter-vault-logo.webp" alt="Hunter Vault" />
+      <span>HUNTER</span> VAULT
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/features">Features</a>
+      <a href="/blog/">Blog</a>
+      <div class="nav-dd">
+        <button class="nav-dd-btn nav-active" aria-haspopup="true" aria-expanded="false" type="button">
+          Tools
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-dd-menu">
+          <span class="nav-dd-tag">// Free Tools</span>
+          <a href="/tools/savings-challenge-calculator/" class="nav-dd-item">
+            <span class="nav-dd-item-title">Savings Challenge Calculator</span>
+            <span class="nav-dd-item-desc">Turn savings into a daily XP game</span>
+          </a>
+          <a href="/tools/shopee-profit-calculator/" class="nav-dd-item">
+            <span class="nav-dd-item-title">Shopee Profit Calculator</span>
+            <span class="nav-dd-item-desc">Real profit after marketplace fees</span>
+          </a>
+        </div>
+      </div>
+      <a href="/contact">Contact</a>
+      <a href="/#download" class="nav-cta">Download Free</a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+    <span class="nd-tag">// Navigation</span>
+    <a href="/" class="nd-item">Home <span class="arr">›</span></a>
+    <a href="/features" class="nd-item">Features <span class="arr">›</span></a>
+    <a href="/blog/" class="nd-item">Blog <span class="arr">›</span></a>
+    <a href="/about" class="nd-item">About <span class="arr">›</span></a>
+    <a href="/contact" class="nd-item">Contact <span class="arr">›</span></a>
+
+    <span class="nd-tag">// Free Tools</span>
+    <a href="/tools/savings-challenge-calculator/" class="nd-item">
+      <span>Savings Challenge Calculator<span class="nd-item-sub">Turn savings into a daily XP game</span></span>
+      <span class="arr">›</span>
+    </a>
+    <a href="/tools/shopee-profit-calculator/" class="nd-item">
+      <span>Shopee Profit Calculator<span class="nd-item-sub">Real profit after marketplace fees</span></span>
+      <span class="arr">›</span>
+    </a>
+
+    <a href="/#download" class="nd-cta">⬇ Download Free</a>
+  </div>
+
+  <header class="tool-hero">
+    <span class="tool-hero-tag">// Free Tool · For Filipino Sellers</span>
+    <h1>Shopee Profit Calculator <span>Philippines</span></h1>
+    <p>Know your real profit after fees before you price your product.</p>
+    <p class="hero-cta-line">Calculate your net income, deductions, and target selling price.</p>
+    <span class="hero-hv-tag">⚡ Built by Hunter Vault to help you track money smarter</span>
+  </header>
+
+  <div class="tool-wrap">
+
+    <div class="tool-columns">
+
+      <!-- INPUTS -->
+      <div class="panel panel-inputs">
+        <span class="panel-tag">// Seller Inputs</span>
+        <h2 class="panel-title">Enter Your Numbers</h2>
+
+        <div class="input-grid">
+          <div class="input-group">
+            <label class="input-label" for="productCost">Product Cost</label>
+            <div class="input-wrap">
+              <span class="input-prefix">₱</span>
+              <input class="field has-prefix" type="number" inputmode="decimal" id="productCost" value="100" min="0" step="0.01" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="sellingPrice">Selling Price</label>
+            <div class="input-wrap">
+              <span class="input-prefix">₱</span>
+              <input class="field has-prefix" type="number" inputmode="decimal" id="sellingPrice" value="299" min="0" step="0.01" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="shippingFee">Shipping Fee <span class="hint">paid by seller</span></label>
+            <div class="input-wrap">
+              <span class="input-prefix">₱</span>
+              <input class="field has-prefix" type="number" inputmode="decimal" id="shippingFee" value="0" min="0" step="0.01" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="packagingCost">Packaging Cost</label>
+            <div class="input-wrap">
+              <span class="input-prefix">₱</span>
+              <input class="field has-prefix" type="number" inputmode="decimal" id="packagingCost" value="10" min="0" step="0.01" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="otherCosts">Other Costs</label>
+            <div class="input-wrap">
+              <span class="input-prefix">₱</span>
+              <input class="field has-prefix" type="number" inputmode="decimal" id="otherCosts" value="0" min="0" step="0.01" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="targetProfit">Target Profit</label>
+            <div class="input-wrap">
+              <span class="input-prefix">₱</span>
+              <input class="field has-prefix" type="number" inputmode="decimal" id="targetProfit" value="100" min="0" step="0.01" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider">Marketplace Fees · editable presets</div>
+
+        <div class="input-grid">
+          <div class="input-group">
+            <label class="input-label" for="commissionFee">Commission Fee</label>
+            <div class="input-wrap">
+              <input class="field has-suffix" type="number" inputmode="decimal" id="commissionFee" value="10" min="0" step="0.01" />
+              <span class="input-suffix">%</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="serviceFee">Service Fee</label>
+            <div class="input-wrap">
+              <input class="field has-suffix" type="number" inputmode="decimal" id="serviceFee" value="12" min="0" step="0.01" />
+              <span class="input-suffix">%</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="transactionFee">Transaction Fee</label>
+            <div class="input-wrap">
+              <input class="field has-suffix" type="number" inputmode="decimal" id="transactionFee" value="2" min="0" step="0.01" />
+              <span class="input-suffix">%</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="withholdingTax">Withholding Tax</label>
+            <div class="input-wrap">
+              <input class="field has-suffix" type="number" inputmode="decimal" id="withholdingTax" value="0.5" min="0" step="0.01" />
+              <span class="input-suffix">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn btn-ghost" id="btnReset" type="button">↺ Reset</button>
+          <button class="btn btn-primary" id="btnCopy" type="button">⧉ Copy Result</button>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="results-panel" id="results">
+        <div>
+          <span class="panel-tag cyan">// Live Results</span>
+          <h2 class="panel-title" style="margin-bottom:0;">Your Profit Breakdown</h2>
+        </div>
+
+        <div class="result-headline" id="profitCard">
+          <div class="result-headline-label" id="profitLabel">⚡ Estimated Profit</div>
+          <div class="result-headline-amount" id="profitAmount">₱0.00</div>
+          <div class="result-headline-sub" id="profitSub">Profit margin: <strong id="marginVal">0%</strong></div>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-stat">
+            <div class="result-stat-label">Gross Selling Price</div>
+            <div class="result-stat-val" id="grossVal">₱0.00</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-label">Total Fees</div>
+            <div class="result-stat-val neg" id="feesVal">₱0.00</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-label">Total Costs</div>
+            <div class="result-stat-val neg" id="costsVal">₱0.00</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-label">Net Payout</div>
+            <div class="result-stat-val cyan" id="netVal">₱0.00</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-label">Break-Even Price</div>
+            <div class="result-stat-val" id="breakEvenVal">₱0.00</div>
+          </div>
+          <div class="result-stat">
+            <div class="result-stat-label">Total Fee Rate</div>
+            <div class="result-stat-val" id="feeRateVal">0%</div>
+          </div>
+        </div>
+
+        <div class="result-suggested">
+          <div class="result-suggested-text">
+            Suggested Price for ₱<span id="targetEcho">100</span> Profit
+            <strong id="suggestedVal">₱0.00</strong>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <span class="copy-confirm" id="copyConfirm">✓ Copied!</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SEO Content -->
+    <section class="seo-section">
+      <h2>Why Sellers Should Calculate Net Profit</h2>
+      <div class="seo-row">
+        <div class="seo-card">
+          <h3><span class="dot"></span>Gross sales are not the same as profit</h3>
+          <p>A ₱500 sale doesn't mean ₱500 in your pocket. After Shopee's commission, service fees, transaction fees, and withholding tax, your actual payout can drop by 20–25% before you even subtract product cost and packaging.</p>
+        </div>
+        <div class="seo-card">
+          <h3><span class="dot"></span>Marketplace fees can reduce your actual income</h3>
+          <p>Many Filipino sellers price products by looking only at cost vs. selling price. But Shopee fees stack — commission, service, transaction, and withholding tax all come out of your payout. Without modeling them, you may be selling at a loss.</p>
+        </div>
+        <div class="seo-card">
+          <h3><span class="dot"></span>Use this calculator before setting your selling price</h3>
+          <p>Plug in your product cost and target profit, and this tool back-computes the price you need to charge to actually hit that profit after fees. No spreadsheets, no surprises on payout day.</p>
+        </div>
+        <div class="seo-card">
+          <h3><span class="dot"></span>Know your break-even before you discount</h3>
+          <p>Before joining a Shopee voucher campaign or running a 50%-off promo, check the break-even price first. If you discount below it, every sale costs you money — even with high order volume.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HUNTER VAULT FUNNEL -->
+    <section class="hv-funnel">
+      <span class="hv-funnel-tag">// Track What You Earn</span>
+      <h2>Want to track your spending and money goals too?</h2>
+      <p>Hunter Vault helps you track expenses, bills, savings, and safe-to-spend money with RPG-style progress. Turn your seller income into a leveled-up money game.</p>
+      <a href="/#download" class="hv-funnel-btn">Try Hunter Vault →</a>
+    </section>
+
+  </div>
+
+  <footer class="tool-footer">
+    <p style="margin-bottom:0.4rem;">
+      <a href="/">Home</a><a href="/features">Features</a><a href="/blog/">Blog</a>
+      <a href="/faq">FAQ</a><a href="/contact">Contact</a><a href="/privacy-policy.html">Privacy</a>
+    </p>
+    <p>© 2026 Hunter Vault — Free tool, no account required.</p>
+  </footer>
+
+  <script>
+    const PHP = new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const PCT = (n: number) => (isFinite(n) ? n.toFixed(2) : '0.00') + '%';
+
+    const DEFAULTS = {
+      productCost: 100,
+      sellingPrice: 299,
+      shippingFee: 0,
+      packagingCost: 10,
+      otherCosts: 0,
+      targetProfit: 100,
+      commissionFee: 10,
+      serviceFee: 12,
+      transactionFee: 2,
+      withholdingTax: 0.5,
+    };
+
+    const ids = Object.keys(DEFAULTS);
+    const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+
+    function readNum(id: string): number {
+      const el = $(id);
+      const v = parseFloat(el?.value ?? '');
+      return isNaN(v) || v < 0 ? 0 : v;
+    }
+
+    function calc() {
+      const productCost   = readNum('productCost');
+      const sellingPrice  = readNum('sellingPrice');
+      const shippingFee   = readNum('shippingFee');
+      const packagingCost = readNum('packagingCost');
+      const otherCosts    = readNum('otherCosts');
+      const targetProfit  = readNum('targetProfit');
+
+      const commissionFee  = readNum('commissionFee');
+      const serviceFee     = readNum('serviceFee');
+      const transactionFee = readNum('transactionFee');
+      const withholdingTax = readNum('withholdingTax');
+
+      const totalFeeRatePct = commissionFee + serviceFee + transactionFee + withholdingTax;
+      const totalFeeRate    = totalFeeRatePct / 100;
+
+      const totalFees = sellingPrice * totalFeeRate;
+      const totalCosts = productCost + packagingCost + shippingFee + otherCosts;
+      const netPayout = sellingPrice - totalFees;
+      const profit = netPayout - totalCosts;
+      const profitMargin = sellingPrice > 0 ? (profit / sellingPrice) * 100 : 0;
+
+      const denom = 1 - totalFeeRate;
+      const breakEvenPrice = denom > 0 ? totalCosts / denom : Infinity;
+      const suggestedPrice = denom > 0 ? (totalCosts + targetProfit) / denom : Infinity;
+
+      // Render
+      (document.getElementById('grossVal') as HTMLElement).textContent = PHP.format(sellingPrice);
+      (document.getElementById('feesVal') as HTMLElement).textContent = '−' + PHP.format(totalFees);
+      (document.getElementById('costsVal') as HTMLElement).textContent = '−' + PHP.format(totalCosts);
+      (document.getElementById('netVal') as HTMLElement).textContent = PHP.format(netPayout);
+      (document.getElementById('breakEvenVal') as HTMLElement).textContent = isFinite(breakEvenPrice) ? PHP.format(breakEvenPrice) : '—';
+      (document.getElementById('feeRateVal') as HTMLElement).textContent = PCT(totalFeeRatePct);
+
+      (document.getElementById('profitAmount') as HTMLElement).textContent = PHP.format(profit);
+      (document.getElementById('marginVal') as HTMLElement).textContent = PCT(profitMargin);
+
+      (document.getElementById('targetEcho') as HTMLElement).textContent = targetProfit.toLocaleString('en-PH', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+      (document.getElementById('suggestedVal') as HTMLElement).textContent = isFinite(suggestedPrice) ? PHP.format(suggestedPrice) : '—';
+
+      // States
+      const panel = document.getElementById('results') as HTMLElement;
+      const profitLabel = document.getElementById('profitLabel') as HTMLElement;
+      panel.classList.remove('state-warn', 'state-success');
+
+      if (profit < 0) {
+        panel.classList.add('state-warn');
+        profitLabel.innerHTML = '⚠️ You’re Losing Money';
+      } else if (targetProfit > 0 && profit >= targetProfit) {
+        panel.classList.add('state-success');
+        profitLabel.innerHTML = '✓ Target Profit Reached';
+      } else {
+        profitLabel.innerHTML = '⚡ Estimated Profit';
+      }
+
+      return { sellingPrice, totalFees, totalCosts, netPayout, profit, profitMargin, breakEvenPrice, suggestedPrice, totalFeeRatePct, targetProfit };
+    }
+
+    ids.forEach(id => {
+      const el = $(id);
+      if (el) el.addEventListener('input', calc);
+    });
+
+    (document.getElementById('btnReset') as HTMLButtonElement).addEventListener('click', () => {
+      ids.forEach(id => { const el = $(id); if (el) el.value = String((DEFAULTS as any)[id]); });
+      calc();
+    });
+
+    (document.getElementById('btnCopy') as HTMLButtonElement).addEventListener('click', async () => {
+      const r = calc();
+      const text =
+`Shopee Profit Calculator — Hunter Vault
+Selling Price:       ${PHP.format(r.sellingPrice)}
+Total Fees (${PCT(r.totalFeeRatePct)}):  ${PHP.format(r.totalFees)}
+Total Costs:         ${PHP.format(r.totalCosts)}
+Net Payout:          ${PHP.format(r.netPayout)}
+Profit:              ${PHP.format(r.profit)}
+Profit Margin:       ${PCT(r.profitMargin)}
+Break-Even Price:    ${isFinite(r.breakEvenPrice) ? PHP.format(r.breakEvenPrice) : 'n/a'}
+Suggested Price (₱${r.targetProfit} target): ${isFinite(r.suggestedPrice) ? PHP.format(r.suggestedPrice) : 'n/a'}
+
+https://huntervault.app/tools/shopee-profit-calculator/`;
+      try {
+        await navigator.clipboard.writeText(text);
+        const c = document.getElementById('copyConfirm') as HTMLElement;
+        c.classList.add('show');
+        setTimeout(() => c.classList.remove('show'), 1800);
+      } catch (e) {}
+    });
+
+    calc();
+
+    // Mobile drawer
+    const burger = document.getElementById('nav-burger') as HTMLButtonElement | null;
+    const drawer = document.getElementById('nav-drawer') as HTMLElement | null;
+    burger?.addEventListener('click', () => {
+      const open = drawer!.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      drawer!.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('drawer-open', open);
+    });
+    drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      burger?.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('drawer-open');
+    }));
+  </script>
+</body>
+</html>
