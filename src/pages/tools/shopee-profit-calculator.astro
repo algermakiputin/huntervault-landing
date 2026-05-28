@@ -168,7 +168,7 @@ const structuredData = JSON.stringify({
     .input-prefix, .input-suffix { position: absolute; font-family: var(--mono); font-size: 0.78rem; color: var(--text-3); pointer-events: none; }
     .input-prefix { left: 0.75rem; }
     .input-suffix { right: 0.75rem; }
-    .field { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; padding: 0.65rem 0.85rem; color: var(--text-1); font-family: var(--mono); font-size: 0.92rem; font-weight: 500; transition: border-color 0.18s, background 0.18s; -moz-appearance: textfield; }
+    .field { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 9px; padding: 0.7rem 0.85rem; color: var(--text-1); font-family: var(--mono); font-size: 0.95rem; font-weight: 500; transition: border-color 0.18s, background 0.18s; -moz-appearance: textfield; min-height: 44px; }
     .field::-webkit-outer-spin-button, .field::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     .field:focus { outline: none; border-color: var(--orange); background: rgba(255,107,53,0.05); }
     .field.has-prefix { padding-left: 1.85rem; }
@@ -190,15 +190,16 @@ const structuredData = JSON.stringify({
     .results-panel.state-warn { border-color: rgba(248,113,113,0.35); background: linear-gradient(180deg, rgba(248,113,113,0.04), rgba(255,255,255,0.02)); }
     .results-panel.state-success { border-color: rgba(74,222,128,0.35); background: linear-gradient(180deg, rgba(74,222,128,0.04), rgba(255,255,255,0.02)); }
 
-    .result-headline { background: rgba(123,47,255,0.07); border: 1px solid rgba(123,47,255,0.2); border-radius: 12px; padding: 1.1rem 1.25rem; transition: background 0.25s, border-color 0.25s; }
-    .results-panel.state-warn .result-headline { background: rgba(248,113,113,0.08); border-color: rgba(248,113,113,0.28); }
-    .results-panel.state-success .result-headline { background: rgba(74,222,128,0.08); border-color: rgba(74,222,128,0.28); }
-    .result-headline-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.4rem; }
-    .result-headline-amount { font-family: var(--mono); font-size: 1.8rem; font-weight: 700; color: var(--cyan); line-height: 1.1; margin-bottom: 0.25rem; }
-    .results-panel.state-warn .result-headline-amount { color: var(--red); }
-    .results-panel.state-success .result-headline-amount { color: var(--green); }
-    .result-headline-sub { font-size: 0.78rem; color: var(--text-3); }
-    .result-headline-sub strong { color: var(--text-2); font-weight: 600; }
+    .result-headline { position: relative; background: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(0,212,255,0.12), rgba(123,47,255,0.06) 60%, transparent); border: 1px solid rgba(0,212,255,0.22); border-radius: 14px; padding: 1.4rem 1.4rem 1.5rem; text-align: center; overflow: hidden; transition: background 0.25s, border-color 0.25s; }
+    .result-headline::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 100%, rgba(0,212,255,0.08), transparent 50%); pointer-events: none; }
+    .results-panel.state-warn .result-headline { background: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(248,113,113,0.14), transparent 60%); border-color: rgba(248,113,113,0.32); }
+    .results-panel.state-success .result-headline { background: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(74,222,128,0.16), rgba(245,196,0,0.06) 60%, transparent); border-color: rgba(74,222,128,0.34); }
+    .result-headline-label { font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem; position: relative; z-index: 1; }
+    .result-headline-amount { font-family: var(--mono); font-size: clamp(2.6rem, 8vw, 3.4rem); font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 0.45rem; letter-spacing: -0.02em; text-shadow: 0 0 28px rgba(0,212,255,0.45), 0 0 50px rgba(0,212,255,0.18); position: relative; z-index: 1; transition: color 0.25s, text-shadow 0.25s; }
+    .results-panel.state-warn .result-headline-amount { color: var(--red); text-shadow: 0 0 28px rgba(248,113,113,0.5), 0 0 50px rgba(248,113,113,0.2); }
+    .results-panel.state-success .result-headline-amount { color: var(--green); text-shadow: 0 0 28px rgba(74,222,128,0.5), 0 0 50px rgba(74,222,128,0.2); }
+    .result-headline-sub { font-size: 0.82rem; color: var(--text-3); position: relative; z-index: 1; }
+    .result-headline-sub strong { color: var(--text-1); font-weight: 700; font-family: var(--mono); }
 
     .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
     .result-stat { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 0.75rem 0.85rem; }
@@ -209,13 +210,66 @@ const structuredData = JSON.stringify({
     .result-stat-val.cyan { color: var(--cyan); }
     .result-stat-val.gold { color: var(--gold); }
 
-    .result-suggested { background: rgba(245,196,0,0.06); border: 1px solid rgba(245,196,0,0.25); border-radius: 12px; padding: 0.95rem 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
-    .result-suggested-text { font-family: var(--mono); font-size: 0.62rem; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; }
-    .result-suggested-text strong { display: block; font-family: var(--mono); font-size: 1.15rem; color: var(--gold); margin-top: 0.2rem; letter-spacing: 0; text-transform: none; font-weight: 700; }
+    .result-suggested { position: relative; background: linear-gradient(135deg, rgba(245,196,0,0.10), rgba(74,222,128,0.06)); border: 1px solid rgba(245,196,0,0.32); border-radius: 14px; padding: 1.15rem 1.25rem; overflow: hidden; }
+    .result-suggested::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--gold), var(--green)); }
+    .result-suggested-tag { font-family: var(--mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem; }
+    .result-suggested-line { font-size: 0.86rem; color: var(--text-2); line-height: 1.55; }
+    .result-suggested-line strong { font-family: var(--mono); color: var(--gold); font-weight: 700; }
+    .result-suggested-price { display: block; font-family: var(--mono); font-size: 1.6rem; color: var(--gold); font-weight: 800; line-height: 1.1; margin-top: 0.45rem; letter-spacing: -0.01em; text-shadow: 0 0 16px rgba(245,196,0,0.25); }
 
-    .result-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.25rem; }
-    .copy-confirm { font-family: var(--mono); font-size: 0.7rem; color: var(--green); display: none; align-self: center; }
-    .copy-confirm.show { display: inline; }
+    /* SHARE ROW */
+    .share-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; margin-top: 0.25rem; }
+    @media (max-width: 380px) { .share-row { grid-template-columns: 1fr; } }
+    .share-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text-2); border-radius: 9px; padding: 0.6rem 0.6rem; font-size: 0.76rem; font-weight: 600; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; font-family: var(--body); display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; min-height: 42px; }
+    .share-btn:hover { background: rgba(123,47,255,0.12); color: var(--text-1); border-color: rgba(123,47,255,0.3); }
+    .share-btn svg { opacity: 0.7; }
+    .copy-confirm { font-family: var(--mono); font-size: 0.7rem; color: var(--green); display: none; text-align: center; margin-top: 0.25rem; }
+    .copy-confirm.show { display: block; }
+
+    /* REALITY CHECK */
+    .reality-check { margin-top: 2.5rem; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,107,53,0.18); border-radius: 18px; padding: 1.75rem 1.5rem; }
+    .reality-check-tag { font-family: var(--mono); font-size: 0.6rem; color: var(--orange); letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 0.7rem; }
+    .reality-check h2 { font-family: var(--display); font-size: 1.15rem; margin-bottom: 0.4rem; }
+    .reality-check p { font-size: 0.9rem; color: var(--text-2); max-width: 580px; margin-bottom: 1.4rem; }
+    .reality-flow { display: grid; grid-template-columns: repeat(4, 1fr) auto auto auto 1fr; gap: 0; align-items: stretch; }
+    .reality-flow { display: flex; align-items: stretch; gap: 0.5rem; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 0.25rem; }
+    .reality-step { flex: 1 0 110px; min-width: 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 0.85rem 0.85rem; display: flex; flex-direction: column; gap: 0.3rem; }
+    .reality-step.in { border-color: rgba(0,212,255,0.25); }
+    .reality-step.fees { border-color: rgba(248,113,113,0.25); }
+    .reality-step.costs { border-color: rgba(248,113,113,0.25); }
+    .reality-step.out { border-color: rgba(74,222,128,0.3); background: rgba(74,222,128,0.06); }
+    .reality-step-label { font-family: var(--mono); font-size: 0.54rem; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; }
+    .reality-step-val { font-family: var(--mono); font-size: 1rem; font-weight: 700; color: var(--text-1); line-height: 1.1; }
+    .reality-step.in .reality-step-val { color: var(--cyan); }
+    .reality-step.fees .reality-step-val, .reality-step.costs .reality-step-val { color: var(--red); }
+    .reality-step.out .reality-step-val { color: var(--green); }
+    .reality-arrow { align-self: center; color: var(--text-3); font-size: 1rem; flex: 0 0 auto; padding: 0 0.1rem; }
+    @media (max-width: 540px) {
+      .reality-flow { flex-direction: column; }
+      .reality-arrow { transform: rotate(90deg); padding: 0.25rem 0; }
+      .reality-step { flex: 1 1 auto; }
+    }
+
+    /* COMING SOON */
+    .coming-soon { margin-top: 2.5rem; }
+    .coming-soon h2 { font-family: var(--display); font-size: 1.15rem; margin-bottom: 0.4rem; }
+    .coming-soon .sub { font-size: 0.86rem; color: var(--text-3); margin-bottom: 1.2rem; }
+    .coming-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    @media (max-width: 720px) { .coming-grid { grid-template-columns: 1fr; } }
+    .coming-card { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 1rem 1.1rem; }
+    .coming-card-tag { display: inline-block; font-family: var(--mono); font-size: 0.55rem; color: var(--gold); background: rgba(245,196,0,0.1); border: 1px solid rgba(245,196,0,0.25); border-radius: 99px; padding: 0.2rem 0.55rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.55rem; }
+    .coming-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .coming-card p { font-size: 0.78rem; color: var(--text-3); line-height: 1.55; }
+
+    /* STICKY MOBILE CTA */
+    .sticky-cta { display: none; }
+    @media (max-width: 860px) {
+      .sticky-cta { display: flex; position: fixed; bottom: 0; left: 0; right: 0; padding: 0.75rem 1rem calc(env(safe-area-inset-bottom, 0px) + 0.75rem); background: linear-gradient(180deg, rgba(5,8,18,0.6), rgba(5,8,18,0.97) 40%); backdrop-filter: blur(10px); border-top: 1px solid rgba(123,47,255,0.18); z-index: 50; gap: 0.5rem; }
+      .sticky-cta a { flex: 1; text-align: center; padding: 0.8rem 1rem; border-radius: 10px; font-weight: 700; font-size: 0.88rem; }
+      .sticky-cta .s-result { background: rgba(255,255,255,0.06); color: var(--text-1); border: 1px solid rgba(255,255,255,0.08); }
+      .sticky-cta .s-hv { background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff; }
+      .tool-wrap { padding-bottom: 6rem; }
+    }
 
     /* SEO CONTENT */
     .seo-section { margin-top: 3rem; }
@@ -228,12 +282,14 @@ const structuredData = JSON.stringify({
     .seo-card p { font-size: 0.86rem; color: var(--text-2); line-height: 1.7; }
 
     /* HV FUNNEL CTA */
-    .hv-funnel { margin-top: 3rem; background: linear-gradient(135deg, rgba(123,47,255,0.12), rgba(0,212,255,0.06)); border: 1px solid rgba(123,47,255,0.25); border-radius: 20px; padding: 2rem 1.75rem; text-align: center; }
-    .hv-funnel-tag { font-family: var(--mono); font-size: 0.6rem; color: var(--violet); letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 0.85rem; }
-    .hv-funnel h2 { font-family: var(--display); font-size: 1.2rem; margin-bottom: 0.65rem; }
-    .hv-funnel p { font-size: 0.92rem; color: var(--text-2); max-width: 480px; margin: 0 auto 1.4rem; }
-    .hv-funnel-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff; padding: 0.75rem 1.6rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s; }
-    .hv-funnel-btn:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(123,47,255,0.35); }
+    .hv-funnel { margin-top: 3rem; background: linear-gradient(135deg, rgba(123,47,255,0.14), rgba(0,212,255,0.07)); border: 1px solid rgba(123,47,255,0.28); border-radius: 20px; padding: 2.25rem 1.75rem 2rem; text-align: center; position: relative; overflow: hidden; }
+    .hv-funnel::before { content: ''; position: absolute; top: -40%; left: 50%; transform: translateX(-50%); width: 120%; height: 80%; background: radial-gradient(ellipse at center, rgba(123,47,255,0.15), transparent 65%); pointer-events: none; }
+    .hv-funnel-tag { position: relative; font-family: var(--mono); font-size: 0.6rem; color: var(--violet); letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 0.85rem; }
+    .hv-funnel h2 { position: relative; font-family: var(--display); font-size: clamp(1.15rem, 3vw, 1.45rem); margin-bottom: 0.65rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .hv-funnel p { position: relative; font-size: 0.93rem; color: var(--text-2); max-width: 480px; margin: 0 auto 1.5rem; }
+    .hv-funnel-btn { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--purple), var(--cyan)); color: #fff; padding: 0.85rem 1.75rem; border-radius: 10px; font-weight: 700; font-size: 0.92rem; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s; }
+    .hv-funnel-btn:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 12px 28px rgba(123,47,255,0.4); }
+    .hv-funnel-foot { position: relative; display: block; font-size: 0.76rem; color: var(--text-3); margin-top: 0.85rem; }
 
     /* FOOTER */
     .tool-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 1.75rem 2rem; text-align: center; font-size: 0.78rem; color: var(--text-3); }
@@ -394,8 +450,7 @@ const structuredData = JSON.stringify({
         </div>
 
         <div class="action-row">
-          <button class="btn btn-ghost" id="btnReset" type="button">↺ Reset</button>
-          <button class="btn btn-primary" id="btnCopy" type="button">⧉ Copy Result</button>
+          <button class="btn btn-ghost" id="btnReset" type="button">↺ Reset to Defaults</button>
         </div>
       </div>
 
@@ -407,9 +462,9 @@ const structuredData = JSON.stringify({
         </div>
 
         <div class="result-headline" id="profitCard">
-          <div class="result-headline-label" id="profitLabel">⚡ Estimated Profit</div>
+          <div class="result-headline-label" id="profitLabel">⚡ Your Estimated Profit</div>
           <div class="result-headline-amount" id="profitAmount">₱0.00</div>
-          <div class="result-headline-sub" id="profitSub">Profit margin: <strong id="marginVal">0%</strong></div>
+          <div class="result-headline-sub">Profit margin: <strong id="marginVal">0%</strong> · Net payout: <strong id="netInline">₱0.00</strong></div>
         </div>
 
         <div class="result-grid">
@@ -440,50 +495,120 @@ const structuredData = JSON.stringify({
         </div>
 
         <div class="result-suggested">
-          <div class="result-suggested-text">
-            Suggested Price for ₱<span id="targetEcho">100</span> Profit
-            <strong id="suggestedVal">₱0.00</strong>
+          <div class="result-suggested-tag">★ Recommended Selling Price</div>
+          <div class="result-suggested-line">
+            To earn <strong>₱<span id="targetEcho">100</span></strong> profit, price your product at
+            <strong class="result-suggested-price" id="suggestedVal">₱0.00</strong>
           </div>
         </div>
 
-        <div class="result-actions">
-          <span class="copy-confirm" id="copyConfirm">✓ Copied!</span>
+        <div class="share-row">
+          <button class="share-btn" id="btnCopyBreakdown" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            Copy Breakdown
+          </button>
+          <button class="share-btn" id="btnCopyResult" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Result
+          </button>
+          <button class="share-btn" id="btnShareResult" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share Result
+          </button>
         </div>
+        <span class="copy-confirm" id="copyConfirm">✓ Copied!</span>
       </div>
 
     </div>
 
+    <!-- REALITY CHECK -->
+    <section class="reality-check">
+      <span class="reality-check-tag">// Seller Reality Check</span>
+      <h2>Selling price is not your real income.</h2>
+      <p>Marketplace fees, product cost, packaging, and shipping can reduce your actual profit fast. Here's how your money actually flows on each sale:</p>
+      <div class="reality-flow">
+        <div class="reality-step in">
+          <span class="reality-step-label">Selling Price</span>
+          <span class="reality-step-val" id="flowSelling">₱0.00</span>
+        </div>
+        <span class="reality-arrow">→</span>
+        <div class="reality-step fees">
+          <span class="reality-step-label">− Fees</span>
+          <span class="reality-step-val" id="flowFees">₱0.00</span>
+        </div>
+        <span class="reality-arrow">→</span>
+        <div class="reality-step costs">
+          <span class="reality-step-label">− Costs</span>
+          <span class="reality-step-val" id="flowCosts">₱0.00</span>
+        </div>
+        <span class="reality-arrow">→</span>
+        <div class="reality-step out">
+          <span class="reality-step-label">Actual Profit</span>
+          <span class="reality-step-val" id="flowProfit">₱0.00</span>
+        </div>
+      </div>
+    </section>
+
     <!-- SEO Content -->
     <section class="seo-section">
-      <h2>Why Sellers Should Calculate Net Profit</h2>
+      <h2>Shopee Profit Calculator — How It Works</h2>
       <div class="seo-row">
         <div class="seo-card">
+          <h3><span class="dot"></span>Why Shopee sellers should calculate net profit</h3>
+          <p>Selling on Shopee feels simple — list a product, set a price, watch sales come in. But the number that lands in your seller wallet is never the number on the price tag. Calculating net profit before you launch a product protects your margin from day one and stops you from joining campaigns that quietly lose money.</p>
+        </div>
+        <div class="seo-card">
           <h3><span class="dot"></span>Gross sales are not the same as profit</h3>
-          <p>A ₱500 sale doesn't mean ₱500 in your pocket. After Shopee's commission, service fees, transaction fees, and withholding tax, your actual payout can drop by 20–25% before you even subtract product cost and packaging.</p>
+          <p>A ₱500 sale doesn't mean ₱500 in your pocket. After Shopee's commission, service fees, transaction fees, and withholding tax, your actual payout can drop by 20–25% — before you even subtract product cost, packaging, and shipping. Profit lives in what's left after all of those.</p>
         </div>
         <div class="seo-card">
-          <h3><span class="dot"></span>Marketplace fees can reduce your actual income</h3>
-          <p>Many Filipino sellers price products by looking only at cost vs. selling price. But Shopee fees stack — commission, service, transaction, and withholding tax all come out of your payout. Without modeling them, you may be selling at a loss.</p>
+          <h3><span class="dot"></span>How to use the Shopee Profit Calculator</h3>
+          <p>Enter your product cost, current or planned selling price, and any packaging or shipping you cover. The fee percentages are pre-filled with common Shopee defaults — adjust them to match your category or seller tier. Set your target profit, and the calculator instantly shows your real margin and the price you'd need to charge to hit that target.</p>
         </div>
         <div class="seo-card">
-          <h3><span class="dot"></span>Use this calculator before setting your selling price</h3>
-          <p>Plug in your product cost and target profit, and this tool back-computes the price you need to charge to actually hit that profit after fees. No spreadsheets, no surprises on payout day.</p>
+          <h3><span class="dot"></span>How to price products after Shopee fees</h3>
+          <p>Start from total cost (product + packaging + shipping you absorb), divide by 1 minus your total fee rate, then add the profit you want. That's your recommended price. Always check the break-even price first — if a voucher or flash-sale discount drops the final price below it, every order becomes a loss, no matter how many you sell.</p>
         </div>
-        <div class="seo-card">
-          <h3><span class="dot"></span>Know your break-even before you discount</h3>
-          <p>Before joining a Shopee voucher campaign or running a 50%-off promo, check the break-even price first. If you discount below it, every sale costs you money — even with high order volume.</p>
+      </div>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="coming-soon">
+      <h2>More calculators coming soon</h2>
+      <p class="sub">Built for Filipino sellers who want to actually know their numbers.</p>
+      <div class="coming-grid">
+        <div class="coming-card">
+          <span class="coming-card-tag">Coming Soon</span>
+          <h3>TikTok Shop Profit Calculator</h3>
+          <p>Model TikTok Shop's commission, affiliate fees, and live-selling cuts before you launch.</p>
+        </div>
+        <div class="coming-card">
+          <span class="coming-card-tag">Coming Soon</span>
+          <h3>Lazada Profit Calculator</h3>
+          <p>Calculate Lazada's payment and commission fees alongside campaign costs and vouchers.</p>
+        </div>
+        <div class="coming-card">
+          <span class="coming-card-tag">Coming Soon</span>
+          <h3>Break-Even Calculator</h3>
+          <p>Find the minimum quantity you need to sell to cover monthly fixed costs and stay profitable.</p>
         </div>
       </div>
     </section>
 
     <!-- HUNTER VAULT FUNNEL -->
     <section class="hv-funnel">
-      <span class="hv-funnel-tag">// Track What You Earn</span>
-      <h2>Want to track your spending and money goals too?</h2>
-      <p>Hunter Vault helps you track expenses, bills, savings, and safe-to-spend money with RPG-style progress. Turn your seller income into a leveled-up money game.</p>
-      <a href="/#download" class="hv-funnel-btn">Try Hunter Vault →</a>
+      <span class="hv-funnel-tag">// Level Up Your Money Game</span>
+      <h2>Most sellers track sales, not actual profit.</h2>
+      <p>Hunter Vault helps you track expenses, bills, savings, and safe-to-spend money with RPG-style progress. Built for people who want better money awareness — without boring spreadsheets.</p>
+      <a href="/#download" class="hv-funnel-btn">Try Hunter Vault Free →</a>
+      <span class="hv-funnel-foot">Free · No account required · Works offline</span>
     </section>
 
+  </div>
+
+  <div class="sticky-cta" role="region" aria-label="Quick actions">
+    <a href="#results" class="s-result">View Result</a>
+    <a href="/#download" class="s-hv">Try Hunter Vault</a>
   </div>
 
   <footer class="tool-footer">
@@ -520,6 +645,33 @@ const structuredData = JSON.stringify({
       return isNaN(v) || v < 0 ? 0 : v;
     }
 
+    // Count-up animator (respects reduced motion)
+    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animState: Record<string, { from: number; raf: number }> = {};
+    function animateValue(id: string, to: number) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const state = animState[id] || { from: 0, raf: 0 };
+      const from = state.from;
+      if (prefersReduce || Math.abs(to - from) < 0.5) {
+        el.textContent = PHP.format(to);
+        animState[id] = { from: to, raf: 0 };
+        return;
+      }
+      if (state.raf) cancelAnimationFrame(state.raf);
+      const duration = 420;
+      const start = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const v = from + (to - from) * eased;
+        el.textContent = PHP.format(v);
+        if (t < 1) animState[id] = { from: v, raf: requestAnimationFrame(tick) };
+        else animState[id] = { from: to, raf: 0 };
+      };
+      animState[id] = { from, raf: requestAnimationFrame(tick) };
+    }
+
     function calc() {
       const productCost   = readNum('productCost');
       const sellingPrice  = readNum('sellingPrice');
@@ -554,11 +706,17 @@ const structuredData = JSON.stringify({
       (document.getElementById('breakEvenVal') as HTMLElement).textContent = isFinite(breakEvenPrice) ? PHP.format(breakEvenPrice) : '—';
       (document.getElementById('feeRateVal') as HTMLElement).textContent = PCT(totalFeeRatePct);
 
-      (document.getElementById('profitAmount') as HTMLElement).textContent = PHP.format(profit);
+      animateValue('profitAmount', profit);
       (document.getElementById('marginVal') as HTMLElement).textContent = PCT(profitMargin);
+      (document.getElementById('netInline') as HTMLElement).textContent = PHP.format(netPayout);
 
       (document.getElementById('targetEcho') as HTMLElement).textContent = targetProfit.toLocaleString('en-PH', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
       (document.getElementById('suggestedVal') as HTMLElement).textContent = isFinite(suggestedPrice) ? PHP.format(suggestedPrice) : '—';
+
+      (document.getElementById('flowSelling') as HTMLElement).textContent = PHP.format(sellingPrice);
+      (document.getElementById('flowFees') as HTMLElement).textContent = PHP.format(totalFees);
+      (document.getElementById('flowCosts') as HTMLElement).textContent = PHP.format(totalCosts);
+      (document.getElementById('flowProfit') as HTMLElement).textContent = PHP.format(profit);
 
       // States
       const panel = document.getElementById('results') as HTMLElement;
@@ -588,26 +746,64 @@ const structuredData = JSON.stringify({
       calc();
     });
 
-    (document.getElementById('btnCopy') as HTMLButtonElement).addEventListener('click', async () => {
-      const r = calc();
-      const text =
-`Shopee Profit Calculator — Hunter Vault
-Selling Price:       ${PHP.format(r.sellingPrice)}
-Total Fees (${PCT(r.totalFeeRatePct)}):  ${PHP.format(r.totalFees)}
-Total Costs:         ${PHP.format(r.totalCosts)}
-Net Payout:          ${PHP.format(r.netPayout)}
-Profit:              ${PHP.format(r.profit)}
-Profit Margin:       ${PCT(r.profitMargin)}
-Break-Even Price:    ${isFinite(r.breakEvenPrice) ? PHP.format(r.breakEvenPrice) : 'n/a'}
-Suggested Price (₱${r.targetProfit} target): ${isFinite(r.suggestedPrice) ? PHP.format(r.suggestedPrice) : 'n/a'}
+    const PAGE_URL = 'https://huntervault.app/tools/shopee-profit-calculator/';
 
-https://huntervault.app/tools/shopee-profit-calculator/`;
-      try {
-        await navigator.clipboard.writeText(text);
-        const c = document.getElementById('copyConfirm') as HTMLElement;
-        c.classList.add('show');
-        setTimeout(() => c.classList.remove('show'), 1800);
-      } catch (e) {}
+    function shortResult() {
+      const r = calc();
+      return [
+        `Selling Price: ${PHP.format(r.sellingPrice)}`,
+        `Total Fees: ${PHP.format(r.totalFees)}`,
+        `Total Costs: ${PHP.format(r.totalCosts)}`,
+        `Estimated Profit: ${PHP.format(r.profit)}`,
+        `Profit Margin: ${PCT(r.profitMargin)}`,
+        `Suggested Price: ${isFinite(r.suggestedPrice) ? PHP.format(r.suggestedPrice) : 'n/a'}`,
+      ].join('\n');
+    }
+
+    function fullBreakdown() {
+      const r = calc();
+      return [
+        `Shopee Profit Calculator — Hunter Vault`,
+        ``,
+        `Selling Price:       ${PHP.format(r.sellingPrice)}`,
+        `Total Fees (${PCT(r.totalFeeRatePct)}):   ${PHP.format(r.totalFees)}`,
+        `Total Costs:         ${PHP.format(r.totalCosts)}`,
+        `Net Payout:          ${PHP.format(r.netPayout)}`,
+        `Estimated Profit:    ${PHP.format(r.profit)}`,
+        `Profit Margin:       ${PCT(r.profitMargin)}`,
+        `Break-Even Price:    ${isFinite(r.breakEvenPrice) ? PHP.format(r.breakEvenPrice) : 'n/a'}`,
+        `Suggested Price (₱${r.targetProfit} target): ${isFinite(r.suggestedPrice) ? PHP.format(r.suggestedPrice) : 'n/a'}`,
+        ``,
+        PAGE_URL,
+      ].join('\n');
+    }
+
+    function flashCopied() {
+      const c = document.getElementById('copyConfirm') as HTMLElement;
+      c.classList.add('show');
+      setTimeout(() => c.classList.remove('show'), 1800);
+    }
+
+    async function copyText(text: string) {
+      try { await navigator.clipboard.writeText(text); flashCopied(); }
+      catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); flashCopied(); } catch {}
+        document.body.removeChild(ta);
+      }
+    }
+
+    document.getElementById('btnCopyBreakdown')?.addEventListener('click', () => copyText(fullBreakdown()));
+    document.getElementById('btnCopyResult')?.addEventListener('click', () => copyText(shortResult()));
+    document.getElementById('btnShareResult')?.addEventListener('click', async () => {
+      const text = shortResult() + '\n\nCalculate yours: ' + PAGE_URL;
+      const nav = navigator as any;
+      if (nav.share) {
+        try { await nav.share({ title: 'Shopee Profit Calculator', text, url: PAGE_URL }); return; }
+        catch (e) {}
+      }
+      copyText(text);
     });
 
     calc();
