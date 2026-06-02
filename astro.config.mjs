@@ -17,6 +17,8 @@ export default defineConfig({
           return { ...item, changefreq: 'weekly',  priority: 1.0 };
         if (url === 'https://huntervault.app/features/')
           return { ...item, changefreq: 'monthly', priority: 0.9 };
+        if (url === 'https://huntervault.app/safe-to-spend/')
+          return { ...item, changefreq: 'monthly', priority: 0.85 };
         if (url === 'https://huntervault.app/faq/')
           return { ...item, changefreq: 'monthly', priority: 0.85 };
         if (url === 'https://huntervault.app/about/')
